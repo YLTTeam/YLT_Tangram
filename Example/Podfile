@@ -1,0 +1,7 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'YLT_Tangram_Example' do
+  pod 'YLT_Tangram', :path => '../'
+end

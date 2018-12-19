@@ -1,0 +1,6 @@
+framework module YLT_Tangram {
+  umbrella header "YLT_Tangram-umbrella.h"
+
+  export *
+  module * { export * }
+}
