@@ -1,0 +1,33 @@
+{
+    "type":"TangramLabelPage",
+    "content":[
+               [
+                {
+                "type":"TangramLabel",
+                "text":"str2",
+                "iamge":"icon"
+                },
+                {
+                "type":"TangramLabel",
+                "text":"str3",
+                "iamge":"icon"
+                },
+                {
+                "type":"TangramLabel",
+                "text":"str4",
+                "iamge":"icon"
+                },
+                {
+                "type":"TangramLabel",
+                "text":"str5",
+                "iamge":"icon"
+                },
+                {
+                "type":"TangramLabel",
+                "text":"str6",
+                "iamge":"icon"
+                }
+                ]
+    ]
+    
+}

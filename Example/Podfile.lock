@@ -23,6 +23,7 @@ PODS:
   - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.7)
   - ReactiveObjC (3.1.0)
+  - RegexKitLite (4.0)
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
@@ -39,6 +40,7 @@ PODS:
     - SDWebImage
     - YLT_BaseLib
   - YLT_Tangram (0.1.0):
+    - RegexKitLite
     - YLT_Kit
 
 DEPENDENCIES:
@@ -54,6 +56,7 @@ SPEC REPOS:
     - MJExtension
     - MJRefresh
     - ReactiveObjC
+    - RegexKitLite
     - SDWebImage
     - YLT_BaseLib
     - YLT_Kit
@@ -71,10 +74,11 @@ SPEC CHECKSUMS:
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
+  RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   YLT_BaseLib: 144c9b1982e67f8c73bf2533b53662e8dafec42a
   YLT_Kit: 31039219864ed23df1bf96dbeaaa5422785a698a
-  YLT_Tangram: 5a18212e0e3513d59d24740a5a0c73acf6dc8527
+  YLT_Tangram: 5bc0043ab61afef472c5c3a94c7de06cee90bd01
 
 PODFILE CHECKSUM: 9283665bd5d7e8df116f60b7f2e273c52571d97e
 

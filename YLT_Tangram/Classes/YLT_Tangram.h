@@ -1,14 +1,7 @@
-#ifdef __OBJC__
-#import <UIKit/UIKit.h>
-#else
-#ifndef FOUNDATION_EXPORT
-#if defined(__cplusplus)
-#define FOUNDATION_EXPORT extern "C"
-#else
-#define FOUNDATION_EXPORT extern
-#endif
-#endif
-#endif
+
+
+#ifndef YLT_BaseLib_h
+#define YLT_BaseLib_h
 
 #import "BaseCollection.h"
 #import "TangramModel+Calculate.h"
@@ -30,8 +23,5 @@
 #import "YLT_TangramView+TangramData.h"
 #import "YLT_TangramView+TangramPage.h"
 #import "YLT_TangramView.h"
-#import "YLT_Tangram.h"
 
-FOUNDATION_EXPORT double YLT_TangramVersionNumber;
-FOUNDATION_EXPORT const unsigned char YLT_TangramVersionString[];
-
+#endif

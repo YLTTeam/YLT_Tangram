@@ -1,0 +1,33 @@
+{
+    "type":"TangramMenuPage",
+    "content":[
+               [
+                {
+                "type":"TangramMenu",
+                "text":"str2",
+                "iamge":"icon"
+                },
+                {
+                "type":"TangramMenu",
+                "text":"str3",
+                "iamge":"icon"
+                },
+                {
+                "type":"TangramMenu",
+                "text":"str4",
+                "iamge":"icon"
+                },
+                {
+                "type":"TangramMenu",
+                "text":"str5",
+                "iamge":"icon"
+                },
+                {
+                "type":"TangramMenu",
+                "text":"str6",
+                "iamge":"icon"
+                }
+                ]
+               ]
+    
+}

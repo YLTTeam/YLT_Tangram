@@ -1,0 +1,29 @@
+{
+    "id":"1",
+    "background":"ff0000",
+    "dataTag":"",
+    "keypath":"",
+    "action":"",
+    "classname":"TangramMenu",
+    "identify":"1",
+    "subTangrams":[
+                   {
+                   "id":"0",
+                   "background":"ff0000",
+                   "dataTag":"",
+                   "keypath":"text",
+                   "action":"",
+                   "classname":"TangramLabel",
+                   "identify":"1_1"
+                   },
+                   {
+                   "id":"0",
+                   "background":"ff0000",
+                   "dataTag":"",
+                   "keypath":"image",
+                   "action":"",
+                   "classname":"TangramImage",
+                   "identify":"1_2"
+                   }
+    ]
+}
