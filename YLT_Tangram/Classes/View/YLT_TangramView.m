@@ -9,6 +9,8 @@
 #import "YLT_TangramView+TangramData.h"
 #import "YLT_TangramView+TangramPage.h"
 #import "YLT_TangramManager.h"
+#import "YLT_TangramLabel.h"
+#import "YLT_TangramImage.h"
 
 @interface YLT_TangramView() {
 }
@@ -19,7 +21,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = UIColor.whiteColor;
+        self.backgroundColor = UIColor.clearColor;
     }
     return self;
 }
@@ -38,7 +40,17 @@
 - (void)setPageData:(NSDictionary *)pageData {
     _pageData = pageData;
     if ([_pageData isKindOfClass:[NSDictionary class]]) {
-        self.pageModel = [YLT_TangramManager typeFromPageData:_pageData];
+        /** 原子组件，不需要加载动态加载布局 */
+        if ([self isKindOfClass:[YLT_TangramImage class]] || [self isKindOfClass:[YLT_TangramLabel class]]) {
+            [self updateData];
+            [self refreshPage];
+            return;
+        }
+        TangramView *pageModel = [YLT_TangramManager typeFromPageData:_pageData];
+        if (pageModel != nil) {
+            self.pageModel = pageModel;
+            return;
+        }
     }
 }
 

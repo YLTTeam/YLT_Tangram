@@ -9,21 +9,22 @@
     "subTangrams":[
                    {
                    "id":"0",
-                   "background":"ff0000",
-                   "dataTag":"",
-                   "keypath":"text",
-                   "action":"",
-                   "classname":"TangramLabel",
-                   "identify":"1_1"
-                   },
-                   {
-                   "id":"0",
-                   "background":"ff0000",
+                   "background":"ff000000",
                    "dataTag":"",
                    "keypath":"image",
                    "action":"",
                    "classname":"TangramImage",
                    "identify":"1_2"
+                   },
+                   {
+                   "id":"0",
+                   "background":"ff000000",
+                   "dataTag":"",
+                   "keypath":"text",
+                   "textColor":"ffffff",
+                   "action":"",
+                   "classname":"TangramLabel",
+                   "identify":"1_1"
                    }
     ]
 }

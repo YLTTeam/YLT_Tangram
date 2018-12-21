@@ -10,6 +10,8 @@
 
 @interface YLT_TangramCell : UICollectionViewCell
 
+- (void)configCellFromConfigname:(NSString *)configname;
+
 - (void)reloadCellData:(id)data;
 
 @end

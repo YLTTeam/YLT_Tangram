@@ -24,6 +24,7 @@
 		C76C917321CB7CBE00449F8E /* TangramMenuPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */; };
 		C76C917F21CB8E6900449F8E /* TangramMenuData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */; };
 		C76C918621CB984700449F8E /* TangramLabel.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C918521CB984700449F8E /* TangramLabel.geojson */; };
+		C7A07DAF21CC8A0A00AB450C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C7A07DAE21CC8A0A00AB450C /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = TangramMenuPage.geojson; sourceTree = "<group>"; };
 		C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TangramMenuData.geojson; sourceTree = "<group>"; };
 		C76C918521CB984700449F8E /* TangramLabel.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TangramLabel.geojson; sourceTree = "<group>"; };
+		C7A07DAE21CC8A0A00AB450C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		C808164A4075EC3F0EDE9626 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FD244D5665F23318592AF86A /* Pods-YLT_Tangram_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLT_Tangram_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLT_Tangram_Example/Pods-YLT_Tangram_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +128,7 @@
 		6003F593195388D20070C39A /* Example for YLT_Tangram */ = {
 			isa = PBXGroup;
 			children = (
+				C7C6415A21CC8995001B280A /* Menu */,
 				6003F59C195388D20070C39A /* YLTAppDelegate.h */,
 				6003F59D195388D20070C39A /* YLTAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -134,9 +137,6 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
-				C76C916621CB49EC00449F8E /* TangramMenu.geojson */,
-				C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */,
-				C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */,
 				C76C917121CB7ABD00449F8E /* Label */,
 			);
 			name = "Example for YLT_Tangram";
@@ -191,6 +191,17 @@
 				C76C916421CB466900449F8E /* TangramLabelData.geojson */,
 			);
 			name = Label;
+			sourceTree = "<group>";
+		};
+		C7C6415A21CC8995001B280A /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				C7A07DAE21CC8A0A00AB450C /* logo.png */,
+				C76C916621CB49EC00449F8E /* TangramMenu.geojson */,
+				C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */,
+				C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */,
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +261,7 @@
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				C76C918621CB984700449F8E /* TangramLabel.geojson in Resources */,
+				C7A07DAF21CC8A0A00AB450C /* logo.png in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				C76C913421CA245100449F8E /* TangramLabelPage.geojson in Resources */,
 				C76C917F21CB8E6900449F8E /* TangramMenuData.geojson in Resources */,

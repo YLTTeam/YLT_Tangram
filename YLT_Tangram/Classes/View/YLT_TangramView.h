@@ -12,7 +12,7 @@
 /**
  页面配置
  */
-@property (nonatomic, strong, readonly) TangramView *pageModel;
+@property (nonatomic, strong) TangramView *pageModel;
 /**
  数据
  */

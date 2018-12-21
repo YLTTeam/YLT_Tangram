@@ -9,6 +9,7 @@
 
 @implementation YLT_TangramView (TangramPage)
 
+//解析当前模型的相关属性
 - (void)updatePage {
     [self.mainView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.pageModel.ylt_padding);
@@ -17,6 +18,7 @@
     
     self.hidden = self.pageModel.hidden;
     self.mainView.backgroundColor = self.pageModel.background.ylt_colorFromHexString;
+    
     [self updateBorder];    
 }
 

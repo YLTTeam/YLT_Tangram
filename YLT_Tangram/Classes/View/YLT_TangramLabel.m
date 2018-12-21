@@ -19,6 +19,7 @@
 - (void)refreshPage {
     if ([self.pageModel isKindOfClass:[TangramLabel class]]) {
         self.label.text = ((TangramLabel *) self.pageModel).text;
+        self.label.ylt_textColor(((TangramLabel *) self.pageModel).textColor.ylt_colorFromHexString);
     }
     if (self.pageData) {
         self.label.text = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.keypath];

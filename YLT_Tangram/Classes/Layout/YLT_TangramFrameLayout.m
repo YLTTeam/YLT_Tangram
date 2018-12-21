@@ -15,7 +15,7 @@
         [((TangramFrameLayout *) self.pageModel).subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             Class cls = NULL;
             if ([obj respondsToSelector:@selector(classname)]) {
-                cls = NSClassFromString(obj.classname);
+                cls = NSClassFromString([NSString stringWithFormat:@"YLT_%@", obj.classname]);
             }
             if (cls == NULL) {
                 cls = YLT_TangramView.class;
