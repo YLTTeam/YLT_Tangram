@@ -6,9 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "TangramModel.h"
 @interface YLT_TangramUtils : NSObject
 
 + (id)valueFromSourceData:(id)sourceData keyPath:(NSString *)keypath;
-
+///计算size
++ (CGSize)tangramSizePageModel:(TangramView *)pageModel;
 @end
