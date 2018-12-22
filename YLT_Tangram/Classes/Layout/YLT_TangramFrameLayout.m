@@ -7,7 +7,7 @@
 
 #import "YLT_TangramFrameLayout.h"
 #import "YLT_TangramManager.h"
-
+#import "YLT_TangramView+layout.h"
 @implementation YLT_TangramFrameLayout
 
 - (void)refreshPage {
@@ -22,10 +22,12 @@
             }
             if ([cls isSubclassOfClass:YLT_TangramView.class]) {
                 YLT_TangramView *sub = [[cls alloc] init];
+                sub.pageModel = obj;
                 [self.mainView addSubview:sub];
                 [sub mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.edges.mas_equalTo(obj.ylt_layoutMagin);
                 }];
+                [sub updateLayout];
             }
         }];
     }

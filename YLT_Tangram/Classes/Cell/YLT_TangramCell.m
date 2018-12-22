@@ -9,7 +9,7 @@
 #import "YLT_TangramView.h"
 #import "YLT_TangramManager.h"
 #import "TangramModel+Calculate.h"
-
+#import "YLT_TangramView+layout.h"
 @interface YLT_TangramCell () {
 }
 @property (nonatomic, strong) NSMutableDictionary<NSString *, TangramView *> *subTangrams;
@@ -57,6 +57,7 @@
                         }];
                         sub.pageModel = pageModel;
                         [self.subTangrams setObject:sub forKey:pageModel.identify];
+                        [sub updateLayout];
                     }
                 }
                 YLT_Log(@"%@", pageModel);

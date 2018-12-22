@@ -186,6 +186,8 @@
 		5250F66390FC4A0E1479525CE6615A87 /* MJExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B41CD6B5AF7163D1FEE2A30D33A4F0C /* MJExtension.framework */; };
 		527D4B29A458F047156F489D8A76DFE3 /* UIStepper+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 164AD19781B5A2B1DE435E79060A364F /* UIStepper+RACSignalSupport.m */; };
 		52CC249B6CD108170E16BA82A5FD1641 /* SDWebImageImageIOCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = B8BD257AD46B2DDD67EB9815E4F35299 /* SDWebImageImageIOCoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		52FEDEF821CE4BFF00E1E049 /* YLT_TangramView+layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52FEDEF621CE4BFE00E1E049 /* YLT_TangramView+layout.m */; };
+		52FEDEF921CE4BFF00E1E049 /* YLT_TangramView+layout.h in Headers */ = {isa = PBXBuildFile; fileRef = 52FEDEF721CE4BFF00E1E049 /* YLT_TangramView+layout.h */; };
 		53B17B71F3B4F9382C5D81649B04F463 /* RACQueueScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = B9360DEB40EC384E5B9432B9400537D9 /* RACQueueScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		54AC36402865102C901D57C0EB75739E /* TangramModel+Calculate.m in Sources */ = {isa = PBXBuildFile; fileRef = A10656E92C5A7511D970400814063A70 /* TangramModel+Calculate.m */; };
 		55BE7E860CCAA1EF3B6676DD13D68A24 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 919D0F4A5DE09C5E467C3CE81DA93084 /* SDWebImagePrefetcher.m */; };
@@ -1103,6 +1105,8 @@
 		51A18EB1B70948F4238A52FF32A007B2 /* UIRefreshControl+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIRefreshControl+AFNetworking.h"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.h"; sourceTree = "<group>"; };
 		526DFD39B11C8CE13103FEC46ADBF185 /* UIAlertView+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+RACSignalSupport.m"; path = "ReactiveObjC/UIAlertView+RACSignalSupport.m"; sourceTree = "<group>"; };
 		5296710E3C899492756C01AFA735724A /* RACEXTRuntimeExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEXTRuntimeExtensions.h; path = ReactiveObjC/extobjc/RACEXTRuntimeExtensions.h; sourceTree = "<group>"; };
+		52FEDEF621CE4BFE00E1E049 /* YLT_TangramView+layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YLT_TangramView+layout.m"; sourceTree = "<group>"; };
+		52FEDEF721CE4BFF00E1E049 /* YLT_TangramView+layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YLT_TangramView+layout.h"; sourceTree = "<group>"; };
 		52FFD049404A689020912FAD1926BAEA /* RACTargetQueueScheduler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACTargetQueueScheduler.h; path = ReactiveObjC/RACTargetQueueScheduler.h; sourceTree = "<group>"; };
 		549AA97120512CAACBBCD3028D234B84 /* SDWebImageCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCoder.m; path = SDWebImage/SDWebImageCoder.m; sourceTree = "<group>"; };
 		552DCD35FE60595CB9971152CBDF25CF /* NSString+RACKeyPathUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+RACKeyPathUtilities.h"; path = "ReactiveObjC/NSString+RACKeyPathUtilities.h"; sourceTree = "<group>"; };
@@ -2307,6 +2311,8 @@
 		749B268679DC207E6153A3EBCB913CAF /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				52FEDEF721CE4BFF00E1E049 /* YLT_TangramView+layout.h */,
+				52FEDEF621CE4BFE00E1E049 /* YLT_TangramView+layout.m */,
 				55305F3D1D543EFCD02781BCD1726238 /* YLT_TangramFrameLayout.h */,
 				023A29205DEC8766E83DF24FC0073BEA /* YLT_TangramFrameLayout.m */,
 				0A10B0B502B621176C346AF4DD980CF0 /* YLT_TangramGridLayout.h */,
@@ -3000,6 +3006,7 @@
 				9949FE0EC1D74D4FD419842ACE5D9DF4 /* YLT_TangramVC.h in Headers */,
 				906DFD93E4F3C8F80F5D92C0EAE7D12C /* YLT_TangramVHLayout.h in Headers */,
 				E9F6FB335E78EEA43944EFB83D89289D /* YLT_TangramView+TangramData.h in Headers */,
+				52FEDEF921CE4BFF00E1E049 /* YLT_TangramView+layout.h in Headers */,
 				E66D94C3C20B36FD85F12E037F179089 /* YLT_TangramView+TangramPage.h in Headers */,
 				05BE95BB02680F15176A782D52EA16F6 /* YLT_TangramView.h in Headers */,
 			);
@@ -3944,6 +3951,7 @@
 				4D79280EEE3F954A94AFE68473201220 /* TangramModel.m in Sources */,
 				8DC0328ACEFBB45B8B94625944CF763E /* YLT_Tangram-dummy.m in Sources */,
 				9E5DC0372B747E8D3E349BF1E4C14BE3 /* YLT_TangramCell.m in Sources */,
+				52FEDEF821CE4BFF00E1E049 /* YLT_TangramView+layout.m in Sources */,
 				3098E4929BD20837158356B324739076 /* YLT_TangramFrameLayout.m in Sources */,
 				8A8EBC5E8DD003DA35EEBCE7CFEA0574 /* YLT_TangramGridLayout+Delegate.m in Sources */,
 				963C6E0CE9E796417C045B7F65FA8889 /* YLT_TangramGridLayout.m in Sources */,

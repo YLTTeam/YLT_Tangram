@@ -1,6 +1,6 @@
 {
     "id":"1",
-    "background":"ff0000",
+    "background":"#72DC2D",
     "dataTag":"",
     "keypath":"",
     "action":"",
@@ -9,22 +9,30 @@
     "subTangrams":[
                    {
                    "id":"0",
+                   "layoutWidth":"80",
+                   "autoDimX":1,
                    "background":"ff000000",
                    "dataTag":"",
                    "keypath":"image",
                    "action":"",
                    "classname":"TangramImage",
-                   "identify":"1_2"
+                   "identify":"1_2",
+                   "layoutGravity":"48"
                    },
                    {
                    "id":"0",
-                   "background":"ff000000",
+                   "layoutWidth":"30",
+                   "autoDimX":1,
+                   "background":"#161616",
+                   "layoutMarginLeft":10,
+                   "layoutMarginTop":10,
                    "dataTag":"",
                    "keypath":"text",
                    "textColor":"ffffff",
                    "action":"",
                    "classname":"TangramLabel",
-                   "identify":"1_1"
+                   "identify":"1_1",
+                   "layoutGravity":"1"
                    }
-    ]
+                   ]
 }
