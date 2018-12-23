@@ -30,7 +30,7 @@
     "dataTag":"",
     "keypath":"content[0]",
     "action":"",
-    "classname":"TangramGridLayout",
+    "type":"TangramGridLayout",
     "identify":"3",
     "itemName":"TangramLabel"
 }

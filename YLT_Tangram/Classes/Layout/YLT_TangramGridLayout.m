@@ -19,7 +19,7 @@
 
 - (void)refreshPage {
     if ([self.pageModel isMemberOfClass:[TangramGridLayout class]]) {
-        [self.mainCollectionView registerClass:[YLT_TangramCell class] forCellWithReuseIdentifier:self.pageModel.ylt_templateKey];
+        [self.mainCollectionView registerClass:[YLT_TangramCell class] forCellWithReuseIdentifier:self.pageModel.ylt_identify];
         [self.mainCollectionView reloadData];
     }
 }

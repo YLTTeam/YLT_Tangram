@@ -10,8 +10,15 @@
 
 @interface YLT_TangramVC : YLT_BaseVC
 
-@property (nonatomic, strong) NSMutableArray *pages;
+/**
+ 页面数据
+ */
+@property (nonatomic, strong) NSMutableArray<TangramView *> *pageModels;
 
 @property (nonatomic, strong) NSMutableArray *list;
+
+
++ (YLT_TangramVC *)tangramWithPages:(NSArray<NSDictionary *> *)pages
+                          withDatas:(NSMutableArray *)datas;
 
 @end

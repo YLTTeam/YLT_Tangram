@@ -22,6 +22,8 @@
     if (self.pageData) {
         self.imageView.ylt_image([YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.keypath]);
     }
+    
+    self.imageView.backgroundColor = UIColor.blueColor;
 }
 
 #pragma mark - setter getter

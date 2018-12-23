@@ -2,7 +2,7 @@
 // TangramModel.h 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/20  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/21  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -121,7 +121,7 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 /** 当action部分有值的时候，给控件添加点击事件 */
 @property (readwrite, nonatomic, strong) NSMutableArray<NSString *> *action;
 /** 类名 */
-@property (readwrite, nonatomic, strong) NSString *classname;
+@property (readwrite, nonatomic, strong) NSString *type;
 /** 重新标记，没有值，则使用classname */
 @property (readwrite, nonatomic, strong) NSString *identify;
 
@@ -187,14 +187,14 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @interface TangramGridLayout : TangramFrameLayout {
 }
 /** 列数 */
-@property (readwrite, nonatomic, assign) NSInteger colCount;
+@property (readwrite, nonatomic, assign) NSInteger column;
 /** 元素高度 */
 @property (readwrite, nonatomic, assign) CGFloat itemHeight;
 /** 垂直间距 行之间的距离 */
 @property (readwrite, nonatomic, assign) CGFloat itemVerticalMargin;
 /** 水平间距 列之间的距离 */
 @property (readwrite, nonatomic, assign) CGFloat itemHorizontalMargin;
-/** 每个Item对应的类名 */
-@property (readwrite, nonatomic, strong) NSString *itemName;
+/** 每个Item对应的布局 */
+@property (readwrite, nonatomic, strong) TangramView *itemName;
 
 @end

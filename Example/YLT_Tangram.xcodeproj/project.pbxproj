@@ -20,7 +20,6 @@
 		B6B444B67C1A91FE976EF0C8 /* Pods_YLT_Tangram_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B055E4A063E2E996F10C8D /* Pods_YLT_Tangram_Example.framework */; };
 		C76C913421CA245100449F8E /* TangramLabelPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C913321CA245100449F8E /* TangramLabelPage.geojson */; };
 		C76C916521CB466900449F8E /* TangramLabelData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C916421CB466900449F8E /* TangramLabelData.geojson */; };
-		C76C916721CB49EC00449F8E /* TangramMenu.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C916621CB49EC00449F8E /* TangramMenu.geojson */; };
 		C76C917321CB7CBE00449F8E /* TangramMenuPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */; };
 		C76C917F21CB8E6900449F8E /* TangramMenuData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */; };
 		C76C918621CB984700449F8E /* TangramLabel.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C918521CB984700449F8E /* TangramLabel.geojson */; };
@@ -57,7 +56,6 @@
 		B9B055E4A063E2E996F10C8D /* Pods_YLT_Tangram_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YLT_Tangram_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C76C913321CA245100449F8E /* TangramLabelPage.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = TangramLabelPage.geojson; sourceTree = "<group>"; };
 		C76C916421CB466900449F8E /* TangramLabelData.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = TangramLabelData.geojson; sourceTree = "<group>"; };
-		C76C916621CB49EC00449F8E /* TangramMenu.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = TangramMenu.geojson; sourceTree = "<group>"; };
 		C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = TangramMenuPage.geojson; sourceTree = "<group>"; };
 		C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TangramMenuData.geojson; sourceTree = "<group>"; };
 		C76C918521CB984700449F8E /* TangramLabel.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TangramLabel.geojson; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				C7A07DAE21CC8A0A00AB450C /* logo.png */,
-				C76C916621CB49EC00449F8E /* TangramMenu.geojson */,
 				C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */,
 				C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */,
 			);
@@ -266,7 +263,6 @@
 				C76C913421CA245100449F8E /* TangramLabelPage.geojson in Resources */,
 				C76C917F21CB8E6900449F8E /* TangramMenuData.geojson in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				C76C916721CB49EC00449F8E /* TangramMenu.geojson in Resources */,
 				C76C916521CB466900449F8E /* TangramLabelData.geojson in Resources */,
 				C76C917321CB7CBE00449F8E /* TangramMenuPage.geojson in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,

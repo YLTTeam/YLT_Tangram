@@ -38,9 +38,8 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    YLT_TangramCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:((TangramGridLayout *)self.pageModel).ylt_templateKey forIndexPath:indexPath];
+    YLT_TangramCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:((TangramGridLayout *)self.pageModel).ylt_identify forIndexPath:indexPath];
     id item = self.list[indexPath.row];
-    [cell configCellFromConfigname:((TangramGridLayout *)self.pageModel).itemName];
     [cell reloadCellData:item];
     return cell;
 }

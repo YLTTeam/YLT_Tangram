@@ -18,7 +18,13 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "YLT_Tangram/Classes/**/*",
+  "public_header_files": "YLT_Tangram/Classes/**/*.h",
+  "source_files": "YLT_Tangram/Classes/**/*.{h,m}",
+  "resource_bundles": {
+    "YLT_Tangram": [
+      "YLT_Tangram/Classes/Config/*.geojson"
+    ]
+  },
   "dependencies": {
     "YLT_Kit": [
 

@@ -20,15 +20,8 @@
 /**
  模版key
  */
-@property (nonatomic, strong, readonly) NSString *ylt_templateKey;
+@property (nonatomic, strong, readonly) NSString *ylt_identify;
 
-@end
-
-@interface TangramGridLayout (Calculate)
-/**
- 重用的类
- */
-@property (nonatomic, strong, readonly) Class ylt_reuseClass;
 @end
 
 

@@ -33,7 +33,7 @@ YLT_ShareInstance(YLT_TangramManager);
     NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
     Class cls = NSClassFromString(classname);
     if (cls == NULL) {
-        cls = NSClassFromString(data[@"classname"]);
+        cls = NSClassFromString(data[@"type"]);
     }
     if (cls == NULL) {
         cls = TangramView.class;

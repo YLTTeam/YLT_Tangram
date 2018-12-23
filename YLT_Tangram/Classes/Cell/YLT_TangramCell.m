@@ -10,6 +10,8 @@
 #import "YLT_TangramManager.h"
 #import "TangramModel+Calculate.h"
 #import "YLT_TangramView+layout.h"
+#import "YLT_TangramFrameLayout.h"
+
 @interface YLT_TangramCell () {
 }
 @property (nonatomic, strong) NSMutableDictionary<NSString *, TangramView *> *subTangrams;
@@ -17,53 +19,95 @@
 
 @implementation YLT_TangramCell
 
+static NSDictionary *unitTangram;
+
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = UIColor.clearColor;
         self.contentView.backgroundColor = UIColor.clearColor;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            unitTangram = @{
+                            @"TangramLabel":@"YLT_TangramLabel",
+                            @"TangramImage":@"YLT_TangramImage",
+                            @"MenuItem":@"TangramMenu"
+                            };
+        });
     }
     return self;
 }
 
-- (void)configCellFromConfigname:(NSString *)configname {
-    TangramView *model = [YLT_TangramManager typeFromKeyname:configname];
-    if ([model.ylt_sourceData isKindOfClass:[NSDictionary class]]) {
-        if ([((NSDictionary *) model.ylt_sourceData).allKeys containsObject:@"subTangrams"]) {
-            NSArray<NSDictionary *> *list = [((NSDictionary *) model.ylt_sourceData) objectForKey:@"subTangrams"];
-            [list enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (![obj isKindOfClass:[NSDictionary class]]) {
-                    return;
-                }
-                NSString *classname = obj[@"classname"];
-                Class cls = TangramView.class;
-                if (classname.ylt_isValid) {
-                    cls = NSClassFromString(classname);
-                }
-                TangramView *pageModel = [cls ylt_objectWithKeyValues:obj];
-                if (![self.subTangrams.allKeys containsObject:pageModel.identify]) {//证明当前cell 不包含小组件
-                    Class cls = NULL;
-                    if (pageModel.classname) {
-                        cls = NSClassFromString([NSString stringWithFormat:@"YLT_%@", pageModel.classname]);
-                    }
-                    if (cls == NULL) {
-                        cls = YLT_TangramView.class;
-                    }
-                    if ([cls isSubclassOfClass:YLT_TangramView.class]) {
-                        YLT_TangramView *sub = [[cls alloc] init];
-                        [self.contentView addSubview:sub];
-                        [sub mas_makeConstraints:^(MASConstraintMaker *make) {
-                            make.edges.mas_equalTo(pageModel.ylt_layoutMagin);
-                        }];
-                        sub.pageModel = pageModel;
-                        [self.subTangrams setObject:sub forKey:pageModel.identify];
-                        [sub updateLayout];
-                    }
-                }
-                YLT_Log(@"%@", pageModel);
+- (void)cellFromConfig:(TangramView *)config {
+    NSString *classname = config.type;
+    if ([unitTangram.allKeys containsObject:classname]) {
+        classname = [unitTangram objectForKey:classname];
+        Class cls = NSClassFromString(classname);
+        if (cls) {//原子组件
+            YLT_TangramView *sub = [[cls alloc] init];
+            [self.contentView addSubview:sub];
+            [sub mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(config.ylt_layoutMagin);
             }];
+            sub.pageModel = config;
+            [sub updateLayout];
+            [self.subTangrams setObject:sub forKey:config.identify];
+        } else {//复合组件
+            NSString *path = [[NSBundle bundleForClass:self.class].resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"YLT_Tangram.bundle/%@.geojson", classname]];
+            NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
+            classname = data[@"type"];
+            cls = NSClassFromString(classname);
+            if (cls) {
+                TangramFrameLayout *frameLayout = [cls ylt_objectWithKeyValues:data];
+                Class viewClass = NSClassFromString([NSString stringWithFormat:@"YLT_%@", classname]);
+                YLT_TangramFrameLayout *layout = [[viewClass alloc] init];
+                layout.pageModel = frameLayout;
+                [self addSubview:layout];
+                [layout mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(frameLayout.ylt_layoutMagin);
+                }];
+                [layout updateLayout];
+            }
         }
+        
+        return;
     }
+//    TangramView *model = [YLT_TangramManager typeFromKeyname:configname];
+//    if ([model.ylt_sourceData isKindOfClass:[NSDictionary class]]) {
+//        if ([((NSDictionary *) model.ylt_sourceData).allKeys containsObject:@"subTangrams"]) {
+//            NSArray<NSDictionary *> *list = [((NSDictionary *) model.ylt_sourceData) objectForKey:@"subTangrams"];
+//            [list enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if (![obj isKindOfClass:[NSDictionary class]]) {
+//                    return;
+//                }
+//                NSString *classname = obj[@"type"];
+//                Class cls = TangramView.class;
+//                if (classname.ylt_isValid) {
+//                    cls = NSClassFromString(classname);
+//                }
+//                TangramView *pageModel = [cls ylt_objectWithKeyValues:obj];
+//                if (![self.subTangrams.allKeys containsObject:pageModel.identify]) {//证明当前cell 不包含小组件
+//                    Class cls = NULL;
+//                    if (pageModel.type) {
+//                        cls = NSClassFromString([NSString stringWithFormat:@"YLT_%@", pageModel.type]);
+//                    }
+//                    if (cls == NULL) {
+//                        cls = YLT_TangramView.class;
+//                    }
+//                    if ([cls isSubclassOfClass:YLT_TangramView.class]) {
+//                        YLT_TangramView *sub = [[cls alloc] init];
+//                        [self.contentView addSubview:sub];
+//                        [sub mas_makeConstraints:^(MASConstraintMaker *make) {
+//                            make.edges.mas_equalTo(pageModel.ylt_layoutMagin);
+//                        }];
+//                        sub.pageModel = pageModel;
+//                        [self.subTangrams setObject:sub forKey:pageModel.identify];
+//                    }
+//                }
+//                YLT_Log(@"%@", pageModel);
+//            }];
+//        }
+//    }
 }
 
 - (void)reloadCellData:(id)data {

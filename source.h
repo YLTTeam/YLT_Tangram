@@ -81,7 +81,7 @@ message TangramView {
     optional id dataTag = nil;//数据
     optional string keypath = nil;//key path 路径
     repeated string action = nil;//当action部分有值的时候，给控件添加点击事件
-    optional string classname = nil;//类名
+    optional string type = nil;//类名
     optional string identify = nil;//重新标记，没有值，则使用classname
 }
 
@@ -115,18 +115,11 @@ message TangramRatioLayout : TangramFrameLayout {
 }
 
 message TangramGridLayout : TangramFrameLayout {
-    optional int colCount = 1;//列数
+    optional int column = 1;//列数
     optional float itemHeight = 0;//元素高度
     optional float itemVerticalMargin = 0;//垂直间距 行之间的距离
     optional float itemHorizontalMargin = 0;//水平间距 列之间的距离
-    optional string itemName = nil;//每个Item对应的类名
-}
-
-
-
-message TangramMenu {
-    optional TangramImage image = nil;//图像控件
-    optional TangramLabel label = nil;//文本控件
+    optional TangramView itemName = nil;//每个Item对应的布局
 }
 
 

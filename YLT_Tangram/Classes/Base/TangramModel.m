@@ -2,7 +2,7 @@
 // TangramModel.m 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/20  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/21  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -10,6 +10,8 @@
 #import "TangramModel.h"
 #import <MJExtension/MJExtension.h>
 #import <YLT_BaseLib/YLT_BaseLib.h>
+
+
 
 
 @implementation TangramView
@@ -45,22 +47,26 @@
 		self.dataTag = nil;
 		self.keypath = @"";
 		self.action = [[NSMutableArray alloc] init];
-		self.classname = @"";
+		self.type = @"";
 		self.identify = @"";
 	}
 	return self;
 }
 
 + (NSDictionary *)ylt_keyMapper {
-	return @{
+	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
+	[result addEntriesFromDictionary: @{
 			@"tangramId":@[@"id"],
-				};
+				}];
+	return result;
 }
 
 + (NSDictionary *)ylt_classInArray {
-	return @{
+	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
+	[result addEntriesFromDictionary: @{
 			@"action":@"string",
-				};
+				}];
+	return result;
 }
 
 @end
@@ -83,13 +89,17 @@
 }
 
 + (NSDictionary *)ylt_keyMapper {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 + (NSDictionary *)ylt_classInArray {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 @end
@@ -107,13 +117,17 @@
 }
 
 + (NSDictionary *)ylt_keyMapper {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 + (NSDictionary *)ylt_classInArray {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 @end
@@ -130,14 +144,18 @@
 }
 
 + (NSDictionary *)ylt_keyMapper {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 + (NSDictionary *)ylt_classInArray {
-	return @{
+	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
+	[result addEntriesFromDictionary: @{
 			@"subTangrams":@"TangramView",
-				};
+				}];
+	return result;
 }
 
 @end
@@ -154,13 +172,17 @@
 }
 
 + (NSDictionary *)ylt_keyMapper {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 + (NSDictionary *)ylt_classInArray {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 @end
@@ -178,13 +200,17 @@
 }
 
 + (NSDictionary *)ylt_keyMapper {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 + (NSDictionary *)ylt_classInArray {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 @end
@@ -195,23 +221,27 @@
 - (id)init {
 	self = [super init];
 	if (self) {
-		self.colCount = 1;
+		self.column = 1;
 		self.itemHeight = 0;
 		self.itemVerticalMargin = 0;
 		self.itemHorizontalMargin = 0;
-		self.itemName = @"";
+		self.itemName = nil;
 	}
 	return self;
 }
 
 + (NSDictionary *)ylt_keyMapper {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 + (NSDictionary *)ylt_classInArray {
-	return @{
-				};
+	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
 }
 
 @end

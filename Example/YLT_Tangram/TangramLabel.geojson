@@ -4,6 +4,6 @@
     "dataTag":"",
     "keypath":"text",
     "action":"",
-    "classname":"TangramLabel",
+    "type":"TangramLabel",
     "identify":"2"
 }

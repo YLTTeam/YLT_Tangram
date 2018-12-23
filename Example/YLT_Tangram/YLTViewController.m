@@ -23,18 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray<NSString *> *list = @[@"TangramMenu", @"TangramMenuPage"];
-    [list enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [YLT_TangramManager loadTemplateKeyname:obj path:[[NSBundle mainBundle] pathForResource:obj ofType:@"geojson"] classname:obj];
-    }];
-    
-    
-    self.pageData = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuData" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-    self.tangramView = [[YLT_TangramGridLayout alloc] init];
-    [self.view addSubview:self.tangramView];
-    [self.tangramView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -42,7 +30,10 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    self.tangramView.pageData = self.pageData;
+    NSArray<NSDictionary *> *pages = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages withDatas:nil];
+    
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
