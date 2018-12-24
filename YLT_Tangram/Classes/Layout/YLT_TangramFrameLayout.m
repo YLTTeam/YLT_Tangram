@@ -24,7 +24,11 @@
             }
             if ([cls isSubclassOfClass:YLT_TangramView.class]) {
                 YLT_TangramView *sub = [[cls alloc] init];
-                sub.pageModel = obj;
+                Class modelClass = NSClassFromString(obj.type);
+                if (modelClass == NULL) {
+                    modelClass = TangramView.class;
+                }
+                sub.pageModel = [modelClass mj_objectWithKeyValues:obj.ylt_sourceData];
                 [self.mainView addSubview:sub];
                 [sub mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.edges.mas_equalTo(obj.ylt_layoutMagin);

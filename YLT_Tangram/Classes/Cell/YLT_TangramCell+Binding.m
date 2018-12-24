@@ -11,16 +11,19 @@
 
 @implementation YLT_TangramCell (Binding)
 
-- (void)bindingFramelayout:(YLT_TangramFrameLayout *)framelayout {
-    NSLog(@"%@", self.config.ylt_sourceData);
+- (void)bindingFramelayout:(YLT_TangramFrameLayout *)framelayout data:(NSDictionary *)data {
+    NSLog(@"   %@  ", data);
     if ([framelayout.pageModel.identify isEqualToString:@"TangramMenu"]) {
         [framelayout.mainView.subviews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSArray<NSDictionary *> *list = framelayout.pageModel.ylt_sourceData[@"subTangrams"];
             [list enumerateObjectsUsingBlock:^(NSDictionary *map, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([obj isKindOfClass:[YLT_TangramImage class]] && [map[@"type"] isEqualToString:@"TangramImage"]) {
-                    ((TangramImage *) ((YLT_TangramImage *) obj).pageModel).src = self.config.ylt_sourceData[@"src"];
-                } else if ([obj isKindOfClass:[YLT_TangramLabel class]] && [map[@"type"] isEqualToString:@"TangramLabel"]) {
-                    ((TangramLabel *) ((YLT_TangramLabel *) obj).pageModel).text = self.config.ylt_sourceData[@"text"];
+                if ([obj isKindOfClass:[YLT_TangramImage class]] && [map[@"type"] isEqualToString:@"TangramImage"] && ((TangramImage *) ((YLT_TangramImage *) obj).content)) {
+                    YLT_Log(@"%@", ((TangramImage *) ((YLT_TangramImage *) obj).content));
+                    ((TangramImage *) ((YLT_TangramImage *) obj).content).src = self.config.ylt_sourceData[@"src"];
+                    ((YLT_TangramImage *) obj).pageData = data;
+                } else if ([obj isKindOfClass:[YLT_TangramLabel class]] && [map[@"type"] isEqualToString:@"TangramLabel"] && ((TangramLabel *) ((YLT_TangramLabel *) obj).content)) {
+                    ((TangramLabel *) ((YLT_TangramLabel *) obj).content).text = self.config.ylt_sourceData[@"text"];
+                    ((YLT_TangramLabel *) obj).pageData = data;
                 }
             }];
         }];

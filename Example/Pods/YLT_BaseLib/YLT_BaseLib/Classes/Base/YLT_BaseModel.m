@@ -23,7 +23,8 @@
 }
 
 + (void)load {
-    [YLT_BaseModel ylt_swizzleClassMethod:@selector(mj_objectWithKeyValues:) withMethod:@selector(ylt_objectWithKeyValues:)];
+    [YLT_BaseModel ylt_swizzleClassMethod:@selector(mj_objectWithKeyValues:context:) withMethod:@selector(ylt_objectWithKeyValues:context:)];
+    [YLT_BaseModel ylt_swizzleClassMethod:@selector(mj_objectArrayWithKeyValuesArray:context:) withMethod:@selector(ylt_objectArrayWithKeyValuesArray:context:)];
 }
 
 /**
@@ -32,10 +33,15 @@
  @param data 字典
  @return 模型
  */
-+ (instancetype)ylt_objectWithKeyValues:(id)data {
-    YLT_BaseModel *res = [self ylt_objectWithKeyValues:data];
-    res.ylt_sourceData = data;
++ (instancetype)ylt_objectWithKeyValues:(id)keyValues context:(NSManagedObjectContext *)context {
+    YLT_BaseModel *res = [self ylt_objectWithKeyValues:keyValues context:context];
+    res.ylt_sourceData = keyValues;
     return res;
+}
+
++ (NSMutableArray *)ylt_objectArrayWithKeyValuesArray:(id)keyValuesArray context:(NSManagedObjectContext *)context {
+    NSMutableArray *result = [self ylt_objectArrayWithKeyValuesArray:keyValuesArray context:context];
+    return result;
 }
 
 #pragma mark - ORM
@@ -88,7 +94,7 @@
         return NO;
     }
     
-    NSDictionary *data = self.mj_keyValues;
+    NSDictionary *data = [self.mj_JSONString stringByReplacingOccurrencesOfString:@"<null>" withString:@""].mj_keyValues;
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:key];
     return [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -114,8 +120,11 @@
         if ([[[NSUserDefaults standardUserDefaults] dictionaryRepresentation].allKeys containsObject:key]) {
             data = [[NSUserDefaults standardUserDefaults] objectForKey:key];
         }
-        if (![[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] || ![data isKindOfClass:[NSDictionary class]]) {
-            YLT_LogWarn(@"对象异常");
+        if ([[self class] respondsToSelector:@selector(mj_keyValues)] && [data isKindOfClass:[NSString class]]) {
+            data = data.mj_keyValues;
+        } else if ([[self class] respondsToSelector:@selector(mj_objectWithKeyValues:)] && [data isKindOfClass:[NSDictionary class]]) {
+        } else {
+            YLT_LogError(@"对象异常");
             return nil;
         }
         id result = nil;

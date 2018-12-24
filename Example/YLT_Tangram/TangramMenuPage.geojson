@@ -18,8 +18,8 @@
  				"type":"MenuItem",
  				"text":"$text",
  				"fontSize":16,
- 				"src":"$icon",
- 				"identify":"1_3"
+ 				"src":"$image",
+ 				"identify":"TangramMenu"
  			}
  	},
  	 {

@@ -16,17 +16,23 @@
 @implementation YLT_TangramImage
 
 - (void)refreshPage {
-    if ([self.pageModel isKindOfClass:[TangramImage class]]) {
-        self.imageView.ylt_image(((TangramImage *)self.pageModel).src);
+    if ([self.content isKindOfClass:[TangramImage class]]) {
+        self.imageView.ylt_image(self.content.src);
+        if (self.pageData && [self.content.src hasPrefix:@"$"]) {
+            self.imageView.ylt_image([YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.src]);
+        }
     }
-    if (self.pageData) {
-        self.imageView.ylt_image([YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.keypath]);
-    }
-    
-    self.imageView.backgroundColor = UIColor.blueColor;
+    self.imageView.backgroundColor = UIColor.clearColor;
 }
 
 #pragma mark - setter getter
+
+- (TangramImage *)content {
+    if (!_content) {
+        _content = [TangramImage mj_objectWithKeyValues:self.pageModel.ylt_sourceData];
+    }
+    return _content;
+}
 
 - (UIImageView *)imageView {
     if (!_imageView) {

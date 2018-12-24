@@ -10,6 +10,6 @@
 
 @interface YLT_TangramCell (Binding)
 
-- (void)bindingFramelayout:(YLT_TangramFrameLayout *)framelayout;
+- (void)bindingFramelayout:(YLT_TangramFrameLayout *)framelayout data:(NSDictionary *)data;
 
 @end

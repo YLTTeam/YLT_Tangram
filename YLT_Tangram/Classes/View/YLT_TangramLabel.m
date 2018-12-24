@@ -17,16 +17,23 @@
 @implementation YLT_TangramLabel
 
 - (void)refreshPage {
-    if ([self.pageModel isKindOfClass:[TangramLabel class]]) {
-        self.label.text = ((TangramLabel *) self.pageModel).text;
-        self.label.ylt_textColor(((TangramLabel *) self.pageModel).textColor.ylt_colorFromHexString);
-    }
-    if (self.pageData) {
-        self.label.text = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.keypath];
+    if ([self.content isKindOfClass:[TangramLabel class]]) {
+        self.label.text = self.content.text;
+        self.label.ylt_textColor(self.content.textColor.ylt_colorFromHexString);
+        if (self.pageData && [self.content.text hasPrefix:@"$"]) {
+            self.label.text = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.text];
+        }
     }
 }
 
 #pragma mark - setter getter
+
+- (TangramLabel *)content {
+    if (!_content) {
+        _content = [TangramLabel mj_objectWithKeyValues:self.pageModel.ylt_sourceData];
+    }
+    return _content;
+}
 
 - (UILabel *)label {
     if (!_label) {
