@@ -7,6 +7,7 @@
 
 #import "YLT_TangramVC+Delegate.h"
 #import "YLT_TangramCell.h"
+#import "YLT_TangramUtils.h"
 
 @implementation YLT_TangramVC (Delegate)
 
@@ -50,24 +51,32 @@
     TangramView *item = [self.pageModels objectAtIndex:section];
     if ([item isKindOfClass:[TangramGridLayout class]]) {
         TangramGridLayout *layout = (TangramGridLayout *)item;
-        if ([layout.dataTag isKindOfClass:[NSArray class]]) {
-            return ((NSArray *) layout.dataTag).count;
+        NSArray *list = [YLT_TangramUtils valueFromSourceData:self.pageDatas keyPath:layout.dataTag];
+        if ([list isKindOfClass:[NSArray class]]) {
+            return list.count;
         }
         //根据页面动态的数据来返回
-        return 4;
+        return 0;
     }
     return 1;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TangramView *item = [self.pageModels objectAtIndex:indexPath.section];
+    NSDictionary *pageData = nil;
     YLT_TangramCell *cell = (YLT_TangramCell *)[collectionView dequeueReusableCellWithReuseIdentifier:item.ylt_identify forIndexPath:indexPath];
     if ([item isKindOfClass:[TangramGridLayout class]]) {
         TangramGridLayout *layout = (TangramGridLayout *)item;
         item = layout.itemName;
+        NSArray *list = [YLT_TangramUtils valueFromSourceData:self.pageDatas keyPath:layout.dataTag];
+        if ([list isKindOfClass:[NSArray class]]) {
+            pageData = list[indexPath.row];
+        }
     }
     [cell cellFromConfig:item];
-    
+    if (pageData) {
+        [cell reloadCellData:pageData];
+    }
     return cell;
 }
 

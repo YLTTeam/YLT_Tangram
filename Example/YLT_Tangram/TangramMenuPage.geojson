@@ -8,7 +8,7 @@
  		"layoutHeight":"40"
  	}, {
  		"type":"TangramGridLayout",
- 		"dataTag":"${content[0]}",
+ 		"dataTag":"$content[0]",
  		"column":4,
         "layoutMarginLeft":8,
         "layoutMarginRight":8,
@@ -16,20 +16,11 @@
  		"itemHorizontalMargin":8,
  		"itemName": {
  				"type":"MenuItem",
- 				"text":"${text}",
+ 				"text":"$text",
  				"fontSize":16,
- 				"src":"${icon}",
+ 				"src":"$icon",
  				"identify":"1_3"
  			}
- 	},
-	{
- 		"type":"MenuItem",
- 		"text":"${text}",
- 		"fontSize":16,
- 		"src":"${icon}",
- 		"identify":"1_7",
- 		"layoutWidth":"375",
- 		"layoutHeight":"30"
  	},
  	 {
  		"type":"TangramLabel",

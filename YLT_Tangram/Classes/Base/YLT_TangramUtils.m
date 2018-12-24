@@ -12,9 +12,10 @@
 @implementation YLT_TangramUtils
 
 + (id)valueFromSourceData:(id)sourceData keyPath:(NSString *)keypath {
-    if (!keypath.ylt_isValid) {
+    if (!keypath.ylt_isValid && ![keypath hasPrefix:@"$"]) {
         return sourceData;
     }
+    keypath = [keypath substringFromIndex:1];
     __block id result = sourceData;
     [[keypath componentsSeparatedByString:@"."] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray *list = [obj arrayOfCaptureComponentsMatchedByRegex:@"(\\S+)(?:\\s*)\\[(\\d*)\\]"];

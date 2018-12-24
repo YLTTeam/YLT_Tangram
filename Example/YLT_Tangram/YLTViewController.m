@@ -23,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -31,7 +32,8 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     NSArray<NSDictionary *> *pages = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages withDatas:nil];
+    NSDictionary *pageDatas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuData" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages withDatas:pageDatas.mutableCopy];
     
     [self presentViewController:vc animated:YES completion:nil];
 }

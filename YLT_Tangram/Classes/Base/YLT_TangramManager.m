@@ -47,7 +47,7 @@ YLT_ShareInstance(YLT_TangramManager);
     }
     
     if (data) {
-        TangramView *model = [cls performSelector:@selector(ylt_objectWithKeyValues:) withObject:data];
+        TangramView *model = [cls performSelector:@selector(mj_objectWithKeyValues:) withObject:data];
         if (model) {
             [[YLT_TangramManager shareInstance].loadTypes setObject:model forKey:keyname];
         }

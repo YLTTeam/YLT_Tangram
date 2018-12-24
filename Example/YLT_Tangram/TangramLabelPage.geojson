@@ -28,7 +28,6 @@
     "borderBottomRightRadius":"0",
     "hidden":"NO",
     "dataTag":"",
-    "keypath":"content[0]",
     "action":"",
     "type":"TangramGridLayout",
     "identify":"3",

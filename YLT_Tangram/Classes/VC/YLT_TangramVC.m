@@ -23,9 +23,9 @@
 }
 
 + (YLT_TangramVC *)tangramWithPages:(NSArray<NSDictionary *> *)pages
-                          withDatas:(NSMutableArray *)datas {
+                          withDatas:(NSMutableDictionary *)datas {
     YLT_TangramVC *result = [[YLT_TangramVC alloc] init];
-    result.list = datas;
+    result.pageDatas = datas;
     [pages enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSDictionary class]]) {
             Class cls = TangramView.class;
@@ -35,7 +35,7 @@
                     cls = tempCls;
                 }
             }
-            TangramView *pageModel = [cls ylt_objectWithKeyValues:obj];
+            TangramView *pageModel = [cls mj_objectWithKeyValues:obj];
             [result.mainCollectionView registerClass:YLT_TangramCell.class forCellWithReuseIdentifier:pageModel.ylt_identify];
             [result.pageModels addObject:pageModel];
         }

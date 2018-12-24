@@ -15,10 +15,10 @@
  */
 @property (nonatomic, strong) NSMutableArray<TangramView *> *pageModels;
 
-@property (nonatomic, strong) NSMutableArray *list;
+@property (nonatomic, strong) NSMutableDictionary *pageDatas;
 
 
 + (YLT_TangramVC *)tangramWithPages:(NSArray<NSDictionary *> *)pages
-                          withDatas:(NSMutableArray *)datas;
+                          withDatas:(NSMutableDictionary *)datas;
 
 @end

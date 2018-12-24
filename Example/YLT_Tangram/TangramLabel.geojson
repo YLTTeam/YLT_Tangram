@@ -2,7 +2,6 @@
     "id":"2",
     "background":"ff0000",
     "dataTag":"",
-    "keypath":"text",
     "action":"",
     "type":"TangramLabel",
     "identify":"2"

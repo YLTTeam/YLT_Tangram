@@ -10,6 +10,8 @@
 
 @interface YLT_TangramCell : UICollectionViewCell
 
+@property (nonatomic, strong) TangramView *config;
+
 - (void)cellFromConfig:(TangramView *)config;
 
 - (void)reloadCellData:(id)data;

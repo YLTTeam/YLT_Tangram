@@ -5,13 +5,12 @@
     "keypath":"",
     "action":"",
     "type":"TangramFrameLayout",
-    "identify":"1",
+    "identify":"TangramMenu",
     "subTangrams":[
                    {
                    "id":"0",
                    "background":"ff000000",
                    "dataTag":"",
-                   "keypath":"image",
                    "action":"",
                    "type":"TangramImage",
                    "identify":"1_2"
@@ -20,7 +19,6 @@
                    "id":"0",
                    "background":"ff000000",
                    "dataTag":"",
-                   "keypath":"text",
                    "textColor":"ffffff",
                    "action":"",
                    "type":"TangramLabel",

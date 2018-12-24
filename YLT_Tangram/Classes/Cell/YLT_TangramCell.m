@@ -11,6 +11,9 @@
 #import "TangramModel+Calculate.h"
 #import "YLT_TangramView+layout.h"
 #import "YLT_TangramFrameLayout.h"
+#import "YLT_TangramImage.h"
+#import "YLT_TangramLabel.h"
+#import "YLT_TangramCell+Binding.h"
 
 @interface YLT_TangramCell () {
 }
@@ -39,6 +42,7 @@ static NSDictionary *unitTangram;
 }
 
 - (void)cellFromConfig:(TangramView *)config {
+    self.config = config;
     NSString *classname = config.type;
     YLT_TangramView *sub = nil;
     if ([self.subTangrams.allKeys containsObject:config.identify]) {
@@ -60,7 +64,7 @@ static NSDictionary *unitTangram;
                 classname = data[@"type"];
                 cls = NSClassFromString(classname);
                 if (cls) {
-                    TangramFrameLayout *frameLayout = [cls ylt_objectWithKeyValues:data];
+                    TangramFrameLayout *frameLayout = [cls mj_objectWithKeyValues:data];
                     Class viewClass = NSClassFromString([NSString stringWithFormat:@"YLT_%@", classname]);
                     sub = [[viewClass alloc] init];
                     [self.contentView addSubview:sub];
@@ -68,10 +72,11 @@ static NSDictionary *unitTangram;
                     [sub mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.edges.mas_equalTo(frameLayout.ylt_layoutMagin);
                     }];
+                    //复合组件 绑定数据
+                    [self bindingFramelayout:(YLT_TangramFrameLayout *)sub];
                 }
             }
         }
-        
         if (sub) {
             [self.subTangrams setObject:sub forKey:config.identify];
         }
@@ -95,7 +100,7 @@ static NSDictionary *unitTangram;
 //                if (classname.ylt_isValid) {
 //                    cls = NSClassFromString(classname);
 //                }
-//                TangramView *pageModel = [cls ylt_objectWithKeyValues:obj];
+//                TangramView *pageModel = [cls mj_objectWithKeyValues:obj];
 //                if (![self.subTangrams.allKeys containsObject:pageModel.identify]) {//证明当前cell 不包含小组件
 //                    Class cls = NULL;
 //                    if (pageModel.type) {
@@ -121,6 +126,10 @@ static NSDictionary *unitTangram;
 }
 
 - (void)reloadCellData:(id)data {
+    if ([self.config.type isEqualToString:@"MenuItem"]) {
+        
+    }
+    
     [self.subTangrams.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YLT_TangramView *sub = (YLT_TangramView *)self.subTangrams[obj];
         sub.pageData = data;

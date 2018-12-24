@@ -10,6 +10,7 @@
 #import "YLT_BaseMacro.h"
 #import <objc/message.h>
 #import "NSString+YLT_Extension.h"
+#import "NSObject+YLT_Extension.h"
 
 #define OBJECT_MEMORY_KEY [NSString stringWithFormat:@"YLT_OBJECT_SYSTEM_%@_%@", YLT_BundleIdentifier, NSStringFromClass([self class])]
 #define GROUP_MEMORY_KEY [NSString stringWithFormat:@"YLT_GROUP_SYSTEM_%@_%@", YLT_BundleIdentifier, NSStringFromClass([self class])]
@@ -21,6 +22,10 @@
     return [[self class] mj_objectWithKeyValues:self.mj_keyValues];
 }
 
++ (void)load {
+    [YLT_BaseModel ylt_swizzleClassMethod:@selector(mj_objectWithKeyValues:) withMethod:@selector(ylt_objectWithKeyValues:)];
+}
+
 /**
  字典转模型
  
@@ -28,7 +33,7 @@
  @return 模型
  */
 + (instancetype)ylt_objectWithKeyValues:(id)data {
-    YLT_BaseModel *res = [self mj_objectWithKeyValues:data];
+    YLT_BaseModel *res = [self ylt_objectWithKeyValues:data];
     res.ylt_sourceData = data;
     return res;
 }

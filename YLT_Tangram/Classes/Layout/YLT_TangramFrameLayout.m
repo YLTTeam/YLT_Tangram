@@ -8,6 +8,8 @@
 #import "YLT_TangramFrameLayout.h"
 #import "YLT_TangramManager.h"
 #import "YLT_TangramView+layout.h"
+#import "YLT_TangramFrameLayout.h"
+
 @implementation YLT_TangramFrameLayout
 
 - (void)refreshPage {
