@@ -12,8 +12,11 @@
 @implementation YLT_TangramUtils
 
 + (id)valueFromSourceData:(id)sourceData keyPath:(NSString *)keypath {
-    if (!keypath.ylt_isValid && ![keypath hasPrefix:@"$"]) {
+    if (!keypath.ylt_isValid) {
         return sourceData;
+    }
+    if (![keypath hasPrefix:@"$"]) {
+        return keypath;
     }
     keypath = [keypath substringFromIndex:1];
     __block id result = sourceData;
