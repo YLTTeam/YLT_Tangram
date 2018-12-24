@@ -14,7 +14,7 @@
 
 @interface YLT_TangramCell () {
 }
-@property (nonatomic, strong) NSMutableDictionary<NSString *, TangramView *> *subTangrams;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, YLT_TangramView *> *subTangrams;
 @end
 
 @implementation YLT_TangramCell

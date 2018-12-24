@@ -18,30 +18,30 @@
     if (self.pageModel.layoutGravity > 0) {
         if (self.pageModel.layoutGravity == LayoutGravity_Left) {
             [self marginLeft];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_Right) {
+        } else if (self.pageModel.layoutGravity == LayoutGravity_Right) {
             [self marginRight];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_Top) {
+        } else if (self.pageModel.layoutGravity == LayoutGravity_Top) {
             [self marginTop];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_Bottom) {
+        } else if (self.pageModel.layoutGravity == LayoutGravity_Bottom) {
             [self marginBottom];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_Top + LayoutGravity_Left) {
+        } else if (self.pageModel.layoutGravity == LayoutGravity_Top + LayoutGravity_Left) {
             [self marginLeftTop];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_Top + LayoutGravity_Right) {
+        } else if (self.pageModel.layoutGravity == LayoutGravity_Top + LayoutGravity_Right) {
             [self marginRightTop];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_Bottom + LayoutGravity_Left) {
+        } else if (self.pageModel.layoutGravity == LayoutGravity_Bottom + LayoutGravity_Left) {
             [self marginLeftBottom];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_Bottom + LayoutGravity_Left) {
+        } else if (self.pageModel.layoutGravity == LayoutGravity_Bottom + LayoutGravity_Left) {
             [self marginLeftBottom];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_H_center) {
+        } else if (self.pageModel.layoutGravity == LayoutGravity_H_center) {
             [self marginY];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_V_center){
+        } else if (self.pageModel.layoutGravity == LayoutGravity_V_center){
             [self marginX];
-        }else if (self.pageModel.layoutGravity == LayoutGravity_V_center + LayoutGravity_H_center){
+        } else if (self.pageModel.layoutGravity == LayoutGravity_V_center + LayoutGravity_H_center){
             [self marginCenter];
-        }else if (self.pageModel.layoutGravity == (LayoutGravity_Top + LayoutGravity_Bottom + LayoutGravity_Left + LayoutGravity_Right)) {
+        } else if (self.pageModel.layoutGravity == (LayoutGravity_Top + LayoutGravity_Bottom + LayoutGravity_Left + LayoutGravity_Right)) {
             [self marginCenter];
         }
-    }else{
+    } else{
         //TODO :正常约束，带有优先级...(方案太多，考虑中...0.0)
         [self marginLayout];
     }
@@ -71,12 +71,12 @@
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             if ([self size].height > 0) {
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop == 0 &&
+    } else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight > 0){
@@ -86,12 +86,12 @@
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             if ([self size].height > 0) {
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop == 0 &&
+    } else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight == 0){
@@ -101,12 +101,12 @@
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             if ([self size].height > 0) {
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop == 0 &&
+    } else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight == 0){
@@ -116,12 +116,12 @@
             make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             if ([self size].height > 0) {
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop > 0 &&
+    } else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight == 0){
@@ -131,13 +131,13 @@
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             if ([self size].height > 0) {
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
         //TODO:以上仅有一个约束调整为主 即为0,0,0,1 随机组合约束
-    }else if (self.pageModel.layoutMarginTop > 0 &&
+    } else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight == 0){
@@ -148,12 +148,12 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop > 0 &&
+    } else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight == 0){
@@ -164,12 +164,12 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop > 0 &&
+    } else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight > 0){
@@ -180,12 +180,12 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop == 0 &&
+    } else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight > 0){
@@ -196,12 +196,12 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop == 0 &&
+    } else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight == 0){
@@ -212,12 +212,12 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop == 0 &&
+    } else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight > 0){
@@ -228,13 +228,13 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
         //TODO: 以上为配置的6种模型0,0,1,1 随机组合
-    }else if (self.pageModel.layoutMarginTop > 0 &&
+    } else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight == 0){
@@ -245,12 +245,12 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop > 0 &&
+    } else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight > 0){
@@ -261,12 +261,12 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop > 0 &&
+    } else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight > 0){
@@ -277,12 +277,12 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop == 0 &&
+    } else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight > 0){
@@ -293,12 +293,12 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             }
         }];
-    }else if (self.pageModel.layoutMarginTop > 0 &&
+    } else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight > 0){
@@ -309,7 +309,7 @@
             if ([self size].height > 0) {
                 //如果有设置该size， 直接以left top 为主
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else{
                 make.width.mas_equalTo([self size].width);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
@@ -336,11 +336,11 @@
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.bottom.mas_equalTo(0);
             }
         }];
-    }else if (self.pageModel.layoutMarginBottom == 0 && self.pageModel.layoutMarginTop > 0) {
+    } else if (self.pageModel.layoutMarginBottom == 0 && self.pageModel.layoutMarginTop > 0) {
         // margin-bottom 0 ;marginTop > 0
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(0);
@@ -348,11 +348,11 @@
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.bottom.mas_equalTo(0);
             }
         }];
-    }else if (self.pageModel.layoutMarginBottom > 0 && self.pageModel.layoutMarginTop == 0){
+    } else if (self.pageModel.layoutMarginBottom > 0 && self.pageModel.layoutMarginTop == 0){
         // margin-bottom > 0 ;marginTop == 0
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(0);
@@ -360,7 +360,7 @@
             make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.top);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.top.mas_equalTo(0);
             }
         }];
@@ -386,11 +386,11 @@
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.bottom.mas_equalTo(0);
             }
         }];
-    }else if (self.pageModel.layoutMarginBottom == 0 && self.pageModel.layoutMarginTop > 0) {
+    } else if (self.pageModel.layoutMarginBottom == 0 && self.pageModel.layoutMarginTop > 0) {
         // margin-bottom 0 ;marginTop > 0
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(0);
@@ -398,11 +398,11 @@
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.bottom.mas_equalTo(0);
             }
         }];
-    }else if (self.pageModel.layoutMarginBottom > 0 && self.pageModel.layoutMarginTop == 0){
+    } else if (self.pageModel.layoutMarginBottom > 0 && self.pageModel.layoutMarginTop == 0){
         // margin-bottom > 0 ;marginTop == 0
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(0);
@@ -410,7 +410,7 @@
             make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.top);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.top.mas_equalTo(0);
             }
         }];
@@ -436,11 +436,11 @@
             make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.bottom.mas_equalTo(0);
             }
         }];
-    }else if (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight > 0) {
+    } else if (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight > 0) {
         // margin-left 0 ;marginRight > 0
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(width);
@@ -448,11 +448,11 @@
             make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.bottom.mas_equalTo(0);
             }
         }];
-    }else if (self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight == 0){
+    } else if (self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight == 0){
         // margin-left > 0 ;marginRight == 0
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(width);
@@ -460,7 +460,7 @@
             make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.bottom.mas_equalTo(0);
             }
         }];
@@ -486,11 +486,11 @@
             make.left.mas_equalTo(self.pageModel.layoutMarginLeft);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.top.mas_equalTo(0);
             }
         }];
-    }else if (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight > 0) {
+    } else if (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight > 0) {
         // margin-left 0 ;marginRight > 0
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(width);
@@ -498,11 +498,11 @@
             make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.top.mas_equalTo(0);
             }
         }];
-    }else if (self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight == 0){
+    } else if (self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight == 0){
         // margin-left > 0 ;marginRight == 0
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(width);
@@ -510,7 +510,7 @@
             make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
             if (height > 0) {
                 make.height.mas_equalTo(height);
-            }else{
+            } else{
                 make.top.mas_equalTo(0);
             }
         }];
@@ -530,7 +530,7 @@
         make.left.top.mas_equalTo(0);
         if (height > 0) {
             make.size.mas_equalTo([self size]);
-        }else{
+        } else{
             make.width.mas_equalTo(width);
             make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
         }
@@ -550,7 +550,7 @@
         make.left.bottom.mas_equalTo(0);
         if (height > 0) {
             make.size.mas_equalTo([self size]);
-        }else{
+        } else{
             make.width.mas_equalTo(width);
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
         }
@@ -570,7 +570,7 @@
         make.right.top.mas_equalTo(0);
         if (height > 0) {
             make.size.mas_equalTo([self size]);
-        }else{
+        } else{
             make.width.mas_equalTo(width);
             make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
         }
@@ -590,7 +590,7 @@
         make.right.bottom.mas_equalTo(0);
         if (height > 0) {
             make.size.mas_equalTo([self size]);
-        }else{
+        } else{
             make.width.mas_equalTo(width);
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
         }
@@ -610,7 +610,7 @@
         if (height > 0) {
             make.center.equalTo(self.superview);
             make.size.mas_equalTo([self size]);
-        }else{
+        } else {
             make.width.mas_equalTo(width);
             make.centerX.equalTo(self.superview);
             make.top.bottom.mas_equalTo(0);
@@ -631,7 +631,7 @@
         if (height > 0) {
             make.centerY.equalTo(self.superview);
             make.size.mas_equalTo([self size]);
-        }else{
+        } else{
             make.width.mas_equalTo(width);
             make.top.bottom.mas_equalTo(0);
         }
@@ -651,7 +651,7 @@
         if (height > 0) {
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
             make.size.mas_equalTo([self size]);
-        }else{
+        } else{
             make.width.mas_equalTo(width);
             make.top.bottom.mas_equalTo(0);
         }
@@ -687,9 +687,9 @@
     if (height == 0 && width > 0){
         //当高度为0，宽度不为0的时候，根据比例来计算宽高比
         height = width * self.pageModel.autoDimX;
-    }else if (height > 0 && width == 0){
+    } else if (height > 0 && width == 0){
         width = height * self.pageModel.autoDimY;
-    }else{
+    } else{
         //其他不考虑
     }
     //当满足上述条件之后，width依旧为0，则直接设置最大限度width
