@@ -40,38 +40,48 @@ static NSDictionary *unitTangram;
 
 - (void)cellFromConfig:(TangramView *)config {
     NSString *classname = config.type;
-    if ([unitTangram.allKeys containsObject:classname]) {
-        classname = [unitTangram objectForKey:classname];
-        Class cls = NSClassFromString(classname);
-        if (cls) {//原子组件
-            YLT_TangramView *sub = [[cls alloc] init];
-            [self.contentView addSubview:sub];
-            [sub mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(config.ylt_layoutMagin);
-            }];
-            sub.pageModel = config;
-            [sub updateLayout];
-            [self.subTangrams setObject:sub forKey:config.identify];
-        } else {//复合组件
-            NSString *path = [[NSBundle bundleForClass:self.class].resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"YLT_Tangram.bundle/%@.geojson", classname]];
-            NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
-            classname = data[@"type"];
-            cls = NSClassFromString(classname);
-            if (cls) {
-                TangramFrameLayout *frameLayout = [cls ylt_objectWithKeyValues:data];
-                Class viewClass = NSClassFromString([NSString stringWithFormat:@"YLT_%@", classname]);
-                YLT_TangramFrameLayout *layout = [[viewClass alloc] init];
-                layout.pageModel = frameLayout;
-                [self addSubview:layout];
-                [layout mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.edges.mas_equalTo(frameLayout.ylt_layoutMagin);
+    YLT_TangramView *sub = nil;
+    if ([self.subTangrams.allKeys containsObject:config.identify]) {
+        sub = [self.subTangrams objectForKey:config.identify];
+    } else {
+        if ([unitTangram.allKeys containsObject:classname]) {
+            classname = [unitTangram objectForKey:classname];
+            Class cls = NSClassFromString(classname);
+            if (cls) {//原子组件
+                sub = [[cls alloc] init];
+                [self.contentView addSubview:sub];
+                sub.pageModel = config;
+                [sub mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(config.ylt_layoutMagin);
                 }];
-                [layout updateLayout];
+            } else {//复合组件
+                NSString *path = [[NSBundle bundleForClass:self.class].resourcePath stringByAppendingPathComponent:[NSString stringWithFormat:@"YLT_Tangram.bundle/%@.geojson", classname]];
+                NSDictionary *data = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
+                classname = data[@"type"];
+                cls = NSClassFromString(classname);
+                if (cls) {
+                    TangramFrameLayout *frameLayout = [cls ylt_objectWithKeyValues:data];
+                    Class viewClass = NSClassFromString([NSString stringWithFormat:@"YLT_%@", classname]);
+                    sub = [[viewClass alloc] init];
+                    [self.contentView addSubview:sub];
+                    sub.pageModel = frameLayout;
+                    [sub mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.edges.mas_equalTo(frameLayout.ylt_layoutMagin);
+                    }];
+                }
             }
         }
         
-        return;
+        if (sub) {
+            [self.subTangrams setObject:sub forKey:config.identify];
+        }
     }
+    
+    if (sub) {
+        [sub updateLayout];
+    }
+    
+    return;
 //    TangramView *model = [YLT_TangramManager typeFromKeyname:configname];
 //    if ([model.ylt_sourceData isKindOfClass:[NSDictionary class]]) {
 //        if ([((NSDictionary *) model.ylt_sourceData).allKeys containsObject:@"subTangrams"]) {

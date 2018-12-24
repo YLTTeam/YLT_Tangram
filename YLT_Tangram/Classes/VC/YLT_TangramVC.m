@@ -40,7 +40,6 @@
             [result.pageModels addObject:pageModel];
         }
     }];
-    YLT_Log(@"%@", result.pageModels);
     return result;
 }
 

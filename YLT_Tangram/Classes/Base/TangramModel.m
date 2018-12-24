@@ -22,7 +22,7 @@
 		self.tangramId = 0;
 		self.layoutWidth = @"";
 		self.layoutHeight = @"";
-		self.layoutGravity = 48;
+		self.layoutGravity = 0;
 		self.autoDimX = 0;
 		self.autoDimY = 0;
 		self.autoDimDirection = 0;

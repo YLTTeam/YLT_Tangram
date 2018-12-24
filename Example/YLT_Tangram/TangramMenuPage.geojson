@@ -10,9 +10,9 @@
  		"type":"TangramGridLayout",
  		"dataTag":"${content[0]}",
  		"column":4,
+        "layoutMarginLeft":8,
+        "layoutMarginRight":8,
  		"identify":"1_2",
- 		"layoutWidth":"375",
- 		"layoutHeight":"50",
  		"itemHorizontalMargin":8,
  		"itemName": {
  				"type":"MenuItem",

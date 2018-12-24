@@ -54,7 +54,7 @@
             return ((NSArray *) layout.dataTag).count;
         }
         //根据页面动态的数据来返回
-        return 2;
+        return 4;
     }
     return 1;
 }
