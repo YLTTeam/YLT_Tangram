@@ -11,6 +11,13 @@
 
 @implementation YLT_TangramVC (Delegate)
 
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    TangramView *item = [self.pageModels objectAtIndex:section];
+    if ([item isKindOfClass:[TangramGridLayout class]]) {
+        return UIEdgeInsetsMake(item.ylt_layoutMagin.top, item.ylt_layoutMagin.left, item.ylt_layoutMagin.bottom, item.ylt_layoutMagin.right);
+    }
+    return UIEdgeInsetsZero;
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     TangramView *item = [self.pageModels objectAtIndex:indexPath.section];
     if ([item isKindOfClass:[TangramGridLayout class]]) {

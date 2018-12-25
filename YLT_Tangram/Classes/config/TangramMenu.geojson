@@ -13,16 +13,20 @@
                    "dataTag":"",
                    "action":"",
                    "type":"TangramImage",
-                   "identify":"1_2"
+                   "identify":"1_2",
+                   "layoutMarginBottom":8,
+                   "layoutHeight":"17"
                    },
                    {
                    "id":"0",
-                   "background":"ff000000",
+                   "background":"3BA1FC",
                    "dataTag":"",
                    "textColor":"ffffff",
                    "action":"",
                    "type":"TangramLabel",
-                   "identify":"1_1"
+                   "identify":"1_1",
+                   "layoutMarginBottom":8,
+                   "layoutHeight":"17"
                    }
     ]
 }
