@@ -22,7 +22,7 @@
         return @[];
     }
     NSArray *result = @[];
-    result = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.keypath];
+    result = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:@""];
     if (![result isKindOfClass:[NSArray class]]) {
         result = @[result];
     }

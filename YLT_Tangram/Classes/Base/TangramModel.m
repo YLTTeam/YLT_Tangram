@@ -2,7 +2,7 @@
 // TangramModel.m 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/21  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/25  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -10,9 +10,6 @@
 #import "TangramModel.h"
 #import <MJExtension/MJExtension.h>
 #import <YLT_BaseLib/YLT_BaseLib.h>
-
-
-
 
 @implementation TangramView
 
@@ -22,7 +19,7 @@
 		self.tangramId = 0;
 		self.layoutWidth = @"";
 		self.layoutHeight = @"";
-		self.layoutGravity = 0;
+		self.layoutGravity = 48;
 		self.autoDimX = 0;
 		self.autoDimY = 0;
 		self.autoDimDirection = 0;
@@ -45,7 +42,6 @@
 		self.borderLocation = 0;
 		self.hidden = NO;
 		self.dataTag = nil;
-		self.keypath = @"";
 		self.action = [[NSMutableArray alloc] init];
 		self.type = @"";
 		self.identify = @"";
@@ -80,7 +76,7 @@
 		self.text = @"";
 		self.textColor = @"666666";
 		self.fontSize = 16;
-		self.textStyle = 0;
+		self.textStyle = 1;
 		self.lines = 1;
 		self.maxLines = 0;
 		self.gravity = 0;

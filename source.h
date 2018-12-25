@@ -79,7 +79,6 @@ message TangramView {
     optional CornerLocation borderLocation = 0;//
     optional bool hidden = NO;//可见性 hidden 为YES 时隐藏显示
     optional id dataTag = nil;//数据
-    optional string keypath = nil;//key path 路径
     repeated string action = nil;//当action部分有值的时候，给控件添加点击事件
     optional string type = nil;//类名
     optional string identify = nil;//重新标记，没有值，则使用classname
@@ -90,7 +89,7 @@ message TangramLabel : TangramView {
     optional string text = nil;//文本内容
     optional string textColor = 666666;//字体颜色
     optional float fontSize = 16;//字号大小
-    optional TextStyle textStyle = 0;//normal：默认样式，bold：加粗，itlaic：斜体，strike：删除线，underline：下划线
+    optional TextStyle textStyle = 1;//normal：默认样式，bold：加粗，itlaic：斜体，strike：删除线，underline：下划线
     optional int lines = 1;//固定行数，设为0表示不固定行数
     optional int maxLines = 0;//最大行数，需要配合lines=0使用
     optional LayoutGravity gravity = 0;//描述内容的对齐，比如文字在文本组件里的位置、原子组件在容器里的位置，left：靠左，right：靠右，top：靠上，bottom：靠底，v_center：垂直方向居中，h_center：水平方向居中，可用或组合描述(iOS暂只支持水平方向)

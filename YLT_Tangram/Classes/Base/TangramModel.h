@@ -2,7 +2,7 @@
 // TangramModel.h 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/21  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/25  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -102,7 +102,7 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @property (readwrite, nonatomic, assign) CGFloat layoutMarginTop;
 /** 下外边距，优先级高于 layoutMargin */
 @property (readwrite, nonatomic, assign) CGFloat layoutMarginBottom;
-/** 背景色 ffffff  ffffff00 后两位表示alpha */
+/** 背景色 ffffff  00ffffff 前两位表示alpha */
 @property (readwrite, nonatomic, strong) NSString *background;
 /** 边框宽度 */
 @property (readwrite, nonatomic, assign) CGFloat borderWidth;
@@ -116,8 +116,6 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @property (readwrite, nonatomic, assign) BOOL hidden;
 /** 数据 */
 @property (readwrite, nonatomic, strong) id dataTag;
-/** key path 路径 */
-@property (readwrite, nonatomic, strong) NSString *keypath;
 /** 当action部分有值的时候，给控件添加点击事件 */
 @property (readwrite, nonatomic, strong) NSMutableArray<NSString *> *action;
 /** 类名 */

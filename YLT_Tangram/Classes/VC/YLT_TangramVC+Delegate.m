@@ -70,7 +70,7 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TangramView *item = [self.pageModels objectAtIndex:indexPath.section];
-    NSDictionary *pageData = nil;
+    NSDictionary *pageData = self.pageDatas;
     YLT_TangramCell *cell = (YLT_TangramCell *)[collectionView dequeueReusableCellWithReuseIdentifier:item.ylt_identify forIndexPath:indexPath];
     if ([item isKindOfClass:[TangramGridLayout class]]) {
         TangramGridLayout *layout = (TangramGridLayout *)item;
@@ -83,8 +83,11 @@
     [cell cellFromConfig:item];
     if (pageData) {
         [cell reloadCellData:pageData];
-    } else {
-        [cell reloadCellData:self.pageDatas];
+        if (item.action.count > 0) {
+            cell.ylt_clickBlock(^(id resp) {
+                YLT_Log(@"点击事件回调");
+            });
+        }
     }
     return cell;
 }
