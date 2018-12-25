@@ -16,34 +16,37 @@
 }
 
 - (void)updateSize {
-    NSLog(@"width %lf height %lf",self.superview.ylt_size.width,self.superview.ylt_size.height);
+    if (!self.superview) {
+        NSAssert(NO, @"superView is nil");
+        return;
+    }
     if (self.pageModel.layoutGravity > 0) {
         if (self.pageModel.layoutGravity == LayoutGravity_Left) {
             [self marginLeft];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_Right) {
+        }else if (self.pageModel.layoutGravity == LayoutGravity_Right) {
             [self marginRight];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_Top) {
+        }else if (self.pageModel.layoutGravity == LayoutGravity_Top) {
             [self marginTop];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_Bottom) {
+        }else if (self.pageModel.layoutGravity == LayoutGravity_Bottom) {
             [self marginBottom];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_Top + LayoutGravity_Left) {
+        }else if (self.pageModel.layoutGravity == LayoutGravity_Top + LayoutGravity_Left) {
             [self marginLeftTop];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_Top + LayoutGravity_Right) {
+        }else if (self.pageModel.layoutGravity == LayoutGravity_Top + LayoutGravity_Right) {
             [self marginRightTop];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_Bottom + LayoutGravity_Left) {
+        }else if (self.pageModel.layoutGravity == LayoutGravity_Bottom + LayoutGravity_Left) {
             [self marginLeftBottom];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_Bottom + LayoutGravity_Left) {
+        }else if (self.pageModel.layoutGravity == LayoutGravity_Bottom + LayoutGravity_Left) {
             [self marginLeftBottom];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_H_center) {
-            [self marginY];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_V_center){
-            [self marginX];
-        } else if (self.pageModel.layoutGravity == LayoutGravity_V_center + LayoutGravity_H_center){
-            [self marginCenter];
-        } else if (self.pageModel.layoutGravity == (LayoutGravity_Top + LayoutGravity_Bottom + LayoutGravity_Left + LayoutGravity_Right)) {
-            [self marginCenter];
+        }else if (self.pageModel.layoutGravity == LayoutGravity_H_center) {
+            [self marginH];
+        }else if (self.pageModel.layoutGravity == LayoutGravity_V_center){
+            [self marginV];
+        }else if (self.pageModel.layoutGravity == LayoutGravity_V_center + LayoutGravity_H_center){
+            [self marginVH];
+        }else if (self.pageModel.layoutGravity == (LayoutGravity_Top + LayoutGravity_Bottom + LayoutGravity_Left + LayoutGravity_Right)) {
+            [self marginVH];
         }
-    } else{
+    }else{
         //TODO :正常约束，带有优先级...(方案太多，考虑中...0.0)
         [self marginLayout];
     }
@@ -66,256 +69,101 @@
         self.pageModel.layoutMarginBottom == 0 &&
         self.pageModel.layoutMarginLeft == 0 &&
         self.pageModel.layoutMarginRight == 0) {
-        //如果都为0，则默认从左上边约束，有待商量 0000 左上约束为主
-        //TODO:该方案有待商榷
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop == 0 &&
+        //0000
+        [self marginTopBottomLeftRightZero];
+    }else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight > 0){
         //0001,右上约束为主
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop == 0 &&
+        [self marginTopBottomLeftZero];
+    }else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight == 0){
         //0010 左上约束为主
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop == 0 &&
+        [self marginTopBottomRightZero];
+    }else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight == 0){
         //0100 左下约束为主
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            if ([self size].height > 0) {
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop > 0 &&
+        [self marginTopLeftRightZero];
+    }else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight == 0){
         //1000 左上约束为主
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
+        [self marginBottomLeftRightZero];
+        
         //TODO:以上仅有一个约束调整为主 即为0,0,0,1 随机组合约束
-    } else if (self.pageModel.layoutMarginTop > 0 &&
+    }else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight == 0){
-        //约束条件，即为上下，由于缺少左右约束，即为left加主约束
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop > 0 &&
+        //1100
+        [self marginLeftRightZero];
+    }else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight == 0){
         //1010 该情况，同上约束保持一致
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop > 0 &&
+        [self marginBottomRightZero];
+    }else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight > 0){
         //1001
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop == 0 &&
+        [self marginBottomLeftZero];
+    }else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight > 0){
-        //0101
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop == 0 &&
+        //0101 右下约束为主
+        [self marginTopLeftZero];
+    }else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight == 0){
         //0110
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop == 0 &&
+        [self marginTopRightZero];
+    }else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight > 0){
         //0011
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
+        [self marginTopBottomLeftRightZero];
         //TODO: 以上为配置的6种模型0,0,1,1 随机组合
-    } else if (self.pageModel.layoutMarginTop > 0 &&
+    }else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight == 0){
-//        1110,
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop > 0 &&
+        //        1110,
+        [self marginRightZero];
+    }else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft == 0 &&
               self.pageModel.layoutMarginRight > 0){
         //1101
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop > 0 &&
+        [self marginLeftZero];
+    }else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom == 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight > 0){
         //1011
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop == 0 &&
+        [self marginBottomZero];
+    }else if (self.pageModel.layoutMarginTop == 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight > 0){
         //0111;
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginTop > 0 &&
+        [self marginTopZero];
+    }else if (self.pageModel.layoutMarginTop > 0 &&
               self.pageModel.layoutMarginBottom > 0 &&
               self.pageModel.layoutMarginLeft > 0 &&
               self.pageModel.layoutMarginRight > 0){
         ///1111
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if ([self size].height > 0) {
-                //如果有设置该size， 直接以left top 为主
-                make.size.mas_equalTo([self size]);
-            } else{
-                make.width.mas_equalTo([self size].width);
-                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            }
-        }];
+        [self marginZero];
     }
 }
 #pragma mark layoutGravity layout 设置有对齐方式的约束
@@ -324,48 +172,13 @@
         NSAssert(NO, @"superView is nil");
         return;
     }
-    //左
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //以上宽高，全部计算完毕,进行设置约束
-    //考虑之前设定的top，bottom
-    if ((self.pageModel.layoutMarginTop == 0 && self.pageModel.layoutMarginBottom == 0) ||
-        (self.pageModel.layoutMarginTop > 0 && self.pageModel.layoutMarginBottom > 0)) {
-        // 上下与父视图默认为0 获取默认都> 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
-            make.width.mas_equalTo(width);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.bottom.mas_equalTo(0);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginBottom == 0 && self.pageModel.layoutMarginTop > 0) {
-        // margin-bottom 0 ;marginTop > 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
-            make.width.mas_equalTo(width);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.bottom.mas_equalTo(0);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginBottom > 0 && self.pageModel.layoutMarginTop == 0){
-        // margin-bottom > 0 ;marginTop == 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
-            make.width.mas_equalTo(width);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.top);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.top.mas_equalTo(0);
-            }
-        }];
+    
+    if (self.pageModel.layoutMarginBottom > 0 && self.pageModel.layoutMarginTop == 0) {
+        //采用左下对齐
+        [self marginTopLeftRightZero];
+    } else {
+        //左上对齐
+        [self marginTopBottomLeftRightZero];
     }
 }
 
@@ -375,47 +188,12 @@
         NSAssert(NO, @"superView is nil");
         return;
     }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //以上宽高，全部计算完毕,进行设置约束
-    //考虑之前设定的top，bottom
-    if ((self.pageModel.layoutMarginTop == 0 && self.pageModel.layoutMarginBottom == 0) ||
-        (self.pageModel.layoutMarginTop > 0 && self.pageModel.layoutMarginBottom > 0)) {
-        // 上下与父视图默认为0 获取默认都> 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(0);
-            make.width.mas_equalTo(width);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.bottom.mas_equalTo(0);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginBottom == 0 && self.pageModel.layoutMarginTop > 0) {
-        // margin-bottom 0 ;marginTop > 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(0);
-            make.width.mas_equalTo(width);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.bottom.mas_equalTo(0);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginBottom > 0 && self.pageModel.layoutMarginTop == 0){
-        // margin-bottom > 0 ;marginTop == 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(0);
-            make.width.mas_equalTo(width);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.top);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.top.mas_equalTo(0);
-            }
-        }];
+    if (self.pageModel.layoutMarginBottom > 0 && self.pageModel.layoutMarginTop == 0) {
+        //右下对齐
+        [self marginTopLeftZero];
+    } else {
+        //右上对齐
+        [self marginTopBottomLeftZero];
     }
 }
 
@@ -425,97 +203,26 @@
         NSAssert(NO, @"superView is nil");
         return;
     }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //以上宽高，全部计算完毕,进行设置约束
-    //考虑之前设定的top，bottom
-    if ((self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight == 0) ||
-        (self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight > 0)) {
-        // 左右与父视图默认为0 获取默认都> 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(width);
-            make.top.mas_equalTo(0);
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.bottom.mas_equalTo(0);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight > 0) {
-        // margin-left 0 ;marginRight > 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(width);
-            make.top.mas_equalTo(0);
-            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.bottom.mas_equalTo(0);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight == 0){
-        // margin-left > 0 ;marginRight == 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(width);
-            make.top.mas_equalTo(0);
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.bottom.mas_equalTo(0);
-            }
-        }];
+    if (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight > 0) {
+        //右上对齐
+        [self marginTopBottomLeftZero];
+    } else {
+        //左上对齐
+        [self marginTopBottomLeftRightZero];
     }
 }
 
 - (void)marginBottom {
-    //下
     if (!self.superview) {
         NSAssert(NO, @"superView is nil");
         return;
     }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //以上宽高，全部计算完毕,进行设置约束
-    //考虑之前设定的top，bottom
-    if ((self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight == 0) ||
-        (self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight > 0)) {
-        // 左右与父视图默认为0 获取默认都> 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(width);
-            make.bottom.mas_equalTo(0);
-            make.left.mas_equalTo(self.pageModel.layoutMarginLeft);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.top.mas_equalTo(0);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight > 0) {
-        // margin-left 0 ;marginRight > 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(width);
-            make.bottom.mas_equalTo(0);
-            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.top.mas_equalTo(0);
-            }
-        }];
-    } else if (self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight == 0){
-        // margin-left > 0 ;marginRight == 0
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(width);
-            make.bottom.mas_equalTo(0);
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            if (height > 0) {
-                make.height.mas_equalTo(height);
-            } else{
-                make.top.mas_equalTo(0);
-            }
-        }];
+    if (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight > 0) {
+        //右下
+        [self marginTopLeftZero];
+    } else {
+        //左下
+        [self marginTopLeftRightZero];
     }
 }
 
@@ -525,18 +232,7 @@
         NSAssert(NO, @"superView is nil");
         return;
     }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //直接考虑height
-    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(0);
-        if (height > 0) {
-            make.size.mas_equalTo([self size]);
-        } else{
-            make.width.mas_equalTo(width);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-        }
-    }];
+    [self marginTopBottomLeftRightZero];
 }
 
 - (void)marginLeftBottom{
@@ -545,18 +241,7 @@
         NSAssert(NO, @"superView is nil");
         return;
     }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //直接考虑height
-    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.mas_equalTo(0);
-        if (height > 0) {
-            make.size.mas_equalTo([self size]);
-        } else{
-            make.width.mas_equalTo(width);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-        }
-    }];
+    [self marginTopLeftRightZero];
 }
 
 - (void)marginRightTop{
@@ -565,18 +250,7 @@
         NSAssert(NO, @"superView is nil");
         return;
     }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //直接考虑height
-    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.top.mas_equalTo(0);
-        if (height > 0) {
-            make.size.mas_equalTo([self size]);
-        } else{
-            make.width.mas_equalTo(width);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-        }
-    }];
+    [self marginTopBottomLeftZero];
 }
 
 - (void)marginRightBottom{
@@ -585,97 +259,23 @@
         NSAssert(NO, @"superView is nil");
         return;
     }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //直接考虑height
-    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.right.bottom.mas_equalTo(0);
-        if (height > 0) {
-            make.size.mas_equalTo([self size]);
-        } else{
-            make.width.mas_equalTo(width);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-        }
-    }];
+    [self marginTopLeftZero];
 }
 
-- (void)marginCenter {
-    //中心
-    if (!self.superview) {
-        NSAssert(NO, @"superView is nil");
-        return;
-    }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //直接考虑height
-    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        if (height > 0) {
-            make.center.equalTo(self.superview);
-            make.size.mas_equalTo([self size]);
-        } else {
-            make.width.mas_equalTo(width);
-            make.centerX.equalTo(self.superview);
-            make.top.bottom.mas_equalTo(0);
-        }
-    }];
-}
-
-- (void)marginY {
-    if (!self.superview) {
-        NSAssert(NO, @"superView is nil");
-        return;
-    }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //直接考虑height
-    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-        if (height > 0) {
-            make.centerY.equalTo(self.superview);
-            make.size.mas_equalTo([self size]);
-        } else{
-            make.width.mas_equalTo(width);
-            make.top.bottom.mas_equalTo(0);
-        }
-    }];
-}
-
-- (void)marginX {
-    if (!self.superview) {
-        NSAssert(NO, @"superView is nil");
-        return;
-    }
-    CGFloat width = [self size].width;
-    CGFloat height = [self size].height;
-    //直接考虑height
-    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.superview);
-        if (height > 0) {
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            make.size.mas_equalTo([self size]);
-        } else{
-            make.width.mas_equalTo(width);
-            make.top.bottom.mas_equalTo(0);
-        }
-    }];
-}
-//TODO:原本以
+//TODO:服务端下发控件宽高
 - (CGSize)size {
     if (!self.superview) {
         return CGSizeZero;
     }
     CGFloat width = 0.0;
-    float mariginMax = self.superview.ylt_size.width - self.pageModel.ylt_layoutMagin.left -self.pageModel.ylt_layoutMagin.right;
-    
     if (self.pageModel.layoutWidth.floatValue > 0) {
         //直接取layoutMargin,超出屏幕部分，去除
-        width = self.pageModel.layoutWidth.floatValue >= mariginMax ? mariginMax:self.pageModel.layoutWidth.floatValue;
+        width = self.pageModel.layoutWidth.floatValue;
     }
     //当宽度依旧为0,取最小值
     if (width == 0.0) {
         width = self.pageModel.minWidth;
     }
-    
     //考虑高度
     CGFloat height = 0.0;
     if (self.pageModel.layoutHeight.floatValue > 0) {
@@ -689,13 +289,247 @@
     if (height == 0 && width > 0){
         //当高度为0，宽度不为0的时候，根据比例来计算宽高比
         height = width * self.pageModel.autoDimX;
-    } else if (height > 0 && width == 0){
+    }else if (height > 0 && width == 0){
         width = height * self.pageModel.autoDimY;
-    } else{
+    }else{
         //其他不考虑
     }
-    //当满足上述条件之后，width依旧为0，则直接设置最大限度width
-    width = width == 0 ? mariginMax : width;
+    float maxWidth = self.superview.ylt_size.width - self.pageModel.ylt_layoutMagin.left -self.pageModel.ylt_layoutMagin.right;
+    float maxHeight = self.superview.ylt_size.height - self.pageModel.ylt_layoutMagin.top -self.pageModel.ylt_layoutMagin.bottom;
+    if (width > maxWidth) {
+        //约束极限宽
+        width = maxWidth;
+    }
+    if (height > maxHeight) {
+        //约束极限高
+        height = maxHeight;
+    }
     return CGSizeMake(width, height);
+}
+
+#pragma mark 以下为新兼容约束条件
+#pragma mark 水平约束
+- (void)marginV {
+    CGFloat marginWidth = [self size].width;
+    CGFloat marginHeigth = [self size].height;
+    //垂直约束必须设置高度，反之直接设置size为0
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        make.centerX.equalTo(self.superview);
+        if (marginWidth > 0) {
+            if (marginHeigth > 0) {
+                make.size.mas_equalTo([self size]);
+            }else{
+                make.width.mas_equalTo(marginWidth);
+                make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+            }
+        } else {
+            make.size.mas_equalTo(CGSizeZero);
+        }
+    }];
+}
+#pragma mark 垂直约束
+- (void)marginH {
+    CGFloat marginWidth = [self size].width;
+    CGFloat marginHeigth = [self size].height;
+    //垂直约束必须设置高度，反之直接设置size为0
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+        make.centerY.mas_equalTo(self.superview);
+        if (marginHeigth > 0) {
+            if (marginWidth > 0) {
+                make.size.mas_equalTo([self size]);
+            } else {
+                make.height.mas_equalTo(marginHeigth);
+                make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+            }
+        } else {
+            make.size.mas_equalTo(CGSizeZero);
+        }
+    }];
+}
+#pragma mark 中心约束
+- (void)marginVH {
+    CGFloat marginWidth = [self size].width;
+    CGFloat marginHeigth = [self size].height;
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.superview);
+        if (marginHeigth > 0 && marginWidth > 0) {
+            make.size.mas_equalTo([self size]);
+        } else if (marginHeigth > 0 && marginWidth == 0) {
+            make.height.mas_equalTo(marginHeigth);
+            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+        } else if (marginHeigth == 0 && marginWidth > 0) {
+            make.width.mas_equalTo(marginWidth);
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+        } else {
+            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+        }
+    }];
+}
+#pragma mark 左上约束为主
+//考虑约束 0000 左上约束为主
+- (void)marginTopBottomLeftRightZero {
+    CGFloat marginWidth = [self size].width;
+    CGFloat marginHeigth = [self size].height;
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        //左上约束为主
+        make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+        make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        if (marginWidth > 0 && marginHeigth > 0) {
+            //左上
+            make.size.mas_equalTo([self size]);
+        }else if (marginHeigth > 0 && marginWidth == 0) {
+            //左上 ->右(铺满)
+            make.height.mas_equalTo(marginHeigth);
+            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+        }else if (marginHeigth == 0 && marginWidth > 0) {
+            //左上 ->下(铺满)
+            make.width.mas_equalTo(marginWidth);
+            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+        }else{
+            //上下左右(铺满)
+            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+        }
+    }];
+}
+//考虑约束 0011左上约束为主
+- (void)marginTopBottomZero {
+    [self marginTopBottomLeftRightZero];
+}
+//考虑约束 0010 左上约束为主
+- (void)marginTopBottomRightZero {
+    //该值取的为左上约束，跟0000约束保持一致
+    [self marginTopBottomLeftRightZero];
+}
+
+//考虑约束 1000 左上约束为主
+- (void)marginBottomLeftRightZero {
+    [self marginTopBottomLeftRightZero];
+}
+
+//考虑约束 1100 左上约束为主
+- (void)marginLeftRightZero {
+    [self marginTopBottomLeftRightZero];
+}
+
+//考虑约束 1010 //左上约束为主
+- (void)marginBottomRightZero {
+    [self marginTopBottomLeftRightZero];
+}
+//考虑约束 1110 左上约束为主
+- (void)marginRightZero {
+    [self marginTopBottomLeftRightZero];
+}
+//考虑约束 1011 左上约束为主
+- (void)marginBottomZero {
+    [self marginTopBottomLeftRightZero];
+}
+// 考虑约束 1111 左上约束为主
+- (void)marginZero {
+    [self marginTopBottomLeftRightZero];
+}
+#pragma mark 右上约束为主
+//考虑约束 0001, 右上约束为主
+- (void)marginTopBottomLeftZero {
+    CGFloat marginWidth = [self size].width;
+    CGFloat marginHeigth = [self size].height;
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        //右上约束为主
+        make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+        make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        if (marginWidth > 0 && marginHeigth > 0) {
+            make.size.mas_equalTo([self size]);
+        } else if (marginHeigth > 0 && marginWidth == 0) {
+            //右上 ->左(铺满)
+            make.height.mas_equalTo(marginHeigth);
+            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+        } else if (marginHeigth == 0 && marginWidth > 0) {
+            //右上 ->下(铺满)
+            make.width.mas_equalTo(marginWidth);
+            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+        } else {
+            //上下左右(铺满)
+            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+        }
+    }];
+}
+//考虑约束 1101 右上约束为主
+- (void)marginLeftZero {
+    [self marginTopBottomLeftZero];
+}
+
+//考虑约束 1001 右上约束为主
+- (void)marginBottomLeftZero {
+    [self marginTopBottomLeftZero];
+}
+#pragma mark 左下约束为主
+//考虑约束 0100 左下约束为主
+- (void)marginTopLeftRightZero {
+    CGFloat marginWidth = [self size].width;
+    CGFloat marginHeigth = [self size].height;
+    //左下约束为主
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+        make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+        if (marginWidth > 0 && marginHeigth > 0) {
+            //左下
+            make.size.mas_equalTo([self size]);
+        }else if (marginHeigth > 0 && marginWidth == 0) {
+            //左下 ->右(铺满)
+            make.height.mas_equalTo(marginHeigth);
+            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+        }else if (marginHeigth == 0 && marginWidth > 0) {
+            //左下 ->上(铺满)
+            make.width.mas_equalTo(marginWidth);
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        }else{
+            //上下左右(铺满)
+            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        }
+    }];
+}
+//考虑约束 0110 左下约束为主
+- (void)marginTopRightZero {
+    [self marginTopLeftRightZero];
+}
+//考虑约束 0111 左下约束为主
+- (void)marginTopZero {
+    [self marginTopLeftRightZero];
+}
+#pragma mark 右下约束为主
+//考虑约束 0101 右下约束为主
+- (void)marginTopLeftZero {
+    CGFloat marginWidth = [self size].width;
+    CGFloat marginHeigth = [self size].height;
+    //左下约束为主
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+        make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+        if (marginWidth > 0 && marginHeigth > 0) {
+            //左下
+            make.size.mas_equalTo([self size]);
+        }else if (marginHeigth > 0 && marginWidth == 0) {
+            //左下 ->右(铺满)
+            make.height.mas_equalTo(marginHeigth);
+            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+        }else if (marginHeigth == 0 && marginWidth > 0) {
+            //左下 ->上(铺满)
+            make.width.mas_equalTo(marginWidth);
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        }else{
+            //上下左右(铺满)
+            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        }
+    }];
 }
 @end
