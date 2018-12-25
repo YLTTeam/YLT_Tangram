@@ -42,7 +42,7 @@
 		self.borderLocation = 0;
 		self.hidden = NO;
 		self.dataTag = nil;
-		self.action = [[NSMutableArray alloc] init];
+		self.action = @"";
 		self.type = @"";
 		self.identify = @"";
 	}
@@ -60,7 +60,6 @@
 + (NSDictionary *)ylt_classInArray {
 	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
 	[result addEntriesFromDictionary: @{
-			@"action":@"string",
 				}];
 	return result;
 }

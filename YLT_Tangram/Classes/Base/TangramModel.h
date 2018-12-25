@@ -117,7 +117,7 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 /** 数据 */
 @property (readwrite, nonatomic, strong) id dataTag;
 /** 当action部分有值的时候，给控件添加点击事件 */
-@property (readwrite, nonatomic, strong) NSMutableArray<NSString *> *action;
+@property (readwrite, nonatomic, strong) NSString *action;
 /** 类名 */
 @property (readwrite, nonatomic, strong) NSString *type;
 /** 重新标记，没有值，则使用classname */

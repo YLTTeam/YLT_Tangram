@@ -79,7 +79,7 @@ message TangramView {
     optional CornerLocation borderLocation = 0;//
     optional bool hidden = NO;//可见性 hidden 为YES 时隐藏显示
     optional id dataTag = nil;//数据
-    repeated string action = nil;//当action部分有值的时候，给控件添加点击事件
+    optional string action = nil;//当action部分有值的时候，给控件添加点击事件
     optional string type = nil;//类名
     optional string identify = nil;//重新标记，没有值，则使用classname
 }
