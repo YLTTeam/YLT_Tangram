@@ -262,69 +262,51 @@
     [self marginTopLeftZero];
 }
 
-//TODO:服务端下发控件宽高
-- (CGSize)size {
-    if (!self.superview) {
-        return CGSizeZero;
-    }
-    CGFloat width = 0.0;
-    if (self.pageModel.layoutWidth.floatValue > 0) {
-        //直接取layoutMargin,超出屏幕部分，去除
-        width = self.pageModel.layoutWidth.floatValue;
-    }
-    //当宽度依旧为0,取最小值
-    if (width == 0.0) {
-        width = self.pageModel.minWidth;
-    }
-    //考虑高度
-    CGFloat height = 0.0;
-    if (self.pageModel.layoutHeight.floatValue > 0) {
-        height = self.pageModel.layoutHeight.floatValue;
-    }
-    if (height == 0.0) {
-        height = self.pageModel.minHeight;
-    }
-    
-    //根据比例来计算宽高,当高为0 切宽不为0的时候
-    if (height == 0 && width > 0){
-        //当高度为0，宽度不为0的时候，根据比例来计算宽高比
-        height = width * self.pageModel.autoDimX;
-    }else if (height > 0 && width == 0){
-        width = height * self.pageModel.autoDimY;
-    }else{
-        //其他不考虑
-    }
-    float maxWidth = self.superview.ylt_size.width - self.pageModel.ylt_layoutMagin.left -self.pageModel.ylt_layoutMagin.right;
-    float maxHeight = self.superview.ylt_size.height - self.pageModel.ylt_layoutMagin.top -self.pageModel.ylt_layoutMagin.bottom;
-    if (width > maxWidth) {
-        //约束极限宽
-        width = maxWidth;
-    }
-    if (height > maxHeight) {
-        //约束极限高
-        height = maxHeight;
-    }
-    return CGSizeMake(width, height);
-}
-
-#pragma mark 以下为新兼容约束条件
 #pragma mark 水平约束
 - (void)marginV {
     CGFloat marginWidth = [self size].width;
     CGFloat marginHeigth = [self size].height;
-    //垂直约束必须设置高度，反之直接设置size为0
+    
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
         make.centerX.equalTo(self.superview);
-        if (marginWidth > 0) {
-            if (marginHeigth > 0) {
+        //考虑上对齐还是下对齐
+        if ((self.pageModel.layoutMarginTop > 0 && self.pageModel.layoutMarginBottom == 0) ||
+            (self.pageModel.layoutMarginTop == 0 && self.pageModel.layoutMarginBottom == 0)) {
+            //水平上月维护为主
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+            if (marginHeigth > 0 && marginWidth > 0) {
                 make.size.mas_equalTo([self size]);
-            }else{
+            } else if (marginHeigth > 0 && marginWidth == 0) {
+                make.height.mas_equalTo(marginHeigth);
+                make.width.mas_lessThanOrEqualTo([self maxWidth]);
+            } else if (marginHeigth == 0 && marginWidth > 0) {
+                make.width.mas_equalTo(marginWidth);
+                make.height.mas_lessThanOrEqualTo([self maxHeight]);
+            }
+        } else if (self.pageModel.layoutMarginTop > 0 && self.pageModel.layoutMarginBottom > 0) {
+            //水平 上下约束为主
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+            if (marginHeigth > 0 && marginWidth > 0) {
+                make.size.mas_equalTo([self size]);
+            } else if (marginHeigth > 0 && marginWidth == 0) {
+                make.height.mas_equalTo(marginHeigth);
+                make.width.mas_lessThanOrEqualTo([self maxWidth]);
+            } else if (marginHeigth == 0 && marginWidth > 0) {
                 make.width.mas_equalTo(marginWidth);
                 make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
             }
-        } else {
-            make.size.mas_equalTo(CGSizeZero);
+        } else if (self.pageModel.layoutMarginTop == 0 && self.pageModel.layoutMarginBottom > 0) {
+            //水平 下约束为主
+            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+            if (marginHeigth > 0 && marginWidth > 0) {
+                make.size.mas_equalTo([self size]);
+            } else if (marginHeigth > 0 && marginWidth == 0) {
+                make.height.mas_equalTo(marginHeigth);
+                make.width.mas_lessThanOrEqualTo([self maxWidth]);
+            } else if (marginHeigth == 0 && marginWidth > 0) {
+                make.width.mas_equalTo(marginWidth);
+                make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+            }
         }
     }];
 }
@@ -332,19 +314,46 @@
 - (void)marginH {
     CGFloat marginWidth = [self size].width;
     CGFloat marginHeigth = [self size].height;
-    //垂直约束必须设置高度，反之直接设置size为0
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-        make.centerY.mas_equalTo(self.superview);
-        if (marginHeigth > 0) {
-            if (marginWidth > 0) {
+        make.centerY.equalTo(self.superview);
+        //考虑左右优先级
+        if ((self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight == 0) ||
+            (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight == 0)) {
+            //垂直 左维护为主
+            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+            if (marginHeigth > 0 && marginWidth > 0) {
                 make.size.mas_equalTo([self size]);
-            } else {
+            } else if (marginHeigth > 0 && marginWidth == 0) {
+                make.height.mas_equalTo(marginHeigth);
+                make.width.mas_lessThanOrEqualTo([self maxWidth]);
+            } else if (marginHeigth == 0 && marginWidth > 0) {
+                make.width.mas_equalTo(marginWidth);
+                make.height.mas_lessThanOrEqualTo([self maxHeight]);
+            }
+        } else if (self.pageModel.layoutMarginLeft > 0 && self.pageModel.layoutMarginRight > 0) {
+            //垂直 左右约束为主
+            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+            if (marginHeigth > 0 && marginWidth > 0) {
+                make.size.mas_equalTo([self size]);
+            } else if (marginHeigth > 0 && marginWidth == 0) {
                 make.height.mas_equalTo(marginHeigth);
                 make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+            } else if (marginHeigth == 0 && marginWidth > 0) {
+                make.width.mas_equalTo(marginWidth);
+                make.height.mas_lessThanOrEqualTo([self maxHeight]);
             }
-        } else {
-            make.size.mas_equalTo(CGSizeZero);
+        } else if (self.pageModel.layoutMarginLeft == 0 && self.pageModel.layoutMarginRight > 0) {
+            //水平 下约束为主
+            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+            if (marginHeigth > 0 && marginWidth > 0) {
+                make.size.mas_equalTo([self size]);
+            } else if (marginHeigth > 0 && marginWidth == 0) {
+                make.height.mas_equalTo(marginHeigth);
+                make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+            } else if (marginHeigth == 0 && marginWidth > 0) {
+                make.width.mas_equalTo(marginWidth);
+                make.height.mas_lessThanOrEqualTo([self maxHeight]);
+            }
         }
     }];
 }
@@ -352,23 +361,17 @@
 - (void)marginVH {
     CGFloat marginWidth = [self size].width;
     CGFloat marginHeigth = [self size].height;
+    //获取最大允许的
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.superview);
         if (marginHeigth > 0 && marginWidth > 0) {
             make.size.mas_equalTo([self size]);
         } else if (marginHeigth > 0 && marginWidth == 0) {
             make.height.mas_equalTo(marginHeigth);
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
-            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+            make.width.mas_lessThanOrEqualTo([self maxWidth]);
         } else if (marginHeigth == 0 && marginWidth > 0) {
             make.width.mas_equalTo(marginWidth);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-        } else {
-            make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
-            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
-            make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
-            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+            make.height.mas_lessThanOrEqualTo([self maxHeight]);
         }
     }];
 }
@@ -531,5 +534,61 @@
             make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
         }
     }];
+}
+
+#pragma mark 服务端下发的控件宽高
+- (CGSize)size {
+    if (!self.superview) {
+        return CGSizeZero;
+    }
+    CGFloat width = 0.0;
+    
+    if (self.pageModel.layoutWidth.floatValue > 0) {
+        //直接取layoutMargin,超出屏幕部分，去除
+        width = self.pageModel.layoutWidth.floatValue;
+    } else if ([self.pageModel.layoutWidth isEqualToString:@"match_parent"]) {
+        width = [self maxWidth];
+    } else {
+        width = self.pageModel.minWidth;
+    }
+    //考虑高度
+    CGFloat height = 0.0;
+    if (self.pageModel.layoutHeight.floatValue > 0) {
+        height = self.pageModel.layoutHeight.floatValue;
+    } else if ([self.pageModel.layoutHeight isEqualToString:@"match_parent"]) {
+        height = [self maxHeight];
+    }else {
+        height = self.pageModel.minHeight;
+    }
+    
+    //根据比例来计算宽高,当高为0 切宽不为0的时候
+    if (height == 0 && width > 0){
+        //当高度为0，宽度不为0的时候，根据比例来计算宽高比
+        height = width * self.pageModel.autoDimX;
+    }else if (height > 0 && width == 0){
+        width = height * self.pageModel.autoDimY;
+    }else{
+        //其他不考虑
+    }
+    
+    if (width > [self maxWidth]) {
+        //约束极限宽
+        width = [self maxWidth];
+    }
+    if (height > [self maxHeight]) {
+        //约束极限高
+        height = [self maxHeight];
+    }
+    return CGSizeMake(width, height);
+}
+
+- (CGFloat)maxWidth {
+    CGFloat width = self.superview.ylt_size.width - self.pageModel.ylt_layoutMagin.left -self.pageModel.ylt_layoutMagin.right;
+    return width > 0 ? width : 0;
+}
+
+- (CGFloat)maxHeight {
+    CGFloat height = self.superview.ylt_size.height - self.pageModel.ylt_layoutMagin.top -self.pageModel.ylt_layoutMagin.bottom;
+    return height > 0 ? height : 0;
 }
 @end
