@@ -83,6 +83,8 @@
     [cell cellFromConfig:item];
     if (pageData) {
         [cell reloadCellData:pageData];
+    } else {
+        [cell reloadCellData:self.pageDatas];
     }
     return cell;
 }

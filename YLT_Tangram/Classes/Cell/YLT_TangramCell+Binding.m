@@ -23,6 +23,8 @@
                     ((YLT_TangramImage *) obj).pageData = data;
                 } else if ([obj isKindOfClass:[YLT_TangramLabel class]] && [map[@"type"] isEqualToString:@"TangramLabel"] && ((TangramLabel *) ((YLT_TangramLabel *) obj).content)) {
                     ((TangramLabel *) ((YLT_TangramLabel *) obj).content).text = self.config.ylt_sourceData[@"text"];
+                    ((TangramLabel *) ((YLT_TangramLabel *) obj).content).gravity = [self.config.ylt_sourceData[@"gravity"] integerValue];
+                    ((TangramLabel *) ((YLT_TangramLabel *) obj).content).fontSize = [self.config.ylt_sourceData[@"fontSize"] integerValue];
                     ((YLT_TangramLabel *) obj).pageData = data;
                 }
             }];

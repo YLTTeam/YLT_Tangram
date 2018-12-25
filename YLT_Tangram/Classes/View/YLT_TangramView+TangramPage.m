@@ -17,7 +17,7 @@
     [self.ylt_currentVC.view layoutIfNeeded];
     
     self.hidden = self.pageModel.hidden;
-    self.mainView.backgroundColor = self.pageModel.background.ylt_colorFromHexString;
+    self.mainView.backgroundColor = self.pageModel.background.ylt_androidColorFromHexString;
     
     [self updateBorder];    
 }
@@ -31,7 +31,7 @@
     }
     if (self.pageModel.borderWidth != 0) {
         self.mainView.layer.borderWidth = self.pageModel.borderWidth;
-        self.mainView.layer.borderColor = self.pageModel.borderColor.ylt_colorFromHexString.CGColor;
+        self.mainView.layer.borderColor = self.pageModel.borderColor.ylt_androidColorFromHexString.CGColor;
     }
 }
 

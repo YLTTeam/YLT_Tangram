@@ -31,8 +31,13 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSArray<NSDictionary *> *pages = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-    NSDictionary *pageDatas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuData" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    NSArray<NSDictionary *> *pages = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    NSDictionary *pageDatas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"real" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    [YLT_TangramManager shareInstance].splitImageURLString = ^NSString *(NSString *path) {
+        path = [NSString stringWithFormat:@"https://img2.ultimavip.cn/%@?imageView2/2/w/153/h/153&imageslim", path];
+        return path;
+    };
+    
     YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages withDatas:pageDatas.mutableCopy];
     
     [self presentViewController:vc animated:YES completion:nil];

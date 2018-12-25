@@ -27,7 +27,7 @@ PODS:
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
-  - YLT_BaseLib (0.3.14):
+  - YLT_BaseLib (0.3.16):
     - FastCoding
     - FMDB
     - MJExtension
@@ -76,7 +76,7 @@ SPEC CHECKSUMS:
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
-  YLT_BaseLib: cfeb5ddb3b55f8104e7864f617481a54aaf22051
+  YLT_BaseLib: adecba04670767ace805b908ca44b637529d9464
   YLT_Kit: 31039219864ed23df1bf96dbeaaa5422785a698a
   YLT_Tangram: 39e7be54961e585df30a6540ae67bb6dbdbae675
 

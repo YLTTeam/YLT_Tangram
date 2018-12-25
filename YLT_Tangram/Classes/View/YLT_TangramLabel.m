@@ -19,7 +19,55 @@
 - (void)refreshPage {
     if ([self.content isKindOfClass:[TangramLabel class]]) {
         self.label.text = self.content.text;
-        self.label.ylt_textColor(self.content.textColor.ylt_colorFromHexString);
+        self.label.ylt_textColor(self.content.textColor.ylt_androidColorFromHexString);
+        switch (self.content.gravity) {
+            case LayoutGravity_Top:
+                break;
+            case LayoutGravity_Left: {
+                self.label.textAlignment = NSTextAlignmentLeft;
+            }
+                break;
+            case LayoutGravity_Right: {
+                self.label.textAlignment = NSTextAlignmentRight;
+            }
+                break;
+            case LayoutGravity_Bottom: {
+            }
+                break;
+            case LayoutGravity_H_center: {
+                self.label.textAlignment = NSTextAlignmentCenter;
+            }
+                break;
+            case LayoutGravity_V_center: {
+            }
+                break;
+        }
+        
+        switch (self.content.textStyle) {
+            case TextStyle_Normal: {
+                self.label.font = [UIFont systemFontOfSize:self.content.fontSize];
+            }
+                break;
+            case TextStyle_Bold: {
+                self.label.font = [UIFont fontWithName:@"PingFangSC-Medium" size:self.content.fontSize];
+            }
+                break;
+            case TextStyle_Italic: {
+            }
+                break;
+            case TextStyle_Strike: {
+            }
+                break;
+            case TextStyle_UnderLine: {
+            }
+                break;
+                
+            default: {
+                self.label.font = [UIFont systemFontOfSize:self.content.fontSize];
+            }
+                break;
+        }
+        
         if (self.pageData && [self.content.text hasPrefix:@"$"]) {
             self.label.text = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.text];
         }

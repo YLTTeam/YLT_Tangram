@@ -13,6 +13,8 @@
 
 YLT_ShareInstanceHeader(YLT_TangramManager);
 
+@property (nonatomic, copy) NSString *(^splitImageURLString)(NSString *path);
+
 /**
  加载布局
  

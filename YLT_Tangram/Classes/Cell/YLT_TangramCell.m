@@ -124,15 +124,16 @@ static NSDictionary *unitTangram;
 }
 
 - (void)reloadCellData:(id)data {
-//    [self.subTangrams.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        YLT_TangramView *sub = (YLT_TangramView *)self.subTangrams[obj];
-//        YLT_Log(@"%@", sub);
-//        sub.pageData = data;
-//    }];
-
     if ([self.subTangrams.allKeys containsObject:self.config.identify]) {
-        //复合组件 绑定数据
-        [self bindingFramelayout:(YLT_TangramFrameLayout *)[self.subTangrams objectForKey:self.config.identify] data:data];
+        if ([self.config.type isEqualToString:@"TangramImage"] || [self.config.type isEqualToString:@"TangramLabel"]) {
+            [self.subTangrams.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                YLT_TangramView *sub = (YLT_TangramView *)self.subTangrams[obj];
+                sub.pageData = data;
+            }];
+        } else {
+            //复合组件 绑定数据
+            [self bindingFramelayout:(YLT_TangramFrameLayout *)[self.subTangrams objectForKey:self.config.identify] data:data];
+        }
     }
 }
 

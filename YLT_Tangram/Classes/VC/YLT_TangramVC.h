@@ -17,7 +17,6 @@
 
 @property (nonatomic, strong) NSMutableDictionary *pageDatas;
 
-
 + (YLT_TangramVC *)tangramWithPages:(NSArray<NSDictionary *> *)pages
                           withDatas:(NSMutableDictionary *)datas;
 

@@ -19,12 +19,10 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		B6B444B67C1A91FE976EF0C8 /* Pods_YLT_Tangram_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B055E4A063E2E996F10C8D /* Pods_YLT_Tangram_Example.framework */; };
 		C730987521D08B49008A60A8 /* real.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C730987421D08B49008A60A8 /* real.geojson */; };
-		C76C913421CA245100449F8E /* TangramLabelPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C913321CA245100449F8E /* TangramLabelPage.geojson */; };
-		C76C916521CB466900449F8E /* TangramLabelData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C916421CB466900449F8E /* TangramLabelData.geojson */; };
 		C76C917321CB7CBE00449F8E /* TangramMenuPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */; };
 		C76C917F21CB8E6900449F8E /* TangramMenuData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */; };
-		C76C918621CB984700449F8E /* TangramLabel.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C918521CB984700449F8E /* TangramLabel.geojson */; };
 		C7A07DAF21CC8A0A00AB450C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C7A07DAE21CC8A0A00AB450C /* logo.png */; };
+		C7B2859E21D1BFD500522405 /* realPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C7B2859D21D1BFD500522405 /* realPage.geojson */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,12 +54,10 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B9B055E4A063E2E996F10C8D /* Pods_YLT_Tangram_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YLT_Tangram_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C730987421D08B49008A60A8 /* real.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = real.geojson; sourceTree = "<group>"; };
-		C76C913321CA245100449F8E /* TangramLabelPage.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = TangramLabelPage.geojson; sourceTree = "<group>"; };
-		C76C916421CB466900449F8E /* TangramLabelData.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = TangramLabelData.geojson; sourceTree = "<group>"; };
 		C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = TangramMenuPage.geojson; sourceTree = "<group>"; };
 		C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TangramMenuData.geojson; sourceTree = "<group>"; };
-		C76C918521CB984700449F8E /* TangramLabel.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TangramLabel.geojson; sourceTree = "<group>"; };
 		C7A07DAE21CC8A0A00AB450C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		C7B2859D21D1BFD500522405 /* realPage.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = realPage.geojson; sourceTree = "<group>"; };
 		C808164A4075EC3F0EDE9626 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FD244D5665F23318592AF86A /* Pods-YLT_Tangram_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLT_Tangram_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLT_Tangram_Example/Pods-YLT_Tangram_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,7 +133,6 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
-				C76C917121CB7ABD00449F8E /* Label */,
 			);
 			name = "Example for YLT_Tangram";
 			path = YLT_Tangram;
@@ -183,21 +178,12 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		C76C917121CB7ABD00449F8E /* Label */ = {
-			isa = PBXGroup;
-			children = (
-				C76C918521CB984700449F8E /* TangramLabel.geojson */,
-				C76C913321CA245100449F8E /* TangramLabelPage.geojson */,
-				C76C916421CB466900449F8E /* TangramLabelData.geojson */,
-			);
-			name = Label;
-			sourceTree = "<group>";
-		};
 		C7C6415A21CC8995001B280A /* Menu */ = {
 			isa = PBXGroup;
 			children = (
 				C7A07DAE21CC8A0A00AB450C /* logo.png */,
 				C730987421D08B49008A60A8 /* real.geojson */,
+				C7B2859D21D1BFD500522405 /* realPage.geojson */,
 				C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */,
 				C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */,
 			);
@@ -235,6 +221,11 @@
 				CLASSPREFIX = YLT;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "xphaijj0305@126.com";
+				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = S8JBM2NX4M;
+					};
+				};
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "YLT_Tangram" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -261,14 +252,12 @@
 			files = (
 				C730987521D08B49008A60A8 /* real.geojson in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
-				C76C918621CB984700449F8E /* TangramLabel.geojson in Resources */,
 				C7A07DAF21CC8A0A00AB450C /* logo.png in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
-				C76C913421CA245100449F8E /* TangramLabelPage.geojson in Resources */,
 				C76C917F21CB8E6900449F8E /* TangramMenuData.geojson in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				C76C916521CB466900449F8E /* TangramLabelData.geojson in Resources */,
 				C76C917321CB7CBE00449F8E /* TangramMenuPage.geojson in Resources */,
+				C7B2859E21D1BFD500522405 /* realPage.geojson in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,6 +446,7 @@
 			baseConfigurationReference = FD244D5665F23318592AF86A /* Pods-YLT_Tangram_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S8JBM2NX4M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLT_Tangram/YLT_Tangram-Prefix.pch";
 				INFOPLIST_FILE = "YLT_Tangram/YLT_Tangram-Info.plist";
@@ -472,6 +462,7 @@
 			baseConfigurationReference = 437C0638AF9B65A637F0CAFF /* Pods-YLT_Tangram_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = S8JBM2NX4M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YLT_Tangram/YLT_Tangram-Prefix.pch";
 				INFOPLIST_FILE = "YLT_Tangram/YLT_Tangram-Info.plist";

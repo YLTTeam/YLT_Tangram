@@ -1,0 +1,199 @@
+[
+    {
+        "type":"TangramLabel",
+        "text":"",
+        "background":"F6F6F6",
+        "identify":"privilege_footer_1",
+        "layoutWidth":"375",
+        "layoutHeight":"10"
+    },
+    {
+ 		"type":"TangramLabel",
+ 		"text":"全部特权",
+ 		"fontSize":16,
+ 		"textColor":"000000",
+ 		"identify":"privilege_header_1",
+        "layoutMarginLeft":8,
+        "textStyle":2,
+        "layoutWidth":"375",
+        "layoutHeight":"40"
+ 	},
+
+
+    {
+ 		"type":"TangramLabel",
+ 		"text":"$data[0].classifyName",
+        "layoutMarginLeft":8,
+ 		"identify":"privilege_sub_header_1",
+        "fontSize":14,
+        "textColor":"000000",
+ 		"layoutWidth":"375",
+ 		"layoutHeight":"40"
+ 	},
+    {
+ 		"type":"TangramGridLayout",
+ 		"dataTag":"$data[0].classifyResult",
+ 		"column":4,
+        "layoutMarginLeft":8,
+        "layoutMarginRight":8,
+ 		"identify":"privilege_TangramGridLayout_1",
+ 		"itemHorizontalMargin":8,
+ 		"itemName": {
+ 			"type":"MenuItem",
+ 			"text":"$model_profile",
+            "gravity":32,
+ 			"fontSize":13,
+ 			"src":"$model_img",
+ 			"identify":"TangramMenu"
+ 		}
+    },
+
+
+    {
+        "type":"TangramLabel",
+        "text":"$data[1].classifyName",
+        "layoutMarginLeft":8,
+        "identify":"privilege_sub_header_1",
+        "fontSize":14,
+        "textColor":"000000",
+        "layoutWidth":"375",
+        "layoutHeight":"40"
+    },
+    {
+        "type":"TangramGridLayout",
+        "dataTag":"$data[1].classifyResult",
+        "column":4,
+        "layoutMarginLeft":8,
+        "layoutMarginRight":8,
+        "identify":"privilege_TangramGridLayout_1",
+        "itemHorizontalMargin":8,
+        "itemName": {
+            "type":"MenuItem",
+            "text":"$model_profile",
+            "gravity":32,
+            "fontSize":13,
+            "src":"$model_img",
+            "identify":"TangramMenu"
+        }
+    },
+
+
+    {
+        "type":"TangramLabel",
+        "text":"$data[2].classifyName",
+        "layoutMarginLeft":8,
+        "identify":"privilege_sub_header_1",
+        "fontSize":14,
+        "textColor":"000000",
+        "layoutWidth":"375",
+        "layoutHeight":"40"
+    },
+    {
+        "type":"TangramGridLayout",
+        "dataTag":"$data[2].classifyResult",
+        "column":4,
+        "layoutMarginLeft":8,
+        "layoutMarginRight":8,
+        "identify":"privilege_TangramGridLayout_1",
+        "itemHorizontalMargin":8,
+        "itemName": {
+            "type":"MenuItem",
+            "text":"$model_profile",
+            "gravity":32,
+            "fontSize":13,
+            "src":"$model_img",
+            "identify":"TangramMenu"
+        }
+    },
+
+
+    {
+        "type":"TangramLabel",
+        "text":"$data[3].classifyName",
+        "layoutMarginLeft":8,
+        "identify":"privilege_sub_header_1",
+        "fontSize":14,
+        "textColor":"000000",
+        "layoutWidth":"375",
+        "layoutHeight":"40"
+    },
+    {
+        "type":"TangramGridLayout",
+        "dataTag":"$data[3].classifyResult",
+        "column":4,
+        "layoutMarginLeft":8,
+        "layoutMarginRight":8,
+        "identify":"privilege_TangramGridLayout_1",
+        "itemHorizontalMargin":8,
+        "itemName": {
+            "type":"MenuItem",
+            "text":"$model_profile",
+            "gravity":32,
+            "fontSize":13,
+            "src":"$model_img",
+            "identify":"TangramMenu"
+        }
+    },
+
+
+    {
+        "type":"TangramLabel",
+        "text":"$data[4].classifyName",
+        "layoutMarginLeft":8,
+        "identify":"privilege_sub_header_1",
+        "fontSize":14,
+        "textColor":"000000",
+        "layoutWidth":"375",
+        "layoutHeight":"40"
+    },
+    {
+        "type":"TangramGridLayout",
+        "dataTag":"$data[4].classifyResult",
+        "column":4,
+        "layoutMarginLeft":8,
+        "layoutMarginRight":8,
+        "identify":"privilege_TangramGridLayout_1",
+        "itemHorizontalMargin":8,
+        "itemName": {
+            "type":"MenuItem",
+            "text":"$model_profile",
+            "gravity":32,
+            "fontSize":13,
+            "src":"$model_img",
+            "identify":"TangramMenu"
+        }
+    },
+
+
+    {
+        "type":"TangramLabel",
+        "text":"$data[5].classifyName",
+        "layoutMarginLeft":8,
+        "identify":"privilege_sub_header_1",
+        "fontSize":14,
+        "textColor":"000000",
+        "layoutWidth":"375",
+        "layoutHeight":"40"
+    },
+    {
+        "type":"TangramGridLayout",
+        "dataTag":"$data[5].classifyResult",
+        "column":4,
+        "layoutMarginLeft":8,
+        "layoutMarginRight":8,
+        "identify":"privilege_TangramGridLayout_1",
+        "itemHorizontalMargin":8,
+        "itemName": {
+            "type":"MenuItem",
+            "text":"$model_profile",
+            "gravity":32,
+            "fontSize":13,
+            "src":"$model_img",
+            "identify":"TangramMenu"
+        }
+    }
+
+
+
+
+ ]

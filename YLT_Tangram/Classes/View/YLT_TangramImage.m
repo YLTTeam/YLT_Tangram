@@ -7,6 +7,7 @@
 
 #import "YLT_TangramImage.h"
 #import "YLT_TangramUtils.h"
+#import "YLT_TangramManager.h"
 
 @interface YLT_TangramImage() {
 }
@@ -19,7 +20,11 @@
     if ([self.content isKindOfClass:[TangramImage class]]) {
         self.imageView.ylt_image(self.content.src);
         if (self.pageData && [self.content.src hasPrefix:@"$"]) {
-            self.imageView.ylt_image([YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.src]);
+            NSString *urlstring = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.src];
+            if ([YLT_TangramManager shareInstance].splitImageURLString) {
+                urlstring = [YLT_TangramManager shareInstance].splitImageURLString(urlstring);
+            }
+            self.imageView.ylt_image(urlstring);
         }
     }
     self.imageView.backgroundColor = UIColor.clearColor;

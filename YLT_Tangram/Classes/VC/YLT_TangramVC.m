@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.redColor;
+    self.view.backgroundColor = UIColor.whiteColor;
 }
 
 + (YLT_TangramVC *)tangramWithPages:(NSArray<NSDictionary *> *)pages

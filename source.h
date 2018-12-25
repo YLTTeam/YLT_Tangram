@@ -72,7 +72,7 @@ message TangramView {
     optional float layoutMarginRight = 0;//右外边距，优先级高于 layoutMargin
     optional float layoutMarginTop = 0;//上外边距，优先级高于 layoutMargin
     optional float layoutMarginBottom = 0;//下外边距，优先级高于 layoutMargin
-    optional string background = clearColor;//背景色 ffffff  ffffff00 后两位表示alpha
+    optional string background = clearColor;//背景色 ffffff  00ffffff 前两位表示alpha
     optional float borderWidth = 0;//边框宽度
     optional string borderColor = clearColor;//边框颜色
     optional float borderRadius = 0;//边框四个角的圆角半径
