@@ -31,7 +31,7 @@
         return size;
     }
     
-    return CGSizeMake(item.layoutWidth.floatValue, item.layoutHeight.floatValue);
+    return CGSizeMake(item.layoutWidth, item.layoutHeight);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
