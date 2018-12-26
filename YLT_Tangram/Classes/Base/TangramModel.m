@@ -2,7 +2,7 @@
 // TangramModel.m 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/25  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/26  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -17,14 +17,10 @@
 	self = [super init];
 	if (self) {
 		self.tangramId = 0;
-		self.layoutWidth = @"";
-		self.layoutHeight = @"";
+		self.layoutWidth = -1;
+		self.layoutHeight = -1;
+		self.layoutRation = 0;
 		self.layoutGravity = 48;
-		self.autoDimX = 0;
-		self.autoDimY = 0;
-		self.autoDimDirection = 0;
-		self.minWidth = 0;
-		self.minHeight = 0;
 		self.padding = 0;
 		self.paddingLeft = 0;
 		self.paddingRight = 0;
@@ -133,6 +129,7 @@
 - (id)init {
 	self = [super init];
 	if (self) {
+		self.orientation = 1;
 		self.subTangrams = [[NSMutableArray alloc] init];
 	}
 	return self;
@@ -156,61 +153,6 @@
 @end
 
 
-@implementation TangramVHLayout
-
-- (id)init {
-	self = [super init];
-	if (self) {
-		self.orientation = 1;
-	}
-	return self;
-}
-
-+ (NSDictionary *)ylt_keyMapper {
-	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
-	[result addEntriesFromDictionary: @{
-				}];
-	return result;
-}
-
-+ (NSDictionary *)ylt_classInArray {
-	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
-	[result addEntriesFromDictionary: @{
-				}];
-	return result;
-}
-
-@end
-
-
-@implementation TangramRatioLayout
-
-- (id)init {
-	self = [super init];
-	if (self) {
-		self.orientation = 0;
-		self.layoutRatio = 1;
-	}
-	return self;
-}
-
-+ (NSDictionary *)ylt_keyMapper {
-	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
-	[result addEntriesFromDictionary: @{
-				}];
-	return result;
-}
-
-+ (NSDictionary *)ylt_classInArray {
-	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
-	[result addEntriesFromDictionary: @{
-				}];
-	return result;
-}
-
-@end
-
-
 @implementation TangramGridLayout
 
 - (id)init {
@@ -220,7 +162,7 @@
 		self.itemHeight = 0;
 		self.itemVerticalMargin = 0;
 		self.itemHorizontalMargin = 0;
-		self.itemName = nil;
+		self.itemName = @"";
 	}
 	return self;
 }

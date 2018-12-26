@@ -2,7 +2,7 @@
 // TangramModel.h 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/25  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/26  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -17,11 +17,6 @@ typedef NS_ENUM(NSUInteger, LayoutGravity) {
     LayoutGravity_Bottom = 8,
     LayoutGravity_V_center = 16,
     LayoutGravity_H_center = 32
-};
-typedef NS_ENUM(NSUInteger, DimDirection) {
-    DimDirection_X = 1,
-    DimDirection_Y = 2,
-    DimDirection_NONE = 4
 };
 typedef NS_ENUM(NSUInteger, CornerLocation) {
     CornerLocation_TopLeft = 1,
@@ -57,8 +52,6 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @class TangramLabel;
 @class TangramImage;
 @class TangramFrameLayout;
-@class TangramVHLayout;
-@class TangramRatioLayout;
 @class TangramGridLayout;
 
 
@@ -66,22 +59,14 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 }
 /** 组件id */
 @property (readwrite, nonatomic, assign) NSInteger tangramId;
-/** 组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent 表示尽可能撑满父容器提供的宽高，wrap_content 表示根据自身内容的宽高来布局 */
-@property (readwrite, nonatomic, strong) NSString *layoutWidth;
-/** 组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent 表示尽可能撑满父容器提供的宽高，wrap_content 表示根据自身内容的宽高来布局 */
-@property (readwrite, nonatomic, strong) NSString *layoutHeight;
+/** 组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent(-1) 表示尽可能撑满父容器提供的宽高 */
+@property (readwrite, nonatomic, assign) NSInteger layoutWidth;
+/** 组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent(-1) 表示尽可能撑满父容器提供的宽高 */
+@property (readwrite, nonatomic, assign) NSInteger layoutHeight;
+/** 宽高比 */
+@property (readwrite, nonatomic, assign) CGFloat layoutRation;
 /** 描述组件在容器中的对齐方式，left(1)：靠左，right(2)：靠右，top(4)：靠上，bottom(8)：靠底，v_center(16)：垂直方向居中，h_center(32)：水平方向居中，可用或组合描述  比如：靠左+靠上  1+4 = 5 */
 @property (readwrite, nonatomic, assign) LayoutGravity layoutGravity;
-/** 组件宽高比计算的横向值 */
-@property (readwrite, nonatomic, assign) CGFloat autoDimX;
-/** 组件宽高比计算的竖向值 */
-@property (readwrite, nonatomic, assign) CGFloat autoDimY;
-/** X、Y、NONE  组件在布局中的基准方向，用于计算组件的宽高比，与 autoDimX、autoDimY 配合使用，设置了这三个属性时，在计算组件尺寸时具有更高的优先级。当 autoDimDirection=X 时，组件的宽度由 layoutWidth 和父容器决策决定，但高度 = width * (autoDimY  autoDimX)，当 autoDimDirection=Y 时，组件的高度由 layoutHeight 和父容器决策决定，但宽度 = height * (autoDimX  autoDimY) */
-@property (readwrite, nonatomic, assign) DimDirection autoDimDirection;
-/** 最小宽度 */
-@property (readwrite, nonatomic, assign) CGFloat minWidth;
-/** 最小高度 */
-@property (readwrite, nonatomic, assign) CGFloat minHeight;
 /** 同时设置 4 个内边距 */
 @property (readwrite, nonatomic, assign) CGFloat padding;
 /** 左内边距，优先级高于 padding */
@@ -158,26 +143,10 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 
 @interface TangramFrameLayout : TangramView {
 }
-/** 子控件 */
-@property (readwrite, nonatomic, strong) NSMutableArray<TangramView *> *subTangrams;
-
-@end
-
-
-@interface TangramVHLayout : TangramFrameLayout {
-}
 /** 1:水平布局 2:竖直布局 */
 @property (readwrite, nonatomic, assign) Orientation orientation;
-
-@end
-
-
-@interface TangramRatioLayout : TangramFrameLayout {
-}
-/**  */
-@property (readwrite, nonatomic, assign) Orientation orientation;
-/** 布局占比 */
-@property (readwrite, nonatomic, assign) CGFloat layoutRatio;
+/** 子控件 */
+@property (readwrite, nonatomic, strong) NSMutableArray<TangramView *> *subTangrams;
 
 @end
 
@@ -193,6 +162,6 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 /** 水平间距 列之间的距离 */
 @property (readwrite, nonatomic, assign) CGFloat itemHorizontalMargin;
 /** 每个Item对应的布局 */
-@property (readwrite, nonatomic, strong) TangramView *itemName;
+@property (readwrite, nonatomic, strong) NSString *itemName;
 
 @end

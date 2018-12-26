@@ -38,14 +38,7 @@
         "layoutMarginRight":8,
  		"identify":"privilege_TangramGridLayout_1",
  		"itemHorizontalMargin":8,
- 		"itemName": {
- 			"type":"MenuItem",
- 			"text":"$model_profile",
-            "gravity":32,
- 			"fontSize":13,
- 			"src":"$model_img",
- 			"identify":"TangramMenu"
- 		}
+ 		"itemName": "TangramMenu"
     },
 
 
