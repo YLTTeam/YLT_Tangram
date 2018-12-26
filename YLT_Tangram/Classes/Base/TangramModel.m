@@ -20,7 +20,7 @@
 		self.layoutWidth = -1;
 		self.layoutHeight = -1;
 		self.layoutRation = 0;
-		self.layoutGravity = 48;
+		self.layoutGravity = 0;
 		self.padding = 0;
 		self.paddingLeft = 0;
 		self.paddingRight = 0;
