@@ -27,6 +27,7 @@
                    "identify":"1_1",
                    "layoutWidth":-1,
                    "layoutHeight":17,
+                   "layoutMarginBottom":8,
                    "text":"$text"
                    }
     ]
