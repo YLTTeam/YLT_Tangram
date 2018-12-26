@@ -675,9 +675,9 @@
         if (self.pageModel.layoutRation > 0) {
             height = width / self.pageModel.layoutRation;
         }
-    }else if (height > 0 && width == 0){
+    } else if (height > 0 && width == 0){
         width = height * self.pageModel.layoutRation;
-    }else{
+    } else if (height == 0 && width == 0) {
         //直接填充
         width = [self maxWidth];
         height = [self maxHeight];
