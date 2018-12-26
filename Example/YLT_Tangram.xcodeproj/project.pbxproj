@@ -23,6 +23,7 @@
 		C76C917F21CB8E6900449F8E /* TangramMenuData.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */; };
 		C7A07DAF21CC8A0A00AB450C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C7A07DAE21CC8A0A00AB450C /* logo.png */; };
 		C7B2859E21D1BFD500522405 /* realPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C7B2859D21D1BFD500522405 /* realPage.geojson */; };
+		C7DA5ED121D364BD00C9303E /* TangramMenu.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C7DA5ED021D364BC00C9303E /* TangramMenu.geojson */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TangramMenuData.geojson; sourceTree = "<group>"; };
 		C7A07DAE21CC8A0A00AB450C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		C7B2859D21D1BFD500522405 /* realPage.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = realPage.geojson; sourceTree = "<group>"; };
+		C7DA5ED021D364BC00C9303E /* TangramMenu.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TangramMenu.geojson; sourceTree = "<group>"; };
 		C808164A4075EC3F0EDE9626 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		FD244D5665F23318592AF86A /* Pods-YLT_Tangram_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLT_Tangram_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLT_Tangram_Example/Pods-YLT_Tangram_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,6 +186,7 @@
 				C7A07DAE21CC8A0A00AB450C /* logo.png */,
 				C730987421D08B49008A60A8 /* real.geojson */,
 				C7B2859D21D1BFD500522405 /* realPage.geojson */,
+				C7DA5ED021D364BC00C9303E /* TangramMenu.geojson */,
 				C76C917221CB7CBE00449F8E /* TangramMenuPage.geojson */,
 				C76C917E21CB8E6900449F8E /* TangramMenuData.geojson */,
 			);
@@ -255,6 +258,7 @@
 				C7A07DAF21CC8A0A00AB450C /* logo.png in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				C76C917F21CB8E6900449F8E /* TangramMenuData.geojson in Resources */,
+				C7DA5ED121D364BD00C9303E /* TangramMenu.geojson in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				C76C917321CB7CBE00449F8E /* TangramMenuPage.geojson in Resources */,
 				C7B2859E21D1BFD500522405 /* realPage.geojson in Resources */,

@@ -1,38 +1,33 @@
 {
     "id":"1",
-    "background":"#72DC2D",
     "dataTag":"",
     "keypath":"",
     "action":"",
-    "classname":"TangramMenu",
-    "identify":"1",
+    "type":"TangramFrameLayout",
+    "identify":"TangramMenu",
     "subTangrams":[
                    {
                    "id":"0",
-                   "layoutWidth":"80",
-                   "autoDimX":1,
-                   "background":"ff000000",
                    "dataTag":"",
-                   "keypath":"image",
                    "action":"",
-                   "classname":"TangramImage",
+                   "type":"TangramImage",
                    "identify":"1_2",
-                   "layoutGravity":"48"
+                   "layoutWidth":51,
+                   "layoutHeight":51,
+                   "layoutGravity":"16",
+                   "src":"$icon"
                    },
                    {
                    "id":"0",
-                   "layoutWidth":"30",
-                   "autoDimX":1,
-                   "background":"#161616",
-                   "layoutMarginLeft":10,
-                   "layoutMarginTop":10,
                    "dataTag":"",
-                   "keypath":"text",
-                   "textColor":"ffffff",
+                   "textColor":"000000",
                    "action":"",
-                   "classname":"TangramLabel",
+                   "fontSize":13,
+                   "type":"TangramLabel",
                    "identify":"1_1",
-                   "layoutGravity":"1"
+                   "layoutWidth":-1,
+                   "layoutHeight":17,
+                   "text":"$text"
                    }
-                   ]
+    ]
 }

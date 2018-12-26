@@ -14,13 +14,7 @@
         "layoutMarginRight":8,
  		"identify":"1_2",
  		"itemHorizontalMargin":8,
- 		"itemName": {
- 				"type":"MenuItem",
- 				"text":"$text",
- 				"fontSize":16,
- 				"src":"$image",
- 				"identify":"TangramMenu"
- 			}
+ 		"itemName":"TangramMenu"
  	},
  	 {
  		"type":"TangramLabel",
