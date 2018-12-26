@@ -77,10 +77,7 @@
 #pragma mark - setter getter
 
 - (TangramLabel *)content {
-    if (!_content) {
-        _content = [TangramLabel mj_objectWithKeyValues:self.pageModel.ylt_sourceData];
-    }
-    return _content;
+    return (TangramLabel *)self.pageModel;
 }
 
 - (UILabel *)label {

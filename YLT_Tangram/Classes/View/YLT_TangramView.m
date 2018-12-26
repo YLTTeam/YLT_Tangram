@@ -11,6 +11,7 @@
 #import "YLT_TangramManager.h"
 #import "YLT_TangramLabel.h"
 #import "YLT_TangramImage.h"
+#import "YLT_TangramUtils.h"
 
 @interface YLT_TangramView() {
 }
@@ -39,19 +40,8 @@
 
 - (void)setPageData:(NSDictionary *)pageData {
     _pageData = pageData;
-    if ([_pageData isKindOfClass:[NSDictionary class]]) {
-        /** 原子组件，不需要加载动态加载布局 */
-        if ([self isKindOfClass:[YLT_TangramImage class]] || [self isKindOfClass:[YLT_TangramLabel class]]) {
-            [self updateData];
-            [self refreshPage];
-            return;
-        }
-        TangramView *pageModel = [YLT_TangramManager typeFromPageData:_pageData];
-        if (pageModel != nil) {
-            self.pageModel = pageModel;
-            return;
-        }
-    }
+    [self updateData];
+    [self refreshPage];
 }
 
 /**

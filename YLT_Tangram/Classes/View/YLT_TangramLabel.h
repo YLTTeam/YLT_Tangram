@@ -9,6 +9,4 @@
 
 @interface YLT_TangramLabel : YLT_TangramView
 
-@property (nonatomic, strong) TangramLabel *content;
-
 @end

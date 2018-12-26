@@ -11,6 +11,61 @@
 
 @implementation YLT_TangramUtils
 
+/**
+ 加载布局
+ 
+ @param keyname 布局名称
+ @param data 布局数据
+ @param classname 类名 使用什么类型来解析对应的 Model
+ */
++ (TangramView *)loadTemplateKeyname:(NSString *)keyname data:(NSDictionary *)data classname:(NSString *)classname {
+    if (![data isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    Class cls = NSClassFromString(classname);
+    if (cls == NULL) {
+        cls = NSClassFromString(data[@"type"]);
+    }
+    if (cls == NULL) {
+        cls = TangramView.class;
+    }
+    keyname = keyname.ylt_isValid?keyname:NSStringFromClass(cls);
+    if (!keyname.ylt_isValid) {
+        return nil;
+    }
+    
+    if (data) {
+        TangramView *model = [cls mj_objectWithKeyValues:data];
+        if (model) {
+            return model;
+        }
+    }
+    return nil;
+}
+
+/**
+ 获取PageData数据
+ 
+ @param pageData 字典或字符串
+ @return 模型
+ */
++ (TangramView *)typeFromPageData:(id)pageData {
+    TangramView *result = nil;
+    NSDictionary *data = pageData;
+    if ([pageData isKindOfClass:[NSString class]]) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:pageData ofType:@"geojson"];
+        if (path.ylt_isValid) {
+            data = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
+        }
+    }
+    if ([data isKindOfClass:[NSDictionary class]]) {
+        result = [self loadTemplateKeyname:nil data:data classname:nil];
+    }
+    
+    return result?:[TangramView new];
+}
+
 + (id)valueFromSourceData:(id)sourceData keyPath:(NSString *)keypath {
     if (!keypath.ylt_isValid) {
         return sourceData;

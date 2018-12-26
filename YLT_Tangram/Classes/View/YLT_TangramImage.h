@@ -8,5 +8,5 @@
 #import "YLT_TangramView.h"
 
 @interface YLT_TangramImage : YLT_TangramView
-@property (nonatomic, strong) TangramImage *content;
+
 @end

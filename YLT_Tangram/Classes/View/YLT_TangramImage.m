@@ -33,10 +33,7 @@
 #pragma mark - setter getter
 
 - (TangramImage *)content {
-    if (!_content) {
-        _content = [TangramImage mj_objectWithKeyValues:self.pageModel.ylt_sourceData];
-    }
-    return _content;
+    return (TangramImage *)self.pageModel;
 }
 
 - (UIImageView *)imageView {
