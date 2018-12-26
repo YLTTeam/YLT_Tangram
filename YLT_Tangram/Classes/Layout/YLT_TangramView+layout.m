@@ -668,41 +668,23 @@
     if (!self.superview) {
         return CGSizeZero;
     }
-    CGFloat width = 0.0;
-    
-    if (self.pageModel.layoutWidth > 0) {
-        //直接取layoutMargin,超出屏幕部分，去除
-        width = self.pageModel.layoutWidth;
-    } else {
-        width = [self maxWidth];
-    }
-    //考虑高度
-    CGFloat height = 0.0;
-    if (self.pageModel.layoutHeight > 0) {
-        height = self.pageModel.layoutHeight;
-    } else {
-        height = [self maxHeight];
-    }
-    
-    //根据比例来计算宽高,当高为0 切宽不为0的时候
+    CGFloat width = self.pageModel.layoutWidth > 0 ? self.pageModel.layoutWidth : 0.0;
+    CGFloat height = self.pageModel.layoutHeight > 0 ? self.pageModel.layoutHeight : 0.0;
+    //根据比例来算
     if (height == 0 && width > 0){
-        //当高度为0，宽度不为0的时候，根据比例来计算宽高比
         if (self.pageModel.layoutRation > 0) {
             height = width / self.pageModel.layoutRation;
         }
     }else if (height > 0 && width == 0){
         width = height * self.pageModel.layoutRation;
     }else{
-        //其他不考虑
-    }
-    if (width > [self maxWidth]) {
-        //约束极限宽
+        //直接填充
         width = [self maxWidth];
-    }
-    if (height > [self maxHeight]) {
-        //约束极限高
         height = [self maxHeight];
     }
+    //约束极限宽高
+    width = width > [self maxWidth] ? [self maxWidth] : width;
+    height = height > [self maxHeight] ? [self maxHeight] : height;
     return CGSizeMake(width, height);
 }
 
