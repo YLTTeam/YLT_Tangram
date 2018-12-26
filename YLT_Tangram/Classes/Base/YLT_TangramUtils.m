@@ -53,30 +53,16 @@
 
 + (CGSize)tangramSizePageModel:(TangramView *)pageModel {
     if ([pageModel isMemberOfClass:[TangramView class]]) {
-        CGFloat width = 0.0,height = 0.0;;
-        if (pageModel.layoutWidth.floatValue > 0) {
-            //直接取layoutMargin,超出屏幕部分，去除
-            width = pageModel.layoutWidth.floatValue;
-        }
-        //当宽度依旧为0,取最小值
-        if (width == 0.0) {
-            width = pageModel.minWidth;
-        }
+        CGFloat width = 0.0,height = 0.0;
+        width = pageModel.layoutWidth > 0 ? pageModel.layoutWidth : 0;
+        height = pageModel.layoutHeight > 0 ? pageModel.layoutHeight : 0;
         
-        if (pageModel.layoutHeight.floatValue > 0) {
-            height = pageModel.layoutHeight.floatValue;
-        }
-        
-        if (height == 0.0) {
-            height = pageModel.minHeight;
-        }
-        
-        //根据比例来计算宽高,当高为0 切宽不为0的时候
         if (height == 0 && width > 0){
-            //当高度为0，宽度不为0的时候，根据比例来计算宽高比
-            height = width * pageModel.autoDimX;
+            if (pageModel.layoutRation > 0) {
+                height = width / pageModel.layoutRation;
+            }
         }else if (height > 0 && width == 0){
-            width = height * pageModel.autoDimY;
+            width = height * pageModel.layoutRation;
         }else{
             //其他不考虑
         }
