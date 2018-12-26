@@ -74,21 +74,21 @@
     YLT_TangramCell *cell = (YLT_TangramCell *)[collectionView dequeueReusableCellWithReuseIdentifier:item.ylt_identify forIndexPath:indexPath];
     if ([item isKindOfClass:[TangramGridLayout class]]) {
         TangramGridLayout *layout = (TangramGridLayout *)item;
-        item = layout.itemName;
-        NSArray *list = [YLT_TangramUtils valueFromSourceData:self.pageDatas keyPath:layout.dataTag];
-        if ([list isKindOfClass:[NSArray class]]) {
-            pageData = list[indexPath.row];
-        }
+//        item = layout.itemName;
+//        NSArray *list = [YLT_TangramUtils valueFromSourceData:self.pageDatas keyPath:layout.dataTag];
+//        if ([list isKindOfClass:[NSArray class]]) {
+//            pageData = list[indexPath.row];
+//        }
     }
-    [cell cellFromConfig:item];
-    if (pageData) {
-        [cell reloadCellData:pageData];
-        if (item.action.ylt_isValid > 0 && [YLT_TangramUtils valueFromSourceData:pageData keyPath:item.action]) {
-            cell.ylt_clickBlock(^(id resp) {
-                YLT_Log(@"点击事件回调");
-            });
-        }
-    }
+//    [cell cellFromConfig:item];
+//    if (pageData) {
+//        [cell reloadCellData:pageData];
+//        if (item.action.ylt_isValid > 0 && [YLT_TangramUtils valueFromSourceData:pageData keyPath:item.action]) {
+//            cell.ylt_clickBlock(^(id resp) {
+//                YLT_Log(@"点击事件回调");
+//            });
+//        }
+//    }
     return cell;
 }
 
