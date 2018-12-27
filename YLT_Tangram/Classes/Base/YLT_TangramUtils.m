@@ -107,23 +107,35 @@
 }
 
 + (CGSize)tangramSizePageModel:(TangramView *)pageModel {
-    if ([pageModel isMemberOfClass:[TangramView class]]) {
+    if (!pageModel) {
+        return CGSizeZero;
+    }
+    if ([pageModel isKindOfClass:[TangramGridLayout class]]) {
+        TangramGridLayout *item = (TangramGridLayout *)pageModel;
+        NSInteger column = ((TangramGridLayout *) item).column;
+        column = (column == 0)?1:column;
+        CGSize size = CGSizeZero;
+        size.width = (YLT_SCREEN_WIDTH-item.ylt_layoutMagin.left-item.ylt_layoutMagin.right-item.ylt_padding.left-item.ylt_padding.right);
+        size.width = (size.width-(column-1)*((TangramGridLayout *)item).itemHorizontalMargin)/column;
+        size.height = ((TangramGridLayout *)item).itemHeight;
+        size.height = (size.height == 0) ? size.width:size.height;
+        return size;
+    } else {
         CGFloat width = 0.0,height = 0.0;
-        width = pageModel.layoutWidth > 0 ? pageModel.layoutWidth : 0;
-        height = pageModel.layoutHeight > 0 ? pageModel.layoutHeight : 0;
-        
+        TangramView *item = (TangramView *)pageModel;
+        width = item.layoutWidth > 0 ? item.layoutWidth : 0;
+        height = item.layoutHeight > 0 ? item.layoutHeight : 0;
         if (height == 0 && width > 0){
-            if (pageModel.layoutRation > 0) {
-                height = width / pageModel.layoutRation;
+            if (item.layoutRation > 0) {
+                height = width / item.layoutRation;
             }
         }else if (height > 0 && width == 0){
-            width = height * pageModel.layoutRation;
-        }else{
-            //其他不考虑
+            width = height * item.layoutRation;
         }
+        //如果以上width依旧为0，则默认取屏宽
+        width = width == 0 ? YLT_SCREEN_WIDTH : width;
+        height = height == 0 ? YLT_SCREEN_HEIGHT : height;
         return CGSizeMake(width, height);
-    }else {
-        return CGSizeZero;
     }
 }
 @end

@@ -20,18 +20,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     TangramView *item = [self.pageModels objectAtIndex:indexPath.section];
-    if ([item isKindOfClass:[TangramGridLayout class]]) {
-        NSInteger column = ((TangramGridLayout *) item).column;
-        column = (column == 0)?1:column;
-        CGSize size = CGSizeZero;
-        size.width = (YLT_SCREEN_WIDTH-item.ylt_layoutMagin.left-item.ylt_layoutMagin.right-item.ylt_padding.left-item.ylt_padding.right);
-        size.width = (size.width-(column-1)*((TangramGridLayout *)item).itemHorizontalMargin)/column;
-        size.height = ((TangramGridLayout *)item).itemHeight;
-        size.height = (size.height == 0) ? size.width:size.height;
-        return size;
-    }
-    
-    return CGSizeMake(item.layoutWidth, item.layoutHeight);
+    return [YLT_TangramUtils tangramSizePageModel:item];
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
