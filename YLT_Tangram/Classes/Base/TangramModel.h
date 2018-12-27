@@ -176,5 +176,7 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @property (readwrite, nonatomic, strong) NSString *normalColor;
 /**  */
 @property (readwrite, nonatomic, strong) NSString *selectedColor;
+/** 每个Item对应的布局 */
+@property (readwrite, nonatomic, strong) NSString *itemName;
 
 @end

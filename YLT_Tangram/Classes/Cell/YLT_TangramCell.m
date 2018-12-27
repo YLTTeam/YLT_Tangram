@@ -13,6 +13,7 @@
 #import "YLT_TangramFrameLayout.h"
 #import "YLT_TangramImage.h"
 #import "YLT_TangramLabel.h"
+#import "YLT_tangramBannerLayout.h"
 
 @interface YLT_TangramCell () {
 }
@@ -21,11 +22,18 @@
 
 @implementation YLT_TangramCell
 
+//model 与类名的对应 默认view 的类名与Model类名相差的只是前面的 YLT_
+static NSDictionary *modelViews;
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = UIColor.clearColor;
         self.contentView.backgroundColor = UIColor.clearColor;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            modelViews = @{
+                           };
+        });
     }
     return self;
 }
@@ -36,15 +44,18 @@
     if ([self.subTangrams.allKeys containsObject:config.identify]) {
         sub = [self.subTangrams objectForKey:config.identify];
     } else {
-        if ([config isKindOfClass:[TangramLabel class]]) {
-            sub = [[YLT_TangramLabel alloc] init];
-        } else if ([config isKindOfClass:[TangramImage class]]) {
-            sub = [[YLT_TangramImage alloc] init];
-        } else if ([config isKindOfClass:[TangramFrameLayout class]]) {
-            sub = [[YLT_TangramFrameLayout alloc] init];
-        } else if ([config isKindOfClass:[TangramGridLayout class]]) {
-            
+        Class cls = NULL;
+        NSString *modelClassname = NSStringFromClass(config.class);
+        if ([modelViews.allKeys containsObject:modelClassname]) {
+            cls = NSClassFromString(modelViews[modelClassname]);
         }
+        if (cls == NULL) {
+            cls = NSClassFromString([NSString stringWithFormat:@"YLT_%@", modelClassname]);
+        }
+        if (cls != NULL) {
+            sub = [[cls alloc] init];
+        }
+        
         if (sub) {
             [self.contentView addSubview:sub];
             sub.pageModel = config;

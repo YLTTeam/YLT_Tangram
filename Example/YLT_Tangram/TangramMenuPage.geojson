@@ -8,6 +8,17 @@
  		"layoutHeight":"40"
  	},
  	{
+ 		"type":"TangramBannerLayout",
+ 		"duration":5,
+        "identify":"1_3",
+ 		"normalColor":"00ff00",
+ 		"selectedColor":"ff0000",
+ 		"itemName":"TangramBanner",
+        "dataTag":"$content[0]",
+        "layoutWidth":-1,
+        "layoutHeight":128
+    },
+ 	{
  		"type":"TangramGridLayout",
  		"dataTag":"$content[0]",
  		"column":4,

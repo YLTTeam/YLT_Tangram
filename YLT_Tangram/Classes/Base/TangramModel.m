@@ -11,7 +11,6 @@
 #import <MJExtension/MJExtension.h>
 #import <YLT_BaseLib/YLT_BaseLib.h>
 
-
 @implementation TangramView
 
 - (id)init {
@@ -193,6 +192,7 @@
 		self.duration = 0;
 		self.normalColor = @"666666";
 		self.selectedColor = @"ffffff";
+		self.itemName = @"";
 	}
 	return self;
 }

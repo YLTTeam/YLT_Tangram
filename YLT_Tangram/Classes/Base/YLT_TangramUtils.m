@@ -108,7 +108,7 @@
 
 + (CGSize)tangramSizePageModel:(TangramView *)pageModel {
     if (!pageModel) {
-        return CGSizeZero;
+        return CGSizeMake(YLT_SCREEN_WIDTH, 0.01);
     }
     if ([pageModel isKindOfClass:[TangramGridLayout class]]) {
         TangramGridLayout *item = (TangramGridLayout *)pageModel;
@@ -134,7 +134,7 @@
         }
         //如果以上width依旧为0，则默认取屏宽
         width = width == 0 ? YLT_SCREEN_WIDTH : width;
-        height = height == 0 ? YLT_SCREEN_HEIGHT : height;
+        height = (height == 0) ? 0.01 : height;
         return CGSizeMake(width, height);
     }
 }

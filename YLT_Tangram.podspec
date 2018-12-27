@@ -28,4 +28,5 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'YLT_Kit'
   s.dependency 'RegexKitLite'
+  s.dependency 'SDCycleScrollView'
 end
