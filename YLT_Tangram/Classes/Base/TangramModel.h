@@ -108,7 +108,12 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @property (readwrite, nonatomic, strong) NSString *type;
 /** 重新标记，没有值，则使用classname */
 @property (readwrite, nonatomic, strong) NSString *identify;
-
+/** 水平布局 marginLeft */
+@property (readwrite, nonatomic, assign) CGFloat layoutLeft;
+/** 垂直布局 marginTop */
+@property (readwrite, nonatomic, assign) CGFloat layoutTop;
+/** 1:水平布局 2:竖直布局 */
+@property (readwrite, nonatomic, assign) Orientation orientation;
 @end
 
 
@@ -144,11 +149,8 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 
 @interface TangramFrameLayout : TangramView {
 }
-/** 1:水平布局 2:竖直布局 */
-@property (readwrite, nonatomic, assign) Orientation orientation;
 /** 子控件 */
 @property (readwrite, nonatomic, strong) NSMutableArray<TangramView *> *subTangrams;
-
 @end
 
 

@@ -16,11 +16,12 @@
 - (id)init {
 	self = [super init];
 	if (self) {
+        self.orientation = 0;
 		self.tangramId = 0;
 		self.layoutWidth = -1;
 		self.layoutHeight = -1;
 		self.layoutRation = 0;
-		self.layoutGravity = 48;
+		self.layoutGravity = 0;
 		self.padding = 0;
 		self.paddingLeft = 0;
 		self.paddingRight = 0;
@@ -129,7 +130,6 @@
 - (id)init {
 	self = [super init];
 	if (self) {
-		self.orientation = 1;
 		self.subTangrams = [[NSMutableArray alloc] init];
 	}
 	return self;
@@ -148,6 +148,35 @@
 			@"subTangrams":@"TangramView",
 				}];
 	return result;
+}
+
+- (void)setSubTangrams:(NSMutableArray<TangramView *> *)subTangrams {
+    _subTangrams = subTangrams;
+    @synchronized(self){
+        __block CGFloat marginTop = 0.0;
+        __block CGFloat marginLeft = 0.0;
+        [_subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            //垂直布局
+            if (obj.orientation == Orientation_H) {
+                //第一个元素，以自身的margintop为准
+                if (marginTop == 0) {
+                    obj.layoutTop = obj.layoutMarginTop;
+                } else {
+                    obj.layoutTop = marginTop;
+                }
+                marginTop += obj.layoutHeight + obj.layoutMarginTop;
+            } else if (obj.orientation == Orientation_V) {
+                if (marginLeft == 0) {
+                    //考虑第一个元素，以自身的marginLeft约束为主，其余++
+                    obj.layoutLeft = obj.layoutMarginLeft;
+                } else {
+                    obj.layoutLeft = marginLeft;
+                }
+                marginLeft += obj.layoutMarginLeft + obj.layoutWidth;
+            }
+            NSLog(@"ident is %@ marginLeft is %lf top is %lf",obj.identify,obj.layoutLeft,obj.layoutTop);
+        }];
+    }
 }
 
 @end

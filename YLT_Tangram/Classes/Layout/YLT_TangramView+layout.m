@@ -6,7 +6,8 @@
 //
 
 #import "YLT_TangramView+layout.h"
-
+#import "YLT_TangramView+OrientationH.h"
+#import "YLT_TangramView+OrientationV.h"
 @implementation YLT_TangramView (layout)
 //更新约束
 - (void)updateLayout {
@@ -50,9 +51,17 @@
         }else if (self.pageModel.layoutGravity == (LayoutGravity_Top + LayoutGravity_Bottom + LayoutGravity_Left + LayoutGravity_Right)) {
             [self marginVH];
         }
-    }else{
+    } else {
         //TODO :正常约束，带有优先级...(方案太多，考虑中...0.0)
-        [self marginLayout];
+        if (self.pageModel.orientation == Orientation_H) {
+            //垂直布局
+            [self updateOrientationHLayout];
+        } else if (self.pageModel.orientation == Orientation_V) {
+            //水平布局
+            [self updateOrientationVLayout];
+        } else {
+            [self marginLayout];
+        }
     }
 }
 #pragma mark marginLayout 无对齐方式的约束

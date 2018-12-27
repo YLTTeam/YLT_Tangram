@@ -37,7 +37,11 @@
                     if (modelClass == NULL) {
                         modelClass = TangramView.class;
                     }
-                    sub.pageModel = [modelClass mj_objectWithKeyValues:obj.ylt_sourceData];
+                    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:obj.ylt_sourceData];
+                    params[@"layoutLeft"] = @(obj.layoutLeft);
+                    params[@"layoutTop"] = @(obj.layoutTop);
+                    
+                    sub.pageModel = [modelClass mj_objectWithKeyValues:params];
                     [self.mainView addSubview:sub];
                     [sub mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.edges.mas_equalTo(obj.ylt_layoutMagin);
