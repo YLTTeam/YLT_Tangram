@@ -8,13 +8,6 @@
  		"layoutHeight":"40"
  	},
  	{
- 		"type":"TangramBannerLayout",
- 		"duration":5,
- 		"normalColor":"00ff00",
- 		"selectedColor":"ff0000"
- 		""
- 	},
- 	{
  		"type":"TangramGridLayout",
  		"dataTag":"$content[0]",
  		"column":4,
