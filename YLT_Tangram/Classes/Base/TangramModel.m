@@ -2,7 +2,7 @@
 // TangramModel.m 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/26  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/27  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -10,6 +10,7 @@
 #import "TangramModel.h"
 #import <MJExtension/MJExtension.h>
 #import <YLT_BaseLib/YLT_BaseLib.h>
+
 
 @implementation TangramView
 
@@ -20,7 +21,7 @@
 		self.layoutWidth = -1;
 		self.layoutHeight = -1;
 		self.layoutRation = 0;
-		self.layoutGravity = 0;
+		self.layoutGravity = 48;
 		self.padding = 0;
 		self.paddingLeft = 0;
 		self.paddingRight = 0;
@@ -163,6 +164,35 @@
 		self.itemVerticalMargin = 0;
 		self.itemHorizontalMargin = 0;
 		self.itemName = @"";
+	}
+	return self;
+}
+
++ (NSDictionary *)ylt_keyMapper {
+	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
+}
+
++ (NSDictionary *)ylt_classInArray {
+	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
+}
+
+@end
+
+
+@implementation TangramBannerLayout
+
+- (id)init {
+	self = [super init];
+	if (self) {
+		self.duration = 0;
+		self.normalColor = @"666666";
+		self.selectedColor = @"ffffff";
 	}
 	return self;
 }

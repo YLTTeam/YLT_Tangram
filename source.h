@@ -103,7 +103,11 @@ message TangramGridLayout : TangramFrameLayout {
     optional string itemName = nil;//每个Item对应的布局
 }
 
-
+message TangramBannerLayout : TangramFrameLayout {
+    optional int duration = 0;//自动滚动的间隔时间
+    optional string normalColor = 666666;
+    optional string selectedColor = ffffff;
+}
 
 
 

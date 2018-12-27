@@ -2,7 +2,7 @@
 // TangramModel.h 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/26  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/27  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -53,6 +53,7 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @class TangramImage;
 @class TangramFrameLayout;
 @class TangramGridLayout;
+@class TangramBannerLayout;
 
 
 @interface TangramView : YLT_BaseModel {
@@ -63,7 +64,7 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @property (readwrite, nonatomic, assign) NSInteger layoutWidth;
 /** 组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent(-1) 表示尽可能撑满父容器提供的宽高 */
 @property (readwrite, nonatomic, assign) NSInteger layoutHeight;
-/** 宽高比 */
+/** 宽高比  layoutHeight = layoutWidthlayoutRatio */
 @property (readwrite, nonatomic, assign) CGFloat layoutRation;
 /** 描述组件在容器中的对齐方式，left(1)：靠左，right(2)：靠右，top(4)：靠上，bottom(8)：靠底，v_center(16)：垂直方向居中，h_center(32)：水平方向居中，可用或组合描述  比如：靠左+靠上  1+4 = 5 */
 @property (readwrite, nonatomic, assign) LayoutGravity layoutGravity;
@@ -163,5 +164,17 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @property (readwrite, nonatomic, assign) CGFloat itemHorizontalMargin;
 /** 每个Item对应的布局 */
 @property (readwrite, nonatomic, strong) NSString *itemName;
+
+@end
+
+
+@interface TangramBannerLayout : TangramFrameLayout {
+}
+/** 自动滚动的间隔时间 */
+@property (readwrite, nonatomic, assign) NSInteger duration;
+/**  */
+@property (readwrite, nonatomic, strong) NSString *normalColor;
+/**  */
+@property (readwrite, nonatomic, strong) NSString *selectedColor;
 
 @end

@@ -6,7 +6,15 @@
  		"identify":"1_1",
  		"layoutWidth":"375",
  		"layoutHeight":"40"
- 	}, {
+ 	},
+ 	{
+ 		"type":"TangramBannerLayout",
+ 		"duration":5,
+ 		"normalColor":"00ff00",
+ 		"selectedColor":"ff0000"
+ 		""
+ 	},
+ 	{
  		"type":"TangramGridLayout",
  		"dataTag":"$content[0]",
  		"column":4,
@@ -14,9 +22,10 @@
         "layoutMarginRight":8,
  		"identify":"1_2",
  		"itemHorizontalMargin":8,
+        "itemVerticalMargin":8,
  		"itemName":"TangramMenu"
- 	},
- 	 {
+ 	}, 
+ 	{
  		"type":"TangramLabel",
  		"text":"页尾",
  		"identify":"1_5",

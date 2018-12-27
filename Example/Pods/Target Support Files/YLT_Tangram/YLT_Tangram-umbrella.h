@@ -15,7 +15,6 @@
 #import "TangramModel.h"
 #import "YLT_TangramManager.h"
 #import "YLT_TangramUtils.h"
-#import "YLT_TangramCell+Binding.h"
 #import "YLT_TangramCell.h"
 #import "YLT_TangramFrameLayout.h"
 #import "YLT_TangramGridLayout+Delegate.h"

@@ -1,0 +1,34 @@
+{
+    "id":"1",
+    "dataTag":"",
+    "keypath":"",
+    "action":"",
+    "type":"TangramFrameLayout",
+    "identify":"TangramMenu",
+    "subTangrams":[
+                   {
+                   "id":"0",
+                   "dataTag":"",
+                   "action":"",
+                   "type":"TangramImage",
+                   "identify":"1_2",
+                   "layoutWidth":51,
+                   "layoutHeight":51,
+                   "layoutGravity":"16",
+                   "src":"$image"
+                   },
+                   {
+                   "id":"0",
+                   "dataTag":"",
+                   "textColor":"ffffff",
+                   "action":"",
+                   "fontSize":13,
+                   "type":"TangramLabel",
+                   "identify":"1_1",
+                   "layoutWidth":-1,
+                   "layoutHeight":17,
+                   "layoutMarginBottom":8,
+                   "text":"$text"
+                   }
+    ]
+}
