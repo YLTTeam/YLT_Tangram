@@ -45,7 +45,7 @@ static NSDictionary *modelViews;
         sub = [self.subTangrams objectForKey:config.identify];
     } else {
         Class cls = NULL;
-        NSString *modelClassname = NSStringFromClass(config.class);
+        NSString *modelClassname = config.type;
         if ([modelViews.allKeys containsObject:modelClassname]) {
             cls = NSClassFromString(modelViews[modelClassname]);
         }
@@ -63,10 +63,22 @@ static NSDictionary *modelViews;
                 make.edges.mas_equalTo(config.ylt_layoutMagin);
             }];
             [self.subTangrams setObject:sub forKey:config.identify];
+        } else if ([YLT_TangramManager shareInstance].tangramViewFromPageModel) {
+            sub = (YLT_TangramView *)[YLT_TangramManager shareInstance].tangramViewFromPageModel(config.ylt_sourceData);
+            if (sub) {
+                [self.contentView addSubview:sub];
+                if ([sub respondsToSelector:@selector(setPageModel:)]) {
+                    sub.pageModel = config;
+                }
+                [sub mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.edges.mas_equalTo(config.ylt_layoutMagin);
+                }];
+                [self.subTangrams setObject:sub forKey:config.identify];
+            }
         }
     }
     
-    if (sub) {
+    if (sub && [sub respondsToSelector:@selector(updateLayout)]) {
         [sub updateLayout];
     }
 }
@@ -75,7 +87,9 @@ static NSDictionary *modelViews;
     if ([self.subTangrams.allKeys containsObject:self.config.identify]) {
         [self.subTangrams.allKeys enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YLT_TangramView *sub = (YLT_TangramView *)self.subTangrams[obj];
-            sub.pageData = data;
+            if (sub && [sub respondsToSelector:@selector(setPageData:)]) {
+                sub.pageData = data;
+            }
         }];
     }
 }

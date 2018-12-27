@@ -33,12 +33,23 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     NSArray<NSDictionary *> *pages = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
     NSDictionary *pageDatas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuData" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-//    [YLT_TangramManager shareInstance].splitImageURLString = ^NSString *(NSString *path) {
+//    [YLT_TangramManager shareInstance].tangramImageURLString = ^NSString *(NSString *path) {
 //        path = [NSString stringWithFormat:@"https://img2.ultimavip.cn/%@?imageView2/2/w/153/h/153&imageslim", path];
 //        return path;
 //    };
 //
-    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages withDatas:pageDatas];
+    [YLT_TangramManager shareInstance].tangramViewFromPageModel = ^UIView *(NSDictionary *data) {
+        NSLog(@"%@", data);
+        UIView *view = [[UIView alloc] init];
+        view.backgroundColor = UIColor.blueColor;
+        UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.backgroundColor = UIColor.greenColor;
+        [view addSubview:imageView];
+        imageView.frame = CGRectMake(0, 0, 120, 120);
+        return view;
+    };
+    
+    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages withDatas:pageDatas.mutableCopy];
 
     [self presentViewController:vc animated:YES completion:nil];
 }

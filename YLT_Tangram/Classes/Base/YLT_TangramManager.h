@@ -13,7 +13,8 @@
 
 YLT_ShareInstanceHeader(YLT_TangramManager);
 
-@property (nonatomic, copy) NSString *(^splitImageURLString)(NSString *path);
+@property (nonatomic, copy) NSString *(^tangramImageURLString)(NSString *path);
 
+@property (nonatomic, copy) UIView *(^tangramViewFromPageModel)(NSDictionary *pageModel);
 
 @end

@@ -21,8 +21,8 @@
         self.imageView.ylt_image(self.content.src);
         if (self.pageData && [self.content.src hasPrefix:@"$"]) {
             NSString *urlstring = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.src];
-            if ([YLT_TangramManager shareInstance].splitImageURLString) {
-                urlstring = [YLT_TangramManager shareInstance].splitImageURLString(urlstring);
+            if ([YLT_TangramManager shareInstance].tangramImageURLString) {
+                urlstring = [YLT_TangramManager shareInstance].tangramImageURLString(urlstring);
             }
             self.imageView.ylt_image(urlstring);
         }

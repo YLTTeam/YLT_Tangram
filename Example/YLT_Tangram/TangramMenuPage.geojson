@@ -35,5 +35,11 @@
  		"identify":"1_5",
  		"layoutWidth":-1,
  		"layoutHeight":"30"
+ 	},
+ 	{
+ 		"type":"TangramCustomView",
+ 		"layoutWidth":-1,
+ 		"layoutHeight":328,
+ 		"identify":"1_6"
  	}
  ]
