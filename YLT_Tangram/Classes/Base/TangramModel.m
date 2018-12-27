@@ -174,7 +174,6 @@
                 }
                 marginLeft += obj.layoutMarginLeft + obj.layoutWidth;
             }
-            NSLog(@"ident is %@ marginLeft is %lf top is %lf",obj.identify,obj.layoutLeft,obj.layoutTop);
         }];
     }
 }
