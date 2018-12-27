@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TangramModel.h"
-
+#import "TangramModel+Calculate.h"
 @interface YLT_TangramUtils : NSObject
 
 /**
