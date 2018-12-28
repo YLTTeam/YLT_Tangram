@@ -21,7 +21,13 @@
  模版key
  */
 @property (nonatomic, strong, readonly) NSString *ylt_identify;
+@property (nonatomic, assign) CGFloat layoutWeightHeight;
+@property (nonatomic, assign) CGFloat layoutWeightWidth;
+@end
 
+@interface TangramFrameLayout (Calculate)
+@property (nonatomic, assign) CGFloat layoutTotalV;
+@property (nonatomic, assign) CGFloat layoutTotalH;
 @end
 
 

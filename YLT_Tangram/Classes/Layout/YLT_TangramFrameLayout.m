@@ -38,7 +38,13 @@
                     if (modelClass == NULL) {
                         modelClass = TangramView.class;
                     }
-                    sub.pageModel = [modelClass mj_objectWithKeyValues:obj.ylt_sourceData];
+                    NSMutableDictionary *params = [NSMutableDictionary new];
+                    if (obj.ylt_sourceData && [obj.ylt_sourceData isKindOfClass:[NSDictionary class]]) {
+                        [params addEntriesFromDictionary:obj.ylt_sourceData];
+                        params[@"layoutWeightHeight"] = @(obj.layoutWeightHeight);
+                        params[@"layoutWeightWidth"] = @(obj.layoutWeightWidth);
+                    }
+                    sub.pageModel = [modelClass mj_objectWithKeyValues:params];
                     [self.mainView addSubview:sub];
                     [sub mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.edges.mas_equalTo(obj.ylt_layoutMagin);
@@ -51,9 +57,9 @@
             if (sub) {
                 sub.pageData = self.pageData;
                 if (self.content.orientation == Orientation_H) {
-                    [sub updateHlayoutWithLastSub:lastSub];
+                    [sub updateHlayoutWithLastSub:lastSub subTangrams:self.content];
                 } else if (self.content.orientation == Orientation_V) {
-                    [sub updateHlayoutWithLastSub:lastSub];
+                    [sub updateVlayoutWithLastSub:lastSub subTangrams:self.content];
                 } else {
                     [sub updateLayout];
                 }
