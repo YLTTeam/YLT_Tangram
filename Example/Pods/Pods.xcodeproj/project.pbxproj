@@ -216,10 +216,6 @@
 		51FB0D1E85E624C43AFE866BE493D4B1 /* YLT_TableSectionModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C5DE65EB1B6801996BA35E5D9A8D9F /* YLT_TableSectionModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		520BF1EF5380BD60E5D0860E5BD45B29 /* YLT_BaseVC.h in Headers */ = {isa = PBXBuildFile; fileRef = C157F827C5B11EF2E93F9CA841A8789A /* YLT_BaseVC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52B76B8707658ED6B4FF3C3E568748DC /* UIView+YLT_GesExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = FB87BD2FD12361E8C5BDA01225C355BB /* UIView+YLT_GesExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		52E30FB921D4CE8300FC84B6 /* YLT_TangramView+OrientationH.h in Headers */ = {isa = PBXBuildFile; fileRef = 52E30FB721D4CE8300FC84B6 /* YLT_TangramView+OrientationH.h */; };
-		52E30FBA21D4CE8300FC84B6 /* YLT_TangramView+OrientationH.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E30FB821D4CE8300FC84B6 /* YLT_TangramView+OrientationH.m */; };
-		52E30FBD21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.h in Headers */ = {isa = PBXBuildFile; fileRef = 52E30FBB21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.h */; };
-		52E30FBE21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E30FBC21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.m */; };
 		53C9491868044B5B81ABE40F0FE6DB8B /* RACSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F87A834E97A6E65FC95D0A0AAC60CD0 /* RACSequence.m */; };
 		55267DDA553236DD20A342AF6EFED145 /* YLT_TangramView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB194ADDA45958AC304EEA7BCF7834B5 /* YLT_TangramView.m */; };
 		555309945475966FC39417D0EAA7BA29 /* RACEXTRuntimeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B782C8C729F72F4711771DA36E2FA4A7 /* RACEXTRuntimeExtensions.m */; };
@@ -1161,10 +1157,6 @@
 		5281A4931C0C8D41DED61FE53861EFE5 /* AFNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-umbrella.h"; sourceTree = "<group>"; };
 		529C8646AD9A1B82AAAF45EB145BC431 /* MJRefresh-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MJRefresh-prefix.pch"; sourceTree = "<group>"; };
 		52D9A4D1BB8461C87CE4F48EC45976EC /* ReactiveObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52E30FB721D4CE8300FC84B6 /* YLT_TangramView+OrientationH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YLT_TangramView+OrientationH.h"; sourceTree = "<group>"; };
-		52E30FB821D4CE8300FC84B6 /* YLT_TangramView+OrientationH.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YLT_TangramView+OrientationH.m"; sourceTree = "<group>"; };
-		52E30FBB21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "YLT_TangramView+OrientationV.h"; sourceTree = "<group>"; };
-		52E30FBC21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "YLT_TangramView+OrientationV.m"; sourceTree = "<group>"; };
 		52EEE2E70C59E44FE4A8B79213C9B9CE /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/SDWebImageOperation.h; sourceTree = "<group>"; };
 		53DD4078A86029526AA16075A9865448 /* MJRefresh.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = MJRefresh.bundle; path = MJRefresh/MJRefresh.bundle; sourceTree = "<group>"; };
 		546B44B09803CFFE82DFF26415B2557F /* RACSerialDisposable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACSerialDisposable.h; path = ReactiveObjC/RACSerialDisposable.h; sourceTree = "<group>"; };
@@ -2703,10 +2695,6 @@
 				779AF16F4D4ED47F44BE98EA4AA99037 /* YLT_TangramGridLayout+Delegate.m */,
 				C7B14A2FBD624EDE923E27B67AEB46D8 /* YLT_TangramView+layout.h */,
 				66B8536C9311850D4A3F70525735E5B2 /* YLT_TangramView+layout.m */,
-				52E30FB721D4CE8300FC84B6 /* YLT_TangramView+OrientationH.h */,
-				52E30FB821D4CE8300FC84B6 /* YLT_TangramView+OrientationH.m */,
-				52E30FBB21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.h */,
-				52E30FBC21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.m */,
 			);
 			name = Layout;
 			path = YLT_Tangram/Classes/Layout;
@@ -3239,12 +3227,10 @@
 				57813D106EA1DED9FA06419D7B1E5E17 /* YLT_TangramGridLayout.h in Headers */,
 				24C9391131A46DCE9F3F6E2E625C36DF /* YLT_TangramImage.h in Headers */,
 				58693C5F4D4026A2A47551612D34760D /* YLT_TangramLabel.h in Headers */,
-				52E30FBD21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.h in Headers */,
 				8C8D7B47A0D4F9BF13A7B8829D70398F /* YLT_TangramManager.h in Headers */,
 				D7C140D74B3FED6758DE554CC9B5508D /* YLT_TangramUtils.h in Headers */,
 				88098BD710E368DBD88D0EE84715C3CA /* YLT_TangramVC+Delegate.h in Headers */,
 				5DC7CFE26DA2C8D1DAC04F50084A279A /* YLT_TangramVC.h in Headers */,
-				52E30FB921D4CE8300FC84B6 /* YLT_TangramView+OrientationH.h in Headers */,
 				236F99883D6F84E786B88936608162E0 /* YLT_TangramView+layout.h in Headers */,
 				9C08FB955E8A989019076C065A07689B /* YLT_TangramView+TangramData.h in Headers */,
 				8B30F621D6433274D3AC771D47EC170D /* YLT_TangramView+TangramPage.h in Headers */,
@@ -4144,14 +4130,12 @@
 				A2CCF44C79F83C1C3A24E017CFDF10C9 /* TangramModel.m in Sources */,
 				762269EDE73DC9B96535D64C42A91AA1 /* YLT_Tangram-dummy.m in Sources */,
 				5B27379CCBB173B0D1D7B93C2D77F21F /* YLT_TangramBannerLayout.m in Sources */,
-				52E30FBA21D4CE8300FC84B6 /* YLT_TangramView+OrientationH.m in Sources */,
 				91CE5BA1955D007C5D280A65940BC112 /* YLT_TangramCell.m in Sources */,
 				A318782828C02EC9C2A326849011788F /* YLT_TangramFrameLayout.m in Sources */,
 				76B53021EE1E83EBEA18AA520DC77A58 /* YLT_TangramGridLayout+Delegate.m in Sources */,
 				C94F605887D198868E2A9CD16AEB6497 /* YLT_TangramGridLayout.m in Sources */,
 				18483035EDA80938E7B937C98B141CBF /* YLT_TangramImage.m in Sources */,
 				580898C482C5764BF4F7ACDDA943092A /* YLT_TangramLabel.m in Sources */,
-				52E30FBE21D4CEA500FC84B6 /* YLT_TangramView+OrientationV.m in Sources */,
 				A0260BA940AF2FE124A87322B6C92AEC /* YLT_TangramManager.m in Sources */,
 				30642539C075C150DFD5D3A6377229D8 /* YLT_TangramUtils.m in Sources */,
 				ACA86F9B5FF59AA6CB278803E500B56F /* YLT_TangramVC+Delegate.m in Sources */,

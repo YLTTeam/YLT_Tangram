@@ -7,7 +7,7 @@
 
 #import "TangramModel+Calculate.h"
 #import "YLT_TangramView.h"
-
+#import <objc/runtime.h>
 @implementation TangramView (Calculate)
 
 @dynamic ylt_padding;
@@ -26,3 +26,4 @@
 }
 
 @end
+

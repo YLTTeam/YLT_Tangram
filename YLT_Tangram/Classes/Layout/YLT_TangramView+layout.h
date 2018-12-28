@@ -9,4 +9,6 @@
 
 @interface YLT_TangramView (layout)
 - (void)updateLayout;
+- (void)updateVlayoutWithLastSub:(YLT_TangramView *)sub;
+- (void)updateHlayoutWithLastSub:(YLT_TangramView *)sub;
 @end

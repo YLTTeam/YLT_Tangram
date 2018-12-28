@@ -16,12 +16,11 @@
 - (id)init {
 	self = [super init];
 	if (self) {
-        self.orientation = 0;
 		self.tangramId = 0;
 		self.layoutWidth = -1;
 		self.layoutHeight = -1;
 		self.layoutRation = 0;
-		self.layoutGravity = 0;
+		self.layoutGravity = 48;
 		self.padding = 0;
 		self.paddingLeft = 0;
 		self.paddingRight = 0;
@@ -130,6 +129,7 @@
 - (id)init {
 	self = [super init];
 	if (self) {
+		self.orientation = 1;
 		self.subTangrams = [[NSMutableArray alloc] init];
 	}
 	return self;
@@ -148,23 +148,6 @@
 			@"subTangrams":@"TangramView",
 				}];
 	return result;
-}
-
-- (void)setSubTangrams:(NSMutableArray<TangramView *> *)subTangrams {
-    @synchronized(_subTangrams){
-        __block CGFloat marginTop = 0.0;
-        __block CGFloat marginLeft = 0.0;
-        [subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.orientation == Orientation_H) {
-                obj.layoutTop = marginTop + obj.layoutMarginTop;
-                marginTop += obj.layoutHeight + obj.layoutMarginTop;
-            } else if (obj.orientation == Orientation_V) {
-                obj.layoutLeft = marginLeft + obj.layoutMarginLeft;
-                marginLeft += obj.layoutMarginLeft + obj.layoutWidth;
-            }
-        }];
-        _subTangrams = subTangrams;
-    }
 }
 
 @end

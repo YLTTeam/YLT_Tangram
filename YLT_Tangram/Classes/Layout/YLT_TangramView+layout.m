@@ -6,9 +6,40 @@
 //
 
 #import "YLT_TangramView+layout.h"
-#import "YLT_TangramView+OrientationH.h"
-#import "YLT_TangramView+OrientationV.h"
 @implementation YLT_TangramView (layout)
+- (void)updateHlayoutWithLastSub:(YLT_TangramView *)sub {
+    if (!self.superview) {
+        NSAssert(NO, @"superView is nil");
+        return;
+    }
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+        make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+        make.height.mas_equalTo(self.pageModel.layoutHeight);
+        if (sub) {
+            make.top.equalTo(sub.mas_bottom).offset(sub.pageModel.ylt_layoutMagin.bottom+self.pageModel.ylt_layoutMagin.top);
+        } else {
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        }
+    }];
+}
+
+- (void)updateVlayoutWithLastSub:(YLT_TangramView *)sub {
+    if (!self.superview) {
+        NSAssert(NO, @"superView is nil");
+        return;
+    }
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+        make.width.mas_equalTo(self.pageModel.layoutWidth);
+        if (sub) {
+            make.left.equalTo(sub.mas_left).offset(sub.pageModel.ylt_layoutMagin.right+self.pageModel.ylt_layoutMagin.left);
+        } else {
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        }
+    }];
+}
 //更新约束
 - (void)updateLayout {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -52,16 +83,7 @@
             [self marginVH];
         }
     } else {
-        //TODO :正常约束，带有优先级...(方案太多，考虑中...0.0)
-        if (self.pageModel.orientation == Orientation_H) {
-            //垂直布局
-            [self updateOrientationHLayout];
-        } else if (self.pageModel.orientation == Orientation_V) {
-            //水平布局
-            [self updateOrientationVLayout];
-        } else {
-            [self marginLayout];
-        }
+        [self marginLayout];
     }
 }
 #pragma mark marginLayout 无对齐方式的约束

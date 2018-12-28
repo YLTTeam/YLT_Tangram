@@ -20,6 +20,7 @@
 - (void)refreshPage {
     if ([self.content isMemberOfClass:[TangramFrameLayout class]]) {
         __block YLT_TangramView *sub = nil;
+        __block YLT_TangramView *lastSub = nil;
         [self.content.subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([self.subTangrams.allKeys containsObject:obj.identify]) {
                 sub = self.subTangrams[obj.identify];
@@ -37,11 +38,7 @@
                     if (modelClass == NULL) {
                         modelClass = TangramView.class;
                     }
-                    NSMutableDictionary *params = [[NSMutableDictionary alloc] initWithDictionary:obj.ylt_sourceData];
-                    params[@"layoutLeft"] = @(obj.layoutLeft);
-                    params[@"layoutTop"] = @(obj.layoutTop);
-                    
-                    sub.pageModel = [modelClass mj_objectWithKeyValues:params];
+                    sub.pageModel = [modelClass mj_objectWithKeyValues:obj.ylt_sourceData];
                     [self.mainView addSubview:sub];
                     [sub mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.edges.mas_equalTo(obj.ylt_layoutMagin);
@@ -53,7 +50,14 @@
             }
             if (sub) {
                 sub.pageData = self.pageData;
-                [sub updateLayout];
+                if (self.content.orientation == Orientation_H) {
+                    [sub updateHlayoutWithLastSub:lastSub];
+                } else if (self.content.orientation == Orientation_V) {
+                    [sub updateHlayoutWithLastSub:lastSub];
+                } else {
+                    [sub updateLayout];
+                }
+                lastSub = sub;
             }
         }];
     }
