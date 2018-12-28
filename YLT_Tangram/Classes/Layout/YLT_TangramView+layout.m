@@ -6,8 +6,72 @@
 //
 
 #import "YLT_TangramView+layout.h"
-
 @implementation YLT_TangramView (layout)
+- (void)updateHlayoutWithLastSub:(YLT_TangramView *)sub subTangrams:(TangramFrameLayout *)subTangrams {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!self.superview) {
+            NSAssert(NO, @"superView is nil");
+            return;
+        }
+        //通过父类的高度，来计算剩余等分的高度
+        __block CGFloat leaveHeight = self.superview.ylt_size.height;
+        [subTangrams.subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            leaveHeight -= (obj.layoutWeightHeight == 0? obj.layoutHeight : 0 + obj.layoutMarginTop + obj.layoutMarginBottom);
+        }];
+        leaveHeight = leaveHeight > 0 ? leaveHeight : 0;
+        //计算该子视图的宽度
+        CGFloat maxWidth = self.pageModel.layoutWidth > [self maxWidth] ? [self maxWidth] : self.pageModel.layoutWidth;
+        //如果服务端给负值，也要考虑
+        maxWidth = maxWidth > 0 ? maxWidth : 0;
+        //计算权重，所占的高度
+        CGFloat scale = self.pageModel.layoutWeightHeight > 0  && subTangrams.layoutTotalH >= self.pageModel.layoutWeightHeight ? (self.pageModel.layoutWeightHeight/subTangrams.layoutTotalH):0;
+        CGFloat height = self.pageModel.layoutWeightHeight > 0 ? scale * leaveHeight : self.pageModel.layoutHeight;
+        
+        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+            make.height.mas_equalTo(height);
+            if (sub) {
+                make.top.equalTo(sub.mas_bottom).offset(sub.pageModel.ylt_layoutMagin.bottom+self.pageModel.ylt_layoutMagin.top);
+            } else {
+                make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+            }
+            maxWidth > 0 ? make.width.mas_equalTo(maxWidth) : make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+        }];
+    });
+}
+
+- (void)updateVlayoutWithLastSub:(YLT_TangramView *)sub subTangrams:(TangramFrameLayout *)subTangrams {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (!self.superview) {
+            NSAssert(NO, @"superView is nil");
+            return;
+        }
+        //通过父类的高度，来计算剩余等分的高度
+        __block CGFloat leaveWidth = self.superview.ylt_size.width;
+        [subTangrams.subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            leaveWidth -= (obj.layoutWeightWidth == 0? obj.layoutWidth : 0 + obj.layoutMarginLeft + obj.layoutMarginRight);
+        }];
+        leaveWidth = leaveWidth > 0 ? leaveWidth : 0;
+        //计算该子视图的宽度
+        CGFloat maxHeight = self.pageModel.layoutHeight > [self maxHeight] ? [self maxHeight] : self.pageModel.layoutHeight;
+        //如果服务端给负值，也要考虑
+        maxHeight = maxHeight > 0 ? maxHeight : 0;
+        //计算权重，所占的高度
+        CGFloat scale = self.pageModel.layoutWeightWidth > 0  && subTangrams.layoutTotalV >= self.pageModel.layoutWeightWidth ? (self.pageModel.layoutWeightWidth/subTangrams.layoutTotalV):0;
+        CGFloat width = self.pageModel.layoutWeightWidth > 0 ? scale * leaveWidth : self.pageModel.layoutWeightWidth;
+        
+        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+            make.width.mas_equalTo(width);
+            if (sub) {
+                make.left.equalTo(sub.mas_right).offset(sub.pageModel.ylt_layoutMagin.right+self.pageModel.ylt_layoutMagin.left);
+            } else {
+                make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+            }
+            maxHeight > 0 ? make.height.mas_equalTo(maxHeight) : make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+        }];
+    });
+}
 //更新约束
 - (void)updateLayout {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -50,8 +114,7 @@
         }else if (self.pageModel.layoutGravity == (LayoutGravity_Top + LayoutGravity_Bottom + LayoutGravity_Left + LayoutGravity_Right)) {
             [self marginVH];
         }
-    }else{
-        //TODO :正常约束，带有优先级...(方案太多，考虑中...0.0)
+    } else {
         [self marginLayout];
     }
 }

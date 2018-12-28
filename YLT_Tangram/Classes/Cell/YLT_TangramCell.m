@@ -38,6 +38,10 @@ static NSDictionary *modelViews;
     return self;
 }
 
+- (NSMutableDictionary<NSString *,YLT_TangramView *> *)extracted {
+    return self.subTangrams;
+}
+
 - (void)cellFromConfig:(TangramView *)config {
     self.config = config;
     YLT_TangramView *sub = nil;
@@ -73,7 +77,7 @@ static NSDictionary *modelViews;
                 [sub mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.edges.mas_equalTo(config.ylt_layoutMagin);
                 }];
-                [self.subTangrams setObject:sub forKey:config.identify];
+                [[self extracted] setObject:sub forKey:config.identify];
             }
         }
     }
