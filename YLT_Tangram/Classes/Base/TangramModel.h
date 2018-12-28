@@ -2,7 +2,7 @@
 // TangramModel.h 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/27  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/28  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -66,6 +66,8 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @property (readwrite, nonatomic, assign) NSInteger layoutHeight;
 /** 宽高比  layoutHeight = layoutWidthlayoutRatio */
 @property (readwrite, nonatomic, assign) CGFloat layoutRation;
+/** 布局的权重 */
+@property (readwrite, nonatomic, assign) CGFloat layoutWeight;
 /** 描述组件在容器中的对齐方式，left(1)：靠左，right(2)：靠右，top(4)：靠上，bottom(8)：靠底，v_center(16)：垂直方向居中，h_center(32)：水平方向居中，可用或组合描述  比如：靠左+靠上  1+4 = 5 */
 @property (readwrite, nonatomic, assign) LayoutGravity layoutGravity;
 /** 同时设置 4 个内边距 */
