@@ -7,6 +7,7 @@
 
 #import "YLT_TangramBannerLayout.h"
 #import "TangramModel.h"
+#import "YLT_TangramCell.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
 
 @interface YLT_TangramBannerLayout () <SDCycleScrollViewDelegate>
@@ -118,4 +119,15 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
     
 }
+
+////如果是自定义cell，需要提供以下代理方法
+///** 如果你需要自定义cell样式，请在实现此代理方法返回你的自定义cell的class。 */
+//- (Class)customCollectionViewCellClassForCycleScrollView:(SDCycleScrollView *)view {
+//    return [YLT_TangramCell class];
+//}
+//
+///** 如果你自定义了cell样式，请在实现此代理方法为你的cell填充数据以及其它一系列设置 */
+//- (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view {
+//    [(YLT_TangramCell *)cell.contentView setBackgroundColor:[UIColor redColor]];
+//}
 @end
