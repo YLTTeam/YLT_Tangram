@@ -15,7 +15,7 @@
                    "layoutWidth":51,
                    "layoutHeight":51,
                    "layoutGravity":"16",
-                   "src":"$image"
+                   "src":"$model_img"
                    },
                    {
                    "id":"0",
@@ -28,7 +28,7 @@
                    "layoutWidth":-1,
                    "layoutHeight":17,
                    "layoutMarginBottom":8,
-                   "text":"$text"
+                   "text":"$model_profile"
                    }
     ]
 }

@@ -1,44 +1,70 @@
-[
+{
+    "url":{
+        "home":
+        {
+            "path":"",
+            "params":{
+            }
+        },
+
+        "more":
+        {
+            "path":"",
+            "params":{
+            }
+        }
+    },
+    "layout":[
+    {
+        "type":"TangramBannerLayout",
+        "duration":2,
+        "normalColor":"ffff00",
+        "selectedColor":"00ffff",
+        "itemName":"TangramBanner",
+        "dataTag":"$banner",
+        "layoutWidth":-1,
+        "layoutHeight":128
+    },
     {
         "type":"TangramLabel",
         "text":"",
         "background":"F6F6F6",
         "identify":"privilege_footer_1",
-        "layoutWidth":"375",
+        "layoutWidth":-1,
         "layoutHeight":"10"
     },
     {
- 		"type":"TangramLabel",
- 		"text":"全部特权",
- 		"fontSize":16,
- 		"textColor":"000000",
- 		"identify":"privilege_header_1",
+        "type":"TangramLabel",
+        "text":"全部特权",
+        "fontSize":16,
+        "textColor":"000000",
+        "identify":"privilege_header_1",
         "layoutMarginLeft":8,
         "textStyle":2,
-        "layoutWidth":"375",
+        "layoutWidth":-1,
         "layoutHeight":"40"
- 	},
+    },
 
 
     {
- 		"type":"TangramLabel",
- 		"text":"$data[0].classifyName",
+        "type":"TangramLabel",
+        "text":"$data[0].classifyName",
         "layoutMarginLeft":8,
- 		"identify":"privilege_sub_header_1",
+        "identify":"privilege_sub_header_1",
         "fontSize":14,
         "textColor":"000000",
- 		"layoutWidth":"375",
- 		"layoutHeight":"40"
- 	},
+        "layoutWidth":-1,
+        "layoutHeight":"40"
+    },
     {
- 		"type":"TangramGridLayout",
- 		"dataTag":"$data[0].classifyResult",
- 		"column":4,
+        "type":"TangramGridLayout",
+        "dataTag":"$data[0].classifyResult",
+        "column":4,
         "layoutMarginLeft":8,
         "layoutMarginRight":8,
- 		"identify":"privilege_TangramGridLayout_1",
- 		"itemHorizontalMargin":8,
- 		"itemName": "TangramMenu"
+        "identify":"privilege_TangramGridLayout_1",
+        "itemHorizontalMargin":8,
+        "itemName": "TangramMenu"
     },
 
 
@@ -49,7 +75,7 @@
         "identify":"privilege_sub_header_1",
         "fontSize":14,
         "textColor":"000000",
-        "layoutWidth":"375",
+        "layoutWidth":-1,
         "layoutHeight":"40"
     },
     {
@@ -60,14 +86,7 @@
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
         "itemHorizontalMargin":8,
-        "itemName": {
-            "type":"MenuItem",
-            "text":"$model_profile",
-            "gravity":32,
-            "fontSize":13,
-            "src":"$model_img",
-            "identify":"TangramMenu"
-        }
+        "itemName": "TangramMenu"
     },
 
 
@@ -78,7 +97,7 @@
         "identify":"privilege_sub_header_1",
         "fontSize":14,
         "textColor":"000000",
-        "layoutWidth":"375",
+        "layoutWidth":-1,
         "layoutHeight":"40"
     },
     {
@@ -89,14 +108,7 @@
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
         "itemHorizontalMargin":8,
-        "itemName": {
-            "type":"MenuItem",
-            "text":"$model_profile",
-            "gravity":32,
-            "fontSize":13,
-            "src":"$model_img",
-            "identify":"TangramMenu"
-        }
+        "itemName": "TangramMenu"
     },
 
 
@@ -107,7 +119,7 @@
         "identify":"privilege_sub_header_1",
         "fontSize":14,
         "textColor":"000000",
-        "layoutWidth":"375",
+        "layoutWidth":-1,
         "layoutHeight":"40"
     },
     {
@@ -118,14 +130,7 @@
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
         "itemHorizontalMargin":8,
-        "itemName": {
-            "type":"MenuItem",
-            "text":"$model_profile",
-            "gravity":32,
-            "fontSize":13,
-            "src":"$model_img",
-            "identify":"TangramMenu"
-        }
+        "itemName": "TangramMenu"
     },
 
 
@@ -136,7 +141,7 @@
         "identify":"privilege_sub_header_1",
         "fontSize":14,
         "textColor":"000000",
-        "layoutWidth":"375",
+        "layoutWidth":-1,
         "layoutHeight":"40"
     },
     {
@@ -147,14 +152,7 @@
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
         "itemHorizontalMargin":8,
-        "itemName": {
-            "type":"MenuItem",
-            "text":"$model_profile",
-            "gravity":32,
-            "fontSize":13,
-            "src":"$model_img",
-            "identify":"TangramMenu"
-        }
+        "itemName": "TangramMenu"
     },
 
 
@@ -165,7 +163,7 @@
         "identify":"privilege_sub_header_1",
         "fontSize":14,
         "textColor":"000000",
-        "layoutWidth":"375",
+        "layoutWidth":-1,
         "layoutHeight":"40"
     },
     {
@@ -176,17 +174,9 @@
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
         "itemHorizontalMargin":8,
-        "itemName": {
-            "type":"MenuItem",
-            "text":"$model_profile",
-            "gravity":32,
-            "fontSize":13,
-            "src":"$model_img",
-            "identify":"TangramMenu"
-        }
+        "itemName": "TangramMenu"
     }
 
-
-
-
  ]
+
+}

@@ -29,11 +29,11 @@ PODS:
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
-  - YLT_BaseLib (0.3.16):
+  - YLT_BaseLib (0.3.21):
     - FastCoding
     - FMDB
     - MJExtension
-  - YLT_Kit (0.3.6):
+  - YLT_Kit (0.3.8):
     - AFNetworking
     - Aspects
     - Masonry
@@ -81,8 +81,8 @@ SPEC CHECKSUMS:
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
-  YLT_BaseLib: adecba04670767ace805b908ca44b637529d9464
-  YLT_Kit: 31039219864ed23df1bf96dbeaaa5422785a698a
+  YLT_BaseLib: eab827fe27cc68ec14f64616b9353b14be9e6b63
+  YLT_Kit: 60b64f10c1d3a22885dba71eef235eb9e9685050
   YLT_Tangram: f16a543090565e1b8e9c1d1af5edc93cf86c5cf6
 
 PODFILE CHECKSUM: 9283665bd5d7e8df116f60b7f2e273c52571d97e

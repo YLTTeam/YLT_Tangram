@@ -31,13 +31,14 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSArray<NSDictionary *> *pages = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-    NSDictionary *pageDatas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"TangramMenuData" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-//    [YLT_TangramManager shareInstance].tangramImageURLString = ^NSString *(NSString *path) {
-//        path = [NSString stringWithFormat:@"https://img2.ultimavip.cn/%@?imageView2/2/w/153/h/153&imageslim", path];
-//        return path;
-//    };
-//
+    NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    NSArray<NSDictionary *> *pages = map[@"layout"];
+    NSDictionary *pageDatas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"real" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    [YLT_TangramManager shareInstance].tangramImageURLString = ^NSString *(NSString *path) {
+        path = [NSString stringWithFormat:@"https://img2.ultimavip.cn/%@?imageView2/2/w/153/h/153&imageslim", path];
+        return path;
+    };
+
     [YLT_TangramManager shareInstance].tangramViewFromPageModel = ^UIView *(NSDictionary *data) {
         NSLog(@"%@", data);
         UIView *view = [[UIView alloc] init];
