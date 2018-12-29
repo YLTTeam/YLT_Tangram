@@ -9,6 +9,7 @@
 #import "YLTViewController.h"
 #import "YLT_Tangram.h"
 #import <YLT_Kit/YLT_Kit.h>
+#import <AFNetworking/AFNetworking.h>
 #import <RegexKitLite/RegexKitLite.h>
 
 @interface YLTViewController ()
@@ -32,15 +33,46 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    NSDictionary *urls = [map objectForKey:@"url"];
     NSArray<NSDictionary *> *pages = map[@"layout"];
-    NSDictionary *pageDatas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"real" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    
     [YLT_TangramManager shareInstance].tangramImageURLString = ^NSString *(NSString *path) {
         path = [NSString stringWithFormat:@"https://img2.ultimavip.cn/%@?imageView2/2/w/153/h/153&imageslim", path];
         return path;
     };
+    [YLT_TangramManager shareInstance].tangramRequest = ^(NSArray<TangramRequest *> *requests, void (^success)(NSDictionary *result)) {
+        //做对应的网络请求
+        static AFHTTPSessionManager *sessionManager = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://gw-dev.ultimablack.cn"]];
+            sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+            sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", nil];
+        });
+        __block NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+        dispatch_group_t group = dispatch_group_create();
+        [requests enumerateObjectsUsingBlock:^(TangramRequest * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            dispatch_group_enter(group);
+            [sessionManager POST:obj.path parameters:obj.params progress:^(NSProgress * _Nonnull uploadProgress) {
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                    [data setObject:responseObject[@"data"] forKey:obj.keyname];
+                }
+                dispatch_group_leave(group);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [data setObject:error forKey:obj.keyname];
+                dispatch_group_leave(group);
+            }];
+        }];
+        
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            if (success) {
+                success(data);
+            }
+        });
+    };
 
     [YLT_TangramManager shareInstance].tangramViewFromPageModel = ^UIView *(NSDictionary *data) {
-        NSLog(@"%@", data);
         UIView *view = [[UIView alloc] init];
         view.backgroundColor = UIColor.blueColor;
         UIImageView *imageView = [[UIImageView alloc] init];
@@ -50,7 +82,7 @@
         return view;
     };
     
-    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages withDatas:pageDatas.mutableCopy];
+    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:nil];
 
     [self presentViewController:vc animated:YES completion:nil];
 }

@@ -7,6 +7,7 @@
 
 #import "YLT_TangramVC.h"
 #import "YLT_TangramCell.h"
+#import "YLT_TangramManager.h"
 #import "YLT_TangramVC+Delegate.h"
 
 @interface YLT_TangramVC ()
@@ -23,8 +24,10 @@
 }
 
 + (YLT_TangramVC *)tangramWithPages:(NSArray<NSDictionary *> *)pages
+                           requests:(NSDictionary<NSString *, NSDictionary *> *)pageRequests
                           withDatas:(NSMutableDictionary *)datas {
     YLT_TangramVC *result = [[YLT_TangramVC alloc] init];
+    result.pageRequest = pageRequests;
     result.pageDatas = datas;
     [pages enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSDictionary class]]) {
@@ -49,6 +52,34 @@
 
 #pragma mark - setter getter
 
+- (void)setPageRequest:(NSDictionary<NSString *,NSDictionary *> *)pageRequest {
+    _pageRequest = pageRequest;
+    __block NSMutableArray<TangramRequest *> *requests = [[NSMutableArray alloc] init];
+    [pageRequest enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSDictionary * _Nonnull obj, BOOL * _Nonnull stop) {
+        if (key.ylt_isValid) {
+            TangramRequest *request = [TangramRequest mj_objectWithKeyValues:obj];
+            request.keyname = key;
+            [requests addObject:request];
+        }
+    }];
+    
+    if ([YLT_TangramManager shareInstance].tangramRequest) {
+        @weakify(self);
+        [YLT_TangramManager shareInstance].tangramRequest(requests, ^(NSDictionary *result) {
+            @strongify(self);
+            [self.pageDatas addEntriesFromDictionary:result];
+            [self.mainCollectionView reloadData];
+        });
+    }
+}
+
+- (NSMutableDictionary *)reqParams {
+    if (!_reqParams) {
+        _reqParams = [[NSMutableDictionary alloc] init];
+    }
+    return _reqParams;
+}
+
 - (UICollectionView *)mainCollectionView {
     if (!_mainCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -62,6 +93,16 @@
         }];
     }
     return _mainCollectionView;
+}
+
+- (void)setPageDatas:(NSMutableDictionary *)pageDatas {
+    if (!_pageDatas) {
+        _pageDatas = [[NSMutableDictionary alloc] init];
+    }
+    [_pageDatas removeAllObjects];
+    if (pageDatas) {
+        [_pageDatas addEntriesFromDictionary:pageDatas];
+    }
 }
 
 - (NSMutableArray *)pageModels {

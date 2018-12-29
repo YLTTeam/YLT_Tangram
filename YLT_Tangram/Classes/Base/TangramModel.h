@@ -2,7 +2,7 @@
 // TangramModel.h 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/28  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/29  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -54,6 +54,7 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @class TangramFrameLayout;
 @class TangramGridLayout;
 @class TangramBannerLayout;
+@class TangramRequest;
 
 
 @interface TangramView : YLT_BaseModel {
@@ -180,5 +181,17 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @property (readwrite, nonatomic, strong) NSString *selectedColor;
 /** 每个Item对应的布局 */
 @property (readwrite, nonatomic, strong) NSString *itemName;
+
+@end
+
+
+@interface TangramRequest : YLT_BaseModel {
+}
+/** 名称 */
+@property (readwrite, nonatomic, strong) NSString *keyname;
+/** 请求路径 */
+@property (readwrite, nonatomic, strong) NSString *path;
+/** 请求参数 */
+@property (readwrite, nonatomic, strong) NSDictionary *params;
 
 @end

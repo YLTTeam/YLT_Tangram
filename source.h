@@ -75,7 +75,6 @@ message TangramView {
     optional string identify = nil;//重新标记，没有值，则使用classname
 }
 
-
 message TangramLabel : TangramView {
     optional string text = nil;//文本内容
     optional string textColor = 666666;//字体颜色
@@ -112,7 +111,11 @@ message TangramBannerLayout : TangramFrameLayout {
 }
 
 
-
+message TangramRequest {
+    optional string keyname = nil;//名称
+    optional string path = nil;//请求路径
+    optional dic params = nil;//请求参数
+}
 
 
 

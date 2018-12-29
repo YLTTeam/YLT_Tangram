@@ -17,4 +17,6 @@ YLT_ShareInstanceHeader(YLT_TangramManager);
 
 @property (nonatomic, copy) UIView *(^tangramViewFromPageModel)(NSDictionary *pageModel);
 
+@property (nonatomic, copy) void(^tangramRequest)(NSArray<TangramRequest *> *requests, void(^success)(NSDictionary *result));
+
 @end

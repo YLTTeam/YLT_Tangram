@@ -42,7 +42,13 @@
           "msgInfo": "",
           "userDefaultMsg": "",
           "sort": 2,
-          "type": 2
+          "type": 2,
+                         "clickAction":{
+                         "iOS":[
+                                "ylt://self/requestParams:?username=alex"
+                         ],
+                         "android":[]
+                         }
         },
         {
           "pid": 32,
@@ -63,7 +69,13 @@
           "msgInfo": "",
           "userDefaultMsg": "",
           "sort": 4,
-          "type": 2
+          "type": 2,
+                         "clickAction":{
+                         "iOS":[
+                                "ylt://self/sendRequest:?password=123456"
+                                ],
+                         "android":[]
+                         }
         },
         {
           "popInfo": "",

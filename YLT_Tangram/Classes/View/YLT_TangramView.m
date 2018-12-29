@@ -15,9 +15,12 @@
 
 @interface YLT_TangramView() {
 }
+@property (nonatomic, strong) UITapGestureRecognizer *tap;
+
 @end
 
 @implementation YLT_TangramView
+@synthesize pageData = _pageData;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -39,9 +42,34 @@
 }
 
 - (void)setPageData:(NSDictionary *)pageData {
+    if ([pageData isKindOfClass:[NSError class]]) {
+        pageData = nil;
+    }
     _pageData = pageData;
     [self updateData];
     [self refreshPage];
+    
+    [self removeGestureRecognizer:self.tap];
+    if (self.pageModel.action.ylt_isValid) {
+        NSDictionary *clickAction = [YLT_TangramUtils valueFromSourceData:pageData keyPath:self.pageModel.action];
+        if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
+            NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
+            if ([actionList isKindOfClass:[NSString class]]) {
+                actionList = @[actionList];
+            }
+            if (actionList.count > 0) {
+                self.userInteractionEnabled = YES;
+                [self addGestureRecognizer:self.tap];
+            }
+        }
+    }
+}
+
+- (NSDictionary *)pageData {
+    if ([_pageData isKindOfClass:[NSError class]]) {
+        return nil;
+    }
+    return _pageData;
 }
 
 /**
@@ -50,7 +78,28 @@
 - (void)refreshPage {
 }
 
+- (void)tapAction:(UITapGestureRecognizer *)sender {
+    NSDictionary *clickAction = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.action];
+    if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
+        NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
+        if ([actionList isKindOfClass:[NSString class]]) {
+            actionList = @[actionList];
+        }
+        [actionList enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.ylt_currentVC ylt_routerToURL:obj arg:nil completion:^(NSError *error, id response) {
+            }];
+        }];
+    }
+}
+
 #pragma setter getter
+
+- (UITapGestureRecognizer *)tap {
+    if (!_tap) {
+        _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+    }
+    return _tap;
+}
 
 - (UIView *)mainView {
     if (!_mainView) {
