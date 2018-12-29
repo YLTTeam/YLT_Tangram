@@ -70,13 +70,8 @@
         }
     }
     [cell cellFromConfig:item];
-    if (pageData) {
+    if (pageData && pageData.allKeys.count > 0) {
         [cell reloadCellData:pageData];
-        if (item.action.ylt_isValid > 0 && [YLT_TangramUtils valueFromSourceData:pageData keyPath:item.action]) {
-            cell.ylt_clickBlock(^(id resp) {
-                YLT_Log(@"点击事件回调");
-            });
-        }
     }
     return cell;
 }

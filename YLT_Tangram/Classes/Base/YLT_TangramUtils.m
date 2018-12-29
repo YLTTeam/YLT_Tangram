@@ -67,6 +67,9 @@
 }
 
 + (id)valueFromSourceData:(id)sourceData keyPath:(NSString *)keypath {
+    if (sourceData == nil) {
+        return nil;
+    }
     if (!keypath.ylt_isValid) {
         return sourceData;
     }

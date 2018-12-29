@@ -2,7 +2,7 @@
     "id":"1",
     "dataTag":"",
     "keypath":"",
-    "action":"",
+    "action":"$clickAction",
     "type":"TangramFrameLayout",
     "identify":"TangramMenu",
     "subTangrams":[

@@ -2,7 +2,7 @@
 // TangramModel.m 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/28  By AlexXiang  All rights reserved.
+// Copyright (C) 2018/12/29  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -195,6 +195,35 @@
 		self.normalColor = @"666666";
 		self.selectedColor = @"ffffff";
 		self.itemName = @"";
+	}
+	return self;
+}
+
++ (NSDictionary *)ylt_keyMapper {
+	NSMutableDictionary *result = [super ylt_keyMapper].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
+}
+
++ (NSDictionary *)ylt_classInArray {
+	NSMutableDictionary *result = [super ylt_classInArray].mutableCopy;
+	[result addEntriesFromDictionary: @{
+				}];
+	return result;
+}
+
+@end
+
+
+@implementation TangramRequest
+
+- (id)init {
+	self = [super init];
+	if (self) {
+		self.keyname = @"";
+		self.path = @"";
+		self.params = nil;
 	}
 	return self;
 }

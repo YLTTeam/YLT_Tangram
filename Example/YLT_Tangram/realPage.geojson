@@ -1,13 +1,13 @@
 {
     "url":{
-        "home":
+        "banner":
         {
             "path":"",
             "params":{
             }
         },
 
-        "more":
+        "data":
         {
             "path":"",
             "params":{

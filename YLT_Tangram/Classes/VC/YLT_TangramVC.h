@@ -11,13 +11,27 @@
 @interface YLT_TangramVC : YLT_BaseVC
 
 /**
+ 网络请求参数
+ */
+@property (nonatomic, strong) NSMutableDictionary *reqParams;
+
+/**
  页面数据
  */
 @property (nonatomic, strong) NSMutableArray<TangramView *> *pageModels;
 
+/**
+ 页面数据  可能根据网络请求填充
+ */
 @property (nonatomic, strong) NSMutableDictionary *pageDatas;
 
+/**
+ 网络请求
+ */
+@property (nonatomic, strong) NSDictionary<NSString *, NSDictionary *> *pageRequest;
+
 + (YLT_TangramVC *)tangramWithPages:(NSArray<NSDictionary *> *)pages
+                           requests:(NSDictionary<NSString *, NSDictionary *> *)pageRequests
                           withDatas:(NSMutableDictionary *)datas;
 
 @end
