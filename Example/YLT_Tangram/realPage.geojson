@@ -2,15 +2,23 @@
     "url":{
         "banner":
         {
-            "path":"",
+            "path":"route_hs/v1/virtual/getDataUrls",
             "params":{
+                "userId":1,
+                "sign":1,
+                "nonce":1,
+                "token":1
             }
         },
 
         "data":
         {
-            "path":"",
+            "path":"route_hs/v1/virtual/getData",
             "params":{
+                "userId":1,
+                "sign":1,
+                "nonce":1,
+                "token":1
             }
         }
     },

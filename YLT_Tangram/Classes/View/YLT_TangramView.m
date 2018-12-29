@@ -20,6 +20,7 @@
 @end
 
 @implementation YLT_TangramView
+@synthesize pageData = _pageData;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -41,6 +42,9 @@
 }
 
 - (void)setPageData:(NSDictionary *)pageData {
+    if ([pageData isKindOfClass:[NSError class]]) {
+        pageData = nil;
+    }
     _pageData = pageData;
     [self updateData];
     [self refreshPage];
@@ -59,6 +63,13 @@
             }
         }
     }
+}
+
+- (NSDictionary *)pageData {
+    if ([_pageData isKindOfClass:[NSError class]]) {
+        return nil;
+    }
+    return _pageData;
 }
 
 /**

@@ -48,6 +48,9 @@
 
 #pragma mark setter
 - (void)setList:(NSArray *)list {
+    if ([list isKindOfClass:[NSError class]] || ![list isKindOfClass:[NSArray class]]) {
+        return;
+    }
     _list = list;
     if (list.count > 0) {
         [self.imgArr removeAllObjects];

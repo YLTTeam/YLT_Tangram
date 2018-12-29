@@ -45,31 +45,30 @@
         static AFHTTPSessionManager *sessionManager = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@""]];
-            sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://gw-dev.ultimablack.cn"]];
             sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+            sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", nil];
         });
         __block NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
         dispatch_group_t group = dispatch_group_create();
-//        [requests enumerateObjectsUsingBlock:^(TangramRequest * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            dispatch_group_enter(group);
-//            [sessionManager POST:obj.path parameters:obj.params progress:^(NSProgress * _Nonnull uploadProgress) {
-//            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//                [data setObject:responseObject forKey:obj.keyname];
-//                dispatch_group_leave(group);
-//            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//                [data setObject:error forKey:obj.keyname];
-//                dispatch_group_leave(group);
-//            }];
-//        }];
+        [requests enumerateObjectsUsingBlock:^(TangramRequest * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            dispatch_group_enter(group);
+            [sessionManager POST:obj.path parameters:obj.params progress:^(NSProgress * _Nonnull uploadProgress) {
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                    [data setObject:responseObject[@"data"] forKey:obj.keyname];
+                }
+                dispatch_group_leave(group);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [data setObject:error forKey:obj.keyname];
+                dispatch_group_leave(group);
+            }];
+        }];
         
         dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5. * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (success) {
-                    NSDictionary *pageDatas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"real" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-                    success(pageDatas);
-                }
-            });
+            if (success) {
+                success(data);
+            }
         });
     };
 
