@@ -63,7 +63,7 @@
     YLT_TangramCell *cell = (YLT_TangramCell *)[collectionView dequeueReusableCellWithReuseIdentifier:item.ylt_identify forIndexPath:indexPath];
     if ([item isKindOfClass:[TangramGridLayout class]]) {
         TangramGridLayout *layout = (TangramGridLayout *)item;
-        item = [YLT_TangramUtils typeFromPageData:layout.itemName];
+        item = [YLT_TangramUtils typeFromItemname:layout.itemName];
         NSArray *list = [YLT_TangramUtils valueFromSourceData:self.pageDatas keyPath:layout.dataTag];
         if ([list isKindOfClass:[NSArray class]]) {
             pageData = list[indexPath.row];

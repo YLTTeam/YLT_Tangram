@@ -6,6 +6,7 @@
 //
 
 #import "YLT_TangramUtils.h"
+#import "YLT_TangramVC.h"
 #import <YLT_BaseLib/YLT_BaseLib.h>
 #import <RegexKitLite/RegexKitLite.h>
 
@@ -47,20 +48,20 @@
 /**
  获取PageData数据
  
- @param pageData 字典或字符串
+ @param itemname Item 名称
  @return 模型
  */
-+ (TangramView *)typeFromPageData:(id)pageData {
-    TangramView *result = nil;
-    NSDictionary *data = pageData;
-    if ([pageData isKindOfClass:[NSString class]]) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:pageData ofType:@"geojson"];
-        if (path.ylt_isValid) {
-            data = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingAllowFragments error:nil];
-        }
++ (TangramView *)typeFromItemname:(NSString *)itemname {
+    if (![self.ylt_currentVC isKindOfClass:[YLT_TangramVC class]]) {
+        return [TangramView new];
     }
-    if ([data isKindOfClass:[NSDictionary class]]) {
-        result = [self loadTemplateKeyname:nil data:data classname:nil];
+    TangramView *result = nil;
+    YLT_TangramVC *currentVC = (YLT_TangramVC *)self.ylt_currentVC;
+    if ([currentVC.itemLayouts.allKeys containsObject:itemname]) {
+        NSDictionary *data = [currentVC.itemLayouts objectForKey:itemname];
+        if ([data isKindOfClass:[NSDictionary class]]) {
+            result = [self loadTemplateKeyname:nil data:data classname:nil];
+        }
     }
     
     return result?:[TangramView new];

@@ -84,12 +84,12 @@
     
     
     
-    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=route_hs/v1/virtual/getDataUrls&tangramId=123&username=alex&password=123456" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
-    }];
-    target.view.backgroundColor = UIColor.redColor;
-    [self presentViewController:target animated:YES completion:nil];
-    
-    return;
+//    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=route_hs/v1/virtual/load&tangramId=123&username=alex&password=123456" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
+//    }];
+//    target.view.backgroundColor = UIColor.redColor;
+//    [self presentViewController:target animated:YES completion:nil];
+//
+//    return;
     
     
     
@@ -98,7 +98,7 @@
     NSArray<NSDictionary *> *pages = map[@"layout"];
     
     YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:nil];
-
+    vc.itemLayouts = map[@"itemLayout"];
     [self presentViewController:vc animated:YES completion:nil];
 }
 

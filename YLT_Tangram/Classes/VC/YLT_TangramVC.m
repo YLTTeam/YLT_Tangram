@@ -50,6 +50,9 @@
         [YLT_TangramManager shareInstance].tangramRequest(@[request], ^(NSDictionary *resp) {
             @strongify(result);
             if ([resp isKindOfClass:[NSDictionary class]]) {
+                if ([resp.allKeys containsObject:@"itemLayout"]) {
+                    result.itemLayouts = resp[@"itemLayout"];
+                }
                 if ([resp.allKeys containsObject:@"layout"]) {
                     NSArray *pages  = [resp objectForKey:@"layout"];
                     [result realodPages:pages];

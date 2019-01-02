@@ -60,7 +60,7 @@
     }
     
     for (NSDictionary *object in list) {
-        TangramFrameLayout *layout = (TangramFrameLayout *)[YLT_TangramUtils typeFromPageData:self.content.itemName];
+        TangramFrameLayout *layout = (TangramFrameLayout *)[YLT_TangramUtils typeFromItemname:self.content.itemName];
         [layout.subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (!(obj.ylt_sourceData && [obj.ylt_sourceData isKindOfClass:[NSDictionary class]])) {
                 *stop = YES;

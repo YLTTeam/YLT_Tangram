@@ -22,10 +22,10 @@
 /**
  获取PageData数据
  
- @param pageData 字典或字符串
+ @param itemname Item 名称
  @return 模型
  */
-+ (TangramView *)typeFromPageData:(id)pageData;
++ (TangramView *)typeFromItemname:(NSString *)itemname;
 
 + (id)valueFromSourceData:(id)sourceData keyPath:(NSString *)keypath;
 ///计算size

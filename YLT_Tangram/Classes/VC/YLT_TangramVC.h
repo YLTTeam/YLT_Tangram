@@ -11,6 +11,11 @@
 @interface YLT_TangramVC : YLT_BaseVC
 
 /**
+ 页面的子布局
+ */
+@property (nonatomic, strong) NSDictionary *itemLayouts;
+
+/**
  网络请求参数
  */
 @property (nonatomic, strong) NSMutableDictionary *reqParams;
