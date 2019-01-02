@@ -12,9 +12,8 @@
                    "action":"",
                    "type":"TangramImage",
                    "identify":"1_2",
-                   "layoutWidth":51,
-                   "layoutHeight":51,
-                   "layoutGravity":"16",
+                   "layoutWidth":0,
+                   "layoutWeight":3,
                    "src":"$url"
                    },
                    {
@@ -26,8 +25,9 @@
                    "type":"TangramLabel",
                    "identify":"1_1",
                    "layoutWidth":-1,
-                   "layoutHeight":17,
-                   "layoutMarginBottom":8,
+                   "layoutWeight":1,
+                   "layoutMarginTop":8,
+                   "gravity":32,
                    "text":"$text"
                    }
     ]

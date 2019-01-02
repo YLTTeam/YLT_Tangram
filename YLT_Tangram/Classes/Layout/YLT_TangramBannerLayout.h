@@ -8,5 +8,4 @@
 #import <YLT_Tangram/YLT_Tangram.h>
 
 @interface YLT_TangramBannerLayout : YLT_TangramFrameLayout
-@property (nonatomic, copy) void (^selectItem)(id data);
 @end
