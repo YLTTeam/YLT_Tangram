@@ -52,6 +52,9 @@
     [self removeGestureRecognizer:self.tap];
     if (self.pageModel.action.ylt_isValid) {
         NSDictionary *clickAction = [YLT_TangramUtils valueFromSourceData:pageData keyPath:self.pageModel.action];
+        if ([clickAction isKindOfClass:[NSString class]]) {
+            clickAction = clickAction.mj_JSONObject;
+        }
         if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
             NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
             if ([actionList isKindOfClass:[NSString class]]) {
@@ -80,6 +83,9 @@
 
 - (void)tapAction:(UITapGestureRecognizer *)sender {
     NSDictionary *clickAction = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.action];
+    if ([clickAction isKindOfClass:[NSString class]]) {
+        clickAction = clickAction.mj_JSONObject;
+    }
     if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
         NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
         if ([actionList isKindOfClass:[NSString class]]) {

@@ -5,6 +5,7 @@
     "action":"$clickAction",
     "type":"TangramFrameLayout",
     "identify":"TangramMenu",
+    "orientation":0,
     "subTangrams":[
                    {
                    "id":"0",
@@ -14,7 +15,7 @@
                    "identify":"1_2",
                    "layoutWidth":51,
                    "layoutHeight":51,
-                   "layoutGravity":"16",
+                   "layoutGravity":16,
                    "src":"$model_img"
                    },
                    {

@@ -22,6 +22,7 @@
             }
         }
     },
+    "title":"页面标题1234",
     "layout":[
     {
         "type":"TangramBannerLayout",
@@ -67,12 +68,13 @@
     {
         "type":"TangramGridLayout",
         "dataTag":"$data[0].classifyResult",
-        "column":4,
+        "column":1,
         "layoutMarginLeft":8,
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
         "itemHorizontalMargin":8,
-        "itemName": "TangramMenu"
+        "itemName": "ShoppingCart",
+              "itemHeight":72
     },
 
 
@@ -89,112 +91,26 @@
     {
         "type":"TangramGridLayout",
         "dataTag":"$data[1].classifyResult",
-        "column":4,
+        "column":1,
         "layoutMarginLeft":8,
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
         "itemHorizontalMargin":8,
-        "itemName": "TangramMenu"
-    },
-
-
-    {
-        "type":"TangramLabel",
-        "text":"$data[2].classifyName",
-        "layoutMarginLeft":8,
-        "identify":"privilege_sub_header_1",
-        "fontSize":14,
-        "textColor":"000000",
-        "layoutWidth":-1,
-        "layoutHeight":"40"
-    },
-    {
-        "type":"TangramGridLayout",
-        "dataTag":"$data[2].classifyResult",
-        "column":4,
-        "layoutMarginLeft":8,
-        "layoutMarginRight":8,
-        "identify":"privilege_TangramGridLayout_1",
-        "itemHorizontalMargin":8,
-        "itemName": "TangramMenu"
-    },
-
-
-    {
-        "type":"TangramLabel",
-        "text":"$data[3].classifyName",
-        "layoutMarginLeft":8,
-        "identify":"privilege_sub_header_1",
-        "fontSize":14,
-        "textColor":"000000",
-        "layoutWidth":-1,
-        "layoutHeight":"40"
-    },
-    {
-        "type":"TangramGridLayout",
-        "dataTag":"$data[3].classifyResult",
-        "column":4,
-        "layoutMarginLeft":8,
-        "layoutMarginRight":8,
-        "identify":"privilege_TangramGridLayout_1",
-        "itemHorizontalMargin":8,
-        "itemName": "TangramMenu"
-    },
-
-
-    {
-        "type":"TangramLabel",
-        "text":"$data[4].classifyName",
-        "layoutMarginLeft":8,
-        "identify":"privilege_sub_header_1",
-        "fontSize":14,
-        "textColor":"000000",
-        "layoutWidth":-1,
-        "layoutHeight":"40"
-    },
-    {
-        "type":"TangramGridLayout",
-        "dataTag":"$data[4].classifyResult",
-        "column":4,
-        "layoutMarginLeft":8,
-        "layoutMarginRight":8,
-        "identify":"privilege_TangramGridLayout_1",
-        "itemHorizontalMargin":8,
-        "itemName": "TangramMenu"
-    },
-
-
-    {
-        "type":"TangramLabel",
-        "text":"$data[5].classifyName",
-        "layoutMarginLeft":8,
-        "identify":"privilege_sub_header_1",
-        "fontSize":14,
-        "textColor":"000000",
-        "layoutWidth":-1,
-        "layoutHeight":"40"
-    },
-    {
-        "type":"TangramGridLayout",
-        "dataTag":"$data[5].classifyResult",
-        "column":4,
-        "layoutMarginLeft":8,
-        "layoutMarginRight":8,
-        "identify":"privilege_TangramGridLayout_1",
-        "itemHorizontalMargin":8,
-        "itemName": "TangramMenu"
+              "itemName": "ShoppingCart",
+              "itemHeight":72
     }
  ],
     
     
     "itemLayout":{
-        "TangramMenu":{
+        "ShoppingCart":{
             "id":"1",
             "dataTag":"",
             "keypath":"",
             "action":"$clickAction",
             "type":"TangramFrameLayout",
             "identify":"TangramMenu",
+            "orientation":0,
             "subTangrams":[
                            {
                            "id":"0",
@@ -204,7 +120,7 @@
                            "identify":"1_2",
                            "layoutWidth":51,
                            "layoutHeight":51,
-                           "layoutGravity":"16",
+                           "layoutGravity":32,
                            "src":"$model_img"
                            },
                            {

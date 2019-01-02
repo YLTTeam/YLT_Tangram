@@ -84,22 +84,22 @@
     
     
     
-//    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=route_hs/v1/virtual/load&tangramId=123&username=alex&password=123456" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
-//    }];
-//    target.view.backgroundColor = UIColor.redColor;
-//    [self presentViewController:target animated:YES completion:nil];
+    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=http://img2.ultimavip.cn/vv/4a5e0c37a31d5ec6" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
+    }];
+    target.view.backgroundColor = UIColor.redColor;
+    [self.navigationController pushViewController:target animated:YES];
+
+    return;
+    
+    
+    
+//    NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+//    NSDictionary *urls = [map objectForKey:@"url"];
+//    NSArray<NSDictionary *> *pages = map[@"layout"];
 //
-//    return;
-    
-    
-    
-    NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-    NSDictionary *urls = [map objectForKey:@"url"];
-    NSArray<NSDictionary *> *pages = map[@"layout"];
-    
-    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:nil];
-    vc.itemLayouts = map[@"itemLayout"];
-    [self presentViewController:vc animated:YES completion:nil];
+//    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:nil];
+//    vc.itemLayouts = map[@"itemLayout"];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

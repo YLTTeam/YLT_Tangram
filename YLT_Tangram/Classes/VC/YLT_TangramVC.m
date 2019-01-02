@@ -9,6 +9,7 @@
 #import "YLT_TangramCell.h"
 #import "YLT_TangramManager.h"
 #import "YLT_TangramVC+Delegate.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface YLT_TangramVC ()
 
@@ -43,12 +44,12 @@
  */
 + (YLT_TangramVC *)tangramWithRequestParams:(NSDictionary *)requestParams {
     YLT_TangramVC *result = [[YLT_TangramVC alloc] init];
-    TangramRequest *request = [TangramRequest mj_objectWithKeyValues:requestParams];
-    
-    if ([YLT_TangramManager shareInstance].tangramRequest) {
-        @weakify(result);
-        [YLT_TangramManager shareInstance].tangramRequest(@[request], ^(NSDictionary *resp) {
-            @strongify(result);
+    if ([requestParams.allKeys containsObject:@"path"]) {
+        NSURLSessionDownloadTask *task = [[AFHTTPSessionManager manager] downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:requestParams[@"path"]]] progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+            NSString *path = [YLT_CACHE_PATH stringByAppendingPathComponent:[response suggestedFilename]];
+            return [NSURL fileURLWithPath:path];
+        } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+            NSDictionary *resp = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:filePath] options:NSJSONReadingAllowFragments error:nil];
             if ([resp isKindOfClass:[NSDictionary class]]) {
                 if ([resp.allKeys containsObject:@"itemLayout"]) {
                     result.itemLayouts = resp[@"itemLayout"];
@@ -63,10 +64,13 @@
                 if ([resp.allKeys containsObject:@"url"]) {
                     result.pageRequest = [resp objectForKey:@"url"];
                 }
+                if ([resp.allKeys containsObject:@"title"]) {
+                    result.title = resp[@"title"];
+                }
             }
-        });
+        }];
+        [task resume];
     }
-    
     return result;
 }
 

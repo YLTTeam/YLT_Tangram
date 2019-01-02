@@ -44,9 +44,9 @@
           "sort": 2,
           "type": 2,
                          "clickAction":{
-                         "iOS":[
-                                "ylt://self/requestParams:?username=alex"
-                         ],
+                                "iOS":[
+                                "ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex"
+                                ],
                          "android":[]
                          }
         },
