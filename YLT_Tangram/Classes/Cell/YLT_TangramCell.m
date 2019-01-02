@@ -47,6 +47,9 @@ static NSDictionary *modelViews;
     YLT_TangramView *sub = nil;
     if ([self.subTangrams.allKeys containsObject:config.identify]) {
         sub = [self.subTangrams objectForKey:config.identify];
+        if ([sub respondsToSelector:@selector(setPageModel:)]) {
+            sub.pageModel = config;
+        }
     } else {
         Class cls = NULL;
         NSString *modelClassname = config.type;

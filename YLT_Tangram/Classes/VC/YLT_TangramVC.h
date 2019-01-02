@@ -34,4 +34,12 @@
                            requests:(NSDictionary<NSString *, NSDictionary *> *)pageRequests
                           withDatas:(NSMutableDictionary *)datas;
 
+/**
+ 生成页面
+
+ @param requestParams 页面的网络请求
+ @return 页面
+ */
++ (YLT_TangramVC *)tangramWithRequestParams:(NSDictionary *)requestParams;
+
 @end

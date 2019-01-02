@@ -9,6 +9,7 @@
 #import "YLTViewController.h"
 #import "YLT_Tangram.h"
 #import <YLT_Kit/YLT_Kit.h>
+#import <YLT_BaseLib/YLT_BaseLib.h>
 #import <AFNetworking/AFNetworking.h>
 #import <RegexKitLite/RegexKitLite.h>
 
@@ -32,10 +33,6 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-    NSDictionary *urls = [map objectForKey:@"url"];
-    NSArray<NSDictionary *> *pages = map[@"layout"];
-    
     [YLT_TangramManager shareInstance].tangramImageURLString = ^NSString *(NSString *path) {
         path = [NSString stringWithFormat:@"https://img2.ultimavip.cn/%@?imageView2/2/w/153/h/153&imageslim", path];
         return path;
@@ -55,8 +52,10 @@
             dispatch_group_enter(group);
             [sessionManager POST:obj.path parameters:obj.params progress:^(NSProgress * _Nonnull uploadProgress) {
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if ([responseObject isKindOfClass:[NSDictionary class]] && [((NSDictionary *) responseObject).allKeys containsObject:@"data"]) {
                     [data setObject:responseObject[@"data"] forKey:obj.keyname];
+                } else {
+                    [data setObject:responseObject forKey:obj.keyname];
                 }
                 dispatch_group_leave(group);
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -71,7 +70,7 @@
             }
         });
     };
-
+    
     [YLT_TangramManager shareInstance].tangramViewFromPageModel = ^UIView *(NSDictionary *data) {
         UIView *view = [[UIView alloc] init];
         view.backgroundColor = UIColor.blueColor;
@@ -81,6 +80,22 @@
         imageView.frame = CGRectMake(0, 0, 120, 120);
         return view;
     };
+    
+    
+    
+    
+    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=route_hs/v1/virtual/getDataUrls&tangramId=123&username=alex&password=123456" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
+    }];
+    target.view.backgroundColor = UIColor.redColor;
+    [self presentViewController:target animated:YES completion:nil];
+    
+    return;
+    
+    
+    
+    NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    NSDictionary *urls = [map objectForKey:@"url"];
+    NSArray<NSDictionary *> *pages = map[@"layout"];
     
     YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:nil];
 

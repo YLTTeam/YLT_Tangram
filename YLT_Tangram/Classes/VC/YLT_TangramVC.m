@@ -18,6 +18,8 @@
 
 @implementation YLT_TangramVC
 
+@synthesize pageDatas = _pageDatas;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
@@ -29,6 +31,49 @@
     YLT_TangramVC *result = [[YLT_TangramVC alloc] init];
     result.pageRequest = pageRequests;
     result.pageDatas = datas;
+    [result realodPages:pages];
+    return result;
+}
+
+/**
+ 生成页面
+ 
+ @param requestParams 页面的网络请求
+ @return 页面
+ */
++ (YLT_TangramVC *)tangramWithRequestParams:(NSDictionary *)requestParams {
+    YLT_TangramVC *result = [[YLT_TangramVC alloc] init];
+    TangramRequest *request = [TangramRequest mj_objectWithKeyValues:requestParams];
+    
+    if ([YLT_TangramManager shareInstance].tangramRequest) {
+        @weakify(result);
+        [YLT_TangramManager shareInstance].tangramRequest(@[request], ^(NSDictionary *resp) {
+            @strongify(result);
+            if ([resp isKindOfClass:[NSDictionary class]]) {
+                if ([resp.allKeys containsObject:@"layout"]) {
+                    NSArray *pages  = [resp objectForKey:@"layout"];
+                    [result realodPages:pages];
+                }
+                if ([resp.allKeys containsObject:@"datas"]) {
+                    result.pageDatas = resp[@"datas"];
+                }
+                if ([resp.allKeys containsObject:@"url"]) {
+                    result.pageRequest = [resp objectForKey:@"url"];
+                }
+            }
+        });
+    }
+    
+    return result;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - setter getter
+
+- (void)realodPages:(NSArray *)pages {
     [pages enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSDictionary class]]) {
             Class cls = TangramView.class;
@@ -39,18 +84,11 @@
                 }
             }
             TangramView *pageModel = [cls mj_objectWithKeyValues:obj];
-            [result.mainCollectionView registerClass:YLT_TangramCell.class forCellWithReuseIdentifier:pageModel.ylt_identify];
-            [result.pageModels addObject:pageModel];
+            [self.mainCollectionView registerClass:YLT_TangramCell.class forCellWithReuseIdentifier:pageModel.ylt_identify];
+            [self.pageModels addObject:pageModel];
         }
     }];
-    return result;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-#pragma mark - setter getter
 
 - (void)setPageRequest:(NSDictionary<NSString *,NSDictionary *> *)pageRequest {
     _pageRequest = pageRequest;
@@ -103,6 +141,13 @@
     if (pageDatas) {
         [_pageDatas addEntriesFromDictionary:pageDatas];
     }
+}
+
+- (NSMutableDictionary *)pageDatas {
+    if (!_pageDatas) {
+        _pageDatas = [[NSMutableDictionary alloc] init];
+    }
+    return _pageDatas;
 }
 
 - (NSMutableArray *)pageModels {
