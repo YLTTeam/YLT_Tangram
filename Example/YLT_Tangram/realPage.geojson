@@ -2,7 +2,12 @@
     "url":{
     },
     "title":"页面标题1234",
-    "layout":[
+    "layout":[   {
+              "type":"Custom",
+              "layoutWidth":-1,
+              "layoutHeight":128,
+              "identify":"custom"
+              },
     {
         "type":"TangramBannerLayout",
         "duration":2,
