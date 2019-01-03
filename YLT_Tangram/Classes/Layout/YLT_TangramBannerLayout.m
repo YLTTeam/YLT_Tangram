@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSArray *list;
 @property (nonatomic, strong) SDCycleScrollView *bannerView;
 @property (nonatomic, strong) NSMutableArray *imgArr;
-@property (nonatomic, strong) NSMutableArray <TangramFrameLayout *>*subTangrams;
+@property (nonatomic, strong) NSMutableArray <TangramFrameLayout *> *subBannerTangrams;
 @end
 
 @implementation YLT_TangramBannerLayout
@@ -55,7 +55,7 @@
     }
     _list = list;
     if (list.count > 0) {
-        [self.subTangrams removeAllObjects];
+        [self.subBannerTangrams removeAllObjects];
         [self.imgArr removeAllObjects];
     }
     
@@ -84,7 +84,7 @@
             obj.ylt_sourceData = params;
         }];
         [self.imgArr addObject:@""];
-        [self.subTangrams addObject:layout];
+        [self.subBannerTangrams addObject:layout];
     }
 }
 
@@ -108,11 +108,11 @@
     return _imgArr;
 }
 
-- (NSMutableArray<TangramFrameLayout *> *)subTangrams {
-    if (!_subTangrams) {
-        _subTangrams = [NSMutableArray new];
+- (NSMutableArray<TangramFrameLayout *> *)subBannerTangrams {
+    if (!_subBannerTangrams) {
+        _subBannerTangrams = [NSMutableArray new];
     }
-    return _subTangrams;
+    return _subBannerTangrams;
 }
 
 #pragma mark SDCycleScrollViewDelegate
@@ -131,8 +131,8 @@
 
 /** 如果你自定义了cell样式，请在实现此代理方法为你的cell填充数据以及其它一系列设置 */
 - (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view {
-    if (self.subTangrams.count > index) {
-         [(YLT_TangramCell *)cell cellFromConfig:self.subTangrams[index]];
+    if (self.subBannerTangrams.count > index) {
+         [(YLT_TangramCell *)cell cellFromConfig:self.subBannerTangrams[index]];
     }
 }
 @end

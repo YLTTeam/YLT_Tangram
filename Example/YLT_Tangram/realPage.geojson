@@ -68,7 +68,7 @@
     {
         "type":"TangramGridLayout",
         "dataTag":"$data[0].classifyResult",
-        "column":1,
+        "column":4,
         "layoutMarginLeft":8,
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
@@ -91,7 +91,7 @@
     {
         "type":"TangramGridLayout",
         "dataTag":"$data[1].classifyResult",
-        "column":1,
+        "column":4,
         "layoutMarginLeft":8,
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
@@ -107,10 +107,11 @@
             "id":"1",
             "dataTag":"",
             "keypath":"",
+            "padding":8,
             "action":"$clickAction",
             "type":"TangramFrameLayout",
             "identify":"TangramMenu",
-            "orientation":0,
+            "orientation":2,
             "subTangrams":[
                            {
                            "id":"0",
@@ -126,14 +127,15 @@
                            {
                            "id":"0",
                            "dataTag":"",
-                           "textColor":"ffffff",
+                           "textColor":"#ffff00",
+                           "layoutMarginTop":8,
                            "action":"",
                            "fontSize":13,
                            "type":"TangramLabel",
                            "identify":"1_1",
-                           "layoutWidth":-1,
                            "layoutHeight":17,
-                           "layoutMarginBottom":8,
+                           "layoutGravity":32,
+                           "gravity":32,
                            "text":"$model_profile"
                            }
                            ]

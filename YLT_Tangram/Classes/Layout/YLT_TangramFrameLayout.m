@@ -7,12 +7,11 @@
 
 #import "YLT_TangramFrameLayout.h"
 #import "YLT_TangramManager.h"
-#import "YLT_TangramView+layout.h"
+#import "YLT_TangramView+Layout.h"
 #import "YLT_TangramFrameLayout.h"
 
 @interface YLT_TangramFrameLayout() {
 }
-@property (nonatomic, strong) NSMutableDictionary<NSString *, YLT_TangramView *> *subTangrams;
 @end
 
 @implementation YLT_TangramFrameLayout
@@ -20,7 +19,6 @@
 - (void)refreshPage {
     if ([self.content isMemberOfClass:[TangramFrameLayout class]]) {
         __block YLT_TangramView *sub = nil;
-        __block YLT_TangramView *lastSub = nil;
         [self.content.subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([self.subTangrams.allKeys containsObject:obj.identify]) {
                 sub = self.subTangrams[obj.identify];
@@ -56,16 +54,9 @@
             }
             if (sub) {
                 sub.pageData = self.pageData;
-                if (self.content.orientation == Orientation_H) {
-                    [sub updateHlayoutWithLastSub:lastSub subTangrams:self.content];
-                } else if (self.content.orientation == Orientation_V) {
-                    [sub updateVlayoutWithLastSub:lastSub subTangrams:self.content];
-                } else {
-                    [sub updateLayout];
-                }
-                lastSub = sub;
             }
         }];
+        [self updateLayoutFrameLayout];
     }
 }
 

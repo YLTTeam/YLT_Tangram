@@ -9,7 +9,7 @@
 #import "YLT_TangramView.h"
 #import "YLT_TangramManager.h"
 #import "TangramModel+Calculate.h"
-#import "YLT_TangramView+layout.h"
+#import "YLT_TangramView+Layout.h"
 #import "YLT_TangramFrameLayout.h"
 #import "YLT_TangramImage.h"
 #import "YLT_TangramLabel.h"

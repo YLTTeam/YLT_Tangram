@@ -20,7 +20,7 @@
 #import "YLT_TangramFrameLayout.h"
 #import "YLT_TangramGridLayout+Delegate.h"
 #import "YLT_TangramGridLayout.h"
-#import "YLT_TangramView+layout.h"
+#import "YLT_TangramView+Layout.h"
 #import "YLT_TangramVC+Delegate.h"
 #import "YLT_TangramVC+Router.h"
 #import "YLT_TangramVC.h"

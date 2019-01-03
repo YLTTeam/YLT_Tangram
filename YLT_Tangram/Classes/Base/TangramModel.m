@@ -2,7 +2,7 @@
 // TangramModel.m 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2018/12/29  By AlexXiang  All rights reserved.
+// Copyright (C) 2019/01/03  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -22,7 +22,7 @@
 		self.layoutHeight = -1;
 		self.layoutRation = 0;
 		self.layoutWeight = 1;
-		self.layoutGravity = 48;
+		self.layoutGravity = 0;
 		self.padding = 0;
 		self.paddingLeft = 0;
 		self.paddingRight = 0;

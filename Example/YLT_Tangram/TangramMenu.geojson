@@ -2,10 +2,11 @@
     "id":"1",
     "dataTag":"",
     "keypath":"",
+    "padding":8,
     "action":"$clickAction",
     "type":"TangramFrameLayout",
     "identify":"TangramMenu",
-    "orientation":0,
+    "orientation":1,
     "subTangrams":[
                    {
                    "id":"0",
@@ -21,15 +22,15 @@
                    {
                    "id":"0",
                    "dataTag":"",
-                   "textColor":"ffffff",
+                   "textColor":"#ffff00",
+                   "layoutMarginLeft":8,
                    "action":"",
                    "fontSize":13,
                    "type":"TangramLabel",
                    "identify":"1_1",
-                   "layoutWidth":-1,
                    "layoutHeight":17,
-                   "layoutMarginBottom":8,
+                   "layoutGravity":16,
                    "text":"$model_profile"
                    }
-    ]
-}
+                   ]
+    }

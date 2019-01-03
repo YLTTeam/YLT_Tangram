@@ -6,7 +6,13 @@
 //
 
 #import "YLT_TangramView.h"
+#import "TangramModel.h"
 
 @interface YLT_TangramFrameLayout : YLT_TangramView
+
+/**
+ 子视图
+ */
+@property (nonatomic, strong) NSMutableDictionary<NSString *, YLT_TangramView *> *subTangrams;
 
 @end
