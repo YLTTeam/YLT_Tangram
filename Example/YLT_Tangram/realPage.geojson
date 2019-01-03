@@ -27,8 +27,8 @@
     {
         "type":"TangramBannerLayout",
         "duration":2,
-        "normalColor":"ffff00",
-        "selectedColor":"00ffff",
+              "normalColor":"#ffff00",
+              "selectedColor":"#00ffff",
         "itemName":"TangramBanner",
         "dataTag":"$banner",
         "layoutWidth":-1,
@@ -46,7 +46,7 @@
         "type":"TangramLabel",
         "text":"全部特权",
         "fontSize":16,
-        "textColor":"000000",
+        "textColor":"#000000",
         "identify":"privilege_header_1",
         "layoutMarginLeft":8,
         "textStyle":2,
@@ -61,14 +61,14 @@
         "layoutMarginLeft":8,
         "identify":"privilege_sub_header_1",
         "fontSize":14,
-        "textColor":"000000",
+        "textColor":"#000000",
         "layoutWidth":-1,
         "layoutHeight":"40"
     },
     {
         "type":"TangramGridLayout",
         "dataTag":"$data[0].classifyResult",
-        "column":4,
+        "column":1,
         "layoutMarginLeft":8,
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
@@ -84,14 +84,14 @@
         "layoutMarginLeft":8,
         "identify":"privilege_sub_header_1",
         "fontSize":14,
-        "textColor":"000000",
+        "textColor":"#000000",
         "layoutWidth":-1,
         "layoutHeight":"40"
     },
     {
         "type":"TangramGridLayout",
         "dataTag":"$data[1].classifyResult",
-        "column":4,
+        "column":1,
         "layoutMarginLeft":8,
         "layoutMarginRight":8,
         "identify":"privilege_TangramGridLayout_1",
@@ -111,7 +111,7 @@
             "action":"$clickAction",
             "type":"TangramFrameLayout",
             "identify":"TangramMenu",
-            "orientation":2,
+            "orientation":1,
             "subTangrams":[
                            {
                            "id":"0",
@@ -121,21 +121,20 @@
                            "identify":"1_2",
                            "layoutWidth":51,
                            "layoutHeight":51,
-                           "layoutGravity":32,
+                           "layoutGravity":16,
                            "src":"$model_img"
                            },
                            {
                            "id":"0",
                            "dataTag":"",
-                           "textColor":"#ffff00",
-                           "layoutMarginTop":8,
+                           "textColor":"#ff0000",
+                           "layoutMarginLeft":8,
                            "action":"",
                            "fontSize":13,
                            "type":"TangramLabel",
                            "identify":"1_1",
                            "layoutHeight":17,
-                           "layoutGravity":32,
-                           "gravity":32,
+                           "layoutGravity":16,
                            "text":"$model_profile"
                            }
                            ]
@@ -162,7 +161,7 @@
                            {
                            "id":"0",
                            "dataTag":"",
-                           "textColor":"ffffff",
+                           "textColor":"#ff0000",
                            "action":"",
                            "fontSize":13,
                            "type":"TangramLabel",
