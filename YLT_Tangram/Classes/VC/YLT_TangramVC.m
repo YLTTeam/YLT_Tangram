@@ -65,6 +65,13 @@
             NSString *path = [YLT_CACHE_PATH stringByAppendingPathComponent:[response suggestedFilename]];
             return [NSURL fileURLWithPath:path];
         } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+            if ([YLT_TangramManager shareInstance].tangramKey.ylt_isValid) {
+                /** 有秘钥，需要进行解密 */
+                NSData *data = [NSData dataWithContentsOfURL:filePath];
+                data = [YLT_AESCrypto dencryptData:data keyString:[YLT_TangramManager shareInstance].tangramKey iv:[YLT_TangramManager shareInstance].tangramIv];
+                NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                [str writeToURL:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+            }
             [result loadTemplatePath:filePath];
             [result.cacheDictionary setObject:filePath.absoluteString forKey:urlPath];
             [[NSUserDefaults standardUserDefaults] setObject:result.cacheDictionary forKey:TANGRAM_CACHE_KEY];
