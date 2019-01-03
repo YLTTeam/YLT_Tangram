@@ -11,9 +11,12 @@
 #import "YLT_TangramVC+Delegate.h"
 #import <AFNetworking/AFNetworking.h>
 
+#define TANGRAM_CACHE_KEY @"TANGRAM_CACHE_KEY"
+
 @interface YLT_TangramVC ()
 
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
+@property (nonatomic, strong) NSMutableDictionary *cacheDictionary;
 
 @end
 
@@ -45,33 +48,52 @@
 + (YLT_TangramVC *)tangramWithRequestParams:(NSDictionary *)requestParams {
     YLT_TangramVC *result = [[YLT_TangramVC alloc] init];
     if ([requestParams.allKeys containsObject:@"path"]) {
-        NSURLSessionDownloadTask *task = [[AFHTTPSessionManager manager] downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:requestParams[@"path"]]] progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSString *urlPath = requestParams[@"path"];
+        if ([result.cacheDictionary.allKeys containsObject:urlPath]) {
+            NSString *file = result.cacheDictionary[urlPath];
+            BOOL isDirectory = NO;
+            if ([[NSFileManager defaultManager] fileExistsAtPath:file isDirectory:&isDirectory]) {
+                if (isDirectory == NO) {
+                    [result loadTemplatePath:[NSURL fileURLWithPath:file]];
+                    return result;
+                }
+            }
+        }
+        
+        NSURLSessionDownloadTask *task = [[AFHTTPSessionManager manager] downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlPath]] progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
             NSString *path = [YLT_CACHE_PATH stringByAppendingPathComponent:[response suggestedFilename]];
             return [NSURL fileURLWithPath:path];
         } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-            NSDictionary *resp = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:filePath] options:NSJSONReadingAllowFragments error:nil];
-            if ([resp isKindOfClass:[NSDictionary class]]) {
-                if ([resp.allKeys containsObject:@"itemLayout"]) {
-                    result.itemLayouts = resp[@"itemLayout"];
-                }
-                if ([resp.allKeys containsObject:@"layout"]) {
-                    NSArray *pages  = [resp objectForKey:@"layout"];
-                    [result realodPages:pages];
-                }
-                if ([resp.allKeys containsObject:@"datas"]) {
-                    result.pageDatas = resp[@"datas"];
-                }
-                if ([resp.allKeys containsObject:@"url"]) {
-                    result.pageRequest = [resp objectForKey:@"url"];
-                }
-                if ([resp.allKeys containsObject:@"title"]) {
-                    result.title = resp[@"title"];
-                }
-            }
+            [result loadTemplatePath:filePath];
+            [result.cacheDictionary setObject:filePath.absoluteString forKey:urlPath];
+            [[NSUserDefaults standardUserDefaults] setObject:result.cacheDictionary forKey:TANGRAM_CACHE_KEY];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }];
         [task resume];
     }
     return result;
+}
+
+- (void)loadTemplatePath:(NSURL *)fileURL {
+    NSDictionary *resp = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:fileURL] options:NSJSONReadingAllowFragments error:nil];
+    if ([resp isKindOfClass:[NSDictionary class]]) {
+        if ([resp.allKeys containsObject:@"itemLayout"]) {
+            self.itemLayouts = resp[@"itemLayout"];
+        }
+        if ([resp.allKeys containsObject:@"layout"]) {
+            NSArray *pages  = [resp objectForKey:@"layout"];
+            [self realodPages:pages];
+        }
+        if ([resp.allKeys containsObject:@"datas"]) {
+            self.pageDatas = resp[@"datas"];
+        }
+        if ([resp.allKeys containsObject:@"url"]) {
+            self.pageRequest = [resp objectForKey:@"url"];
+        }
+        if ([resp.allKeys containsObject:@"title"]) {
+            self.title = resp[@"title"];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -155,6 +177,13 @@
         _pageDatas = [[NSMutableDictionary alloc] init];
     }
     return _pageDatas;
+}
+
+- (NSMutableDictionary *)cacheDictionary {
+    if (!_cacheDictionary) {
+        _cacheDictionary = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:TANGRAM_CACHE_KEY]];
+    }
+    return _cacheDictionary;
 }
 
 - (NSMutableArray *)pageModels {

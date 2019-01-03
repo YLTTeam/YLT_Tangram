@@ -12,8 +12,6 @@
 - (void)updateLayout {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (self.superview) {
-            self.superview.backgroundColor = [UIColor ylt_randomColor];
-            self.backgroundColor = [UIColor ylt_randomColor];
             [self mas_remakeConstraints:^(MASConstraintMaker *make) {
                 if (![self updateHorizontalGravityMaker:make]) {
                     //没有水平方向上的布局 添加默认布局

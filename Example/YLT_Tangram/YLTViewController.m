@@ -83,9 +83,8 @@
     
     
     
-    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=http://img2.ultimavip.cn/vv/4a5e0c37a31d5ec6" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
+    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=http://img2.ultimavip.cn/vv/7aae6936ae82a05b" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
     }];
-    target.view.backgroundColor = UIColor.redColor;
     [self.navigationController pushViewController:target animated:YES];
 
     return;
