@@ -17,6 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UILabel *label = [[UILabel alloc] init];
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    label.numberOfLines = 0;
+    label.text = [((NSDictionary *)self.ylt_params) description];
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setTitle:@"下单" forState:UIControlStateNormal];
     [self.view addSubview:btn];
@@ -30,8 +38,9 @@
         NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *urls = [map objectForKey:@"url"];
         NSArray<NSDictionary *> *pages = map[@"layout"];
+        NSDictionary *datas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"real" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
         
-        YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:nil];
+        YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:datas.mutableCopy];
         vc.itemLayouts = map[@"itemLayout"];
         vc.title = map[@"title"];
         [self.navigationController pushViewController:vc animated:YES];

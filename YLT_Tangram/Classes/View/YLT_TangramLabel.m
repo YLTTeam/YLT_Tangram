@@ -71,7 +71,8 @@
         }
         
         if (self.pageData && [self.content.text hasPrefix:@"$"]) {
-            self.label.text = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.text];
+            NSString *content = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.text];
+            self.label.text = ([content isKindOfClass:[NSString class]])?content:@"";
         }
     }
 }

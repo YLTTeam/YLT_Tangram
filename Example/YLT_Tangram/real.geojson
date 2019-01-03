@@ -45,7 +45,7 @@
           "type": 2,
                          "clickAction":{
                                 "iOS":[
-                                "ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex"
+                                "ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=特权商品&subtitle=购物特权"
                                 ],
                          "android":[]
                          }

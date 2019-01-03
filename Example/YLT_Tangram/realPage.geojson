@@ -1,26 +1,5 @@
 {
     "url":{
-        "banner":
-        {
-            "path":"route_hs/v1/virtual/getDataUrls",
-            "params":{
-                "userId":1,
-                "sign":1,
-                "nonce":1,
-                "token":1
-            }
-        },
-
-        "data":
-        {
-            "path":"route_hs/v1/virtual/getData",
-            "params":{
-                "userId":1,
-                "sign":1,
-                "nonce":1,
-                "token":1
-            }
-        }
     },
     "title":"页面标题1234",
     "layout":[
