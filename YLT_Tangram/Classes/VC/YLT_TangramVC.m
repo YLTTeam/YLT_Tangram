@@ -73,25 +73,25 @@
             }
             if ([zippath hasSuffix:@".zip"]) {
                 path = [zippath stringByReplacingOccurrencesOfString:@".zip" withString:@""];
+                ZipArchive *archive = [[ZipArchive alloc] init];
+                if ([archive UnzipOpenFile:zippath] && [archive UnzipFileTo:path overWrite:YES]) {
+                    [archive UnzipCloseFile];
+                    path = [NSString stringWithFormat:@"%@/%@", path, [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil] lastObject]];
+                }
             }
             
-            ZipArchive *archive = [[ZipArchive alloc] init];
-            if ([archive UnzipOpenFile:zippath] && [archive UnzipFileTo:path overWrite:YES]) {
-                [archive UnzipCloseFile];
-                path = [NSString stringWithFormat:@"%@/%@", path, [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil] lastObject]];
-                if ([YLT_TangramManager shareInstance].tangramKey.ylt_isValid) {
-                    /** 有秘钥，需要进行解密 */
-                    NSData *data = [NSData dataWithContentsOfFile:path];
-                    data = [YLT_AESCrypto dencryptData:data keyString:[YLT_TangramManager shareInstance].tangramKey iv:[YLT_TangramManager shareInstance].tangramIv];
-                    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                    [str writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                }
-                [result loadTemplatePath:[NSURL fileURLWithPath:path]];
-                
-                [result.cacheDictionary setObject:path forKey:urlPath];
-                [[NSUserDefaults standardUserDefaults] setObject:result.cacheDictionary forKey:TANGRAM_CACHE_KEY];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+            if ([YLT_TangramManager shareInstance].tangramKey.ylt_isValid) {
+                /** 有秘钥，需要进行解密 */
+                NSData *data = [NSData dataWithContentsOfFile:path];
+                data = [YLT_AESCrypto dencryptData:data keyString:[YLT_TangramManager shareInstance].tangramKey iv:[YLT_TangramManager shareInstance].tangramIv];
+                NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                [str writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
             }
+            [result loadTemplatePath:[NSURL fileURLWithPath:path]];
+            
+            [result.cacheDictionary setObject:path forKey:urlPath];
+            [[NSUserDefaults standardUserDefaults] setObject:result.cacheDictionary forKey:TANGRAM_CACHE_KEY];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }];
         [task resume];
     }
