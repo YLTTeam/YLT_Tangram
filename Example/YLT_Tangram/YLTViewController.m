@@ -59,7 +59,7 @@
         static AFHTTPSessionManager *sessionManager = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://gw-dev.ultimablack.cn"]];
+            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://gw.ultimablack.cn/"]];
             sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
             sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", nil];
         });

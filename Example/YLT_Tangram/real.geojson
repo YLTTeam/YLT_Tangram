@@ -44,10 +44,8 @@
           "sort": 2,
           "type": 2,
                          "clickAction":{
-                                "iOS":[
-                                "ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=特权商品&subtitle=购物特权"
-                                ],
-                         "android":[]
+                                "iOS":"ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=特权商品&subtitle=购物特权",
+                                "android":"dit://ultimavip.cn/gold/home"
                          }
         },
         {
@@ -71,10 +69,8 @@
           "sort": 4,
           "type": 2,
                          "clickAction":{
-                         "iOS":[
-                                "ylt://self/sendRequest:?password=123456"
-                                ],
-                         "android":[]
+                         "iOS":"ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=永久特权-特权商品&subtitle=购物特权",
+                         "android":"dit://ultimavip.cn/gold/home"
                          }
         },
         {

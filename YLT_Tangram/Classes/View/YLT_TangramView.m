@@ -56,11 +56,8 @@
             clickAction = clickAction.mj_JSONObject;
         }
         if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
-            NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
-            if ([actionList isKindOfClass:[NSString class]]) {
-                actionList = @[actionList];
-            }
-            if (actionList.count > 0) {
+            NSString *action = [clickAction objectForKey:@"iOS"];
+            if ([action isKindOfClass:[NSString class]]) {
                 self.userInteractionEnabled = YES;
                 [self addGestureRecognizer:self.tap];
             }
@@ -87,14 +84,11 @@
         clickAction = clickAction.mj_JSONObject;
     }
     if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
-        NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
-        if ([actionList isKindOfClass:[NSString class]]) {
-            actionList = @[actionList];
-        }
-        [actionList enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.ylt_currentVC ylt_routerToURL:obj arg:nil completion:^(NSError *error, id response) {
+        NSString *action = [clickAction objectForKey:@"iOS"];
+        if ([action isKindOfClass:[NSString class]]) {
+            [self.ylt_currentVC ylt_routerToURL:action arg:nil completion:^(NSError *error, id response) {
             }];
-        }];
+        }
     }
 }
 
