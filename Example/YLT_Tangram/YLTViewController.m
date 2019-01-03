@@ -101,7 +101,7 @@
     
     
     
-    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=http://img2.ultimavip.cn/vv/4647545096db4cd3" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
+    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=http://img2.ultimavip.cn/vv/83fd938a4d84b200" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
     }];
     [self.navigationController pushViewController:target animated:YES];
 

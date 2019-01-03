@@ -46,6 +46,10 @@
                          "clickAction":{
                                 "iOS":"ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=特权商品&subtitle=购物特权",
                                 "android":"dit://ultimavip.cn/gold/home"
+                         },
+                         "secondAction":{
+                         "iOS":["ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=特权商品&subtitle=购物特权&secondAction=YES"],
+                         "android":"dit://ultimavip.cn/gold/list"
                          }
         },
         {

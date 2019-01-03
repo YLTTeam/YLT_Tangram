@@ -18,6 +18,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		B6B444B67C1A91FE976EF0C8 /* Pods_YLT_Tangram_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B055E4A063E2E996F10C8D /* Pods_YLT_Tangram_Example.framework */; };
+		C71372F721DE07DC00D5F80A /* serverRealPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C71372F621DE07DB00D5F80A /* serverRealPage.geojson */; };
 		C7216CA521DC8BD900EEE67D /* YLT_TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7216CA421DC8BD900EEE67D /* YLT_TestVC.m */; };
 		C730987521D08B49008A60A8 /* real.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C730987421D08B49008A60A8 /* real.geojson */; };
 		C7B2859E21D1BFD500522405 /* realPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C7B2859D21D1BFD500522405 /* realPage.geojson */; };
@@ -54,6 +55,7 @@
 		7EB73A680A3A6986B44478E9 /* Pods_YLT_Tangram_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YLT_Tangram_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B9B055E4A063E2E996F10C8D /* Pods_YLT_Tangram_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YLT_Tangram_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C71372F621DE07DB00D5F80A /* serverRealPage.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = serverRealPage.geojson; sourceTree = "<group>"; };
 		C7216CA321DC8BD900EEE67D /* YLT_TestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLT_TestVC.h; sourceTree = "<group>"; };
 		C7216CA421DC8BD900EEE67D /* YLT_TestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLT_TestVC.m; sourceTree = "<group>"; };
 		C730987421D08B49008A60A8 /* real.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = real.geojson; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		C7C6415A21CC8995001B280A /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				C71372F621DE07DB00D5F80A /* serverRealPage.geojson */,
 				FA35336721D373100023DFBA /* logo.png */,
 				C730987421D08B49008A60A8 /* real.geojson */,
 				C7B2859D21D1BFD500522405 /* realPage.geojson */,
@@ -258,6 +261,7 @@
 				C7DA5ED321D469D500C9303E /* TangramBanner.geojson in Resources */,
 				C730987521D08B49008A60A8 /* real.geojson in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				C71372F721DE07DC00D5F80A /* serverRealPage.geojson in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				C7DA5ED121D364BD00C9303E /* TangramMenu.geojson in Resources */,
 				FA35336821D373100023DFBA /* logo.png in Resources */,
