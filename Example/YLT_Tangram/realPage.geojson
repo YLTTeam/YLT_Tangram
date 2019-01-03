@@ -6,7 +6,8 @@
               "type":"Custom",
               "layoutWidth":-1,
               "layoutHeight":128,
-              "identify":"custom"
+              "identify":"custom",
+              "dataTag":"$banner"
               },
     {
         "type":"TangramBannerLayout",

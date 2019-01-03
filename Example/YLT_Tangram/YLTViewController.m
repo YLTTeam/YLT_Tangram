@@ -14,6 +14,21 @@
 #import <RegexKitLite/RegexKitLite.h>
 #import <YLT_Crypto/YLT_Crypto.h>
 
+@interface TestView : YLT_TangramView
+
+@end
+
+@implementation TestView
+
+- (void)setPageData:(NSDictionary *)pageData {
+    NSLog(@"%@", pageData);
+}
+
+@end
+
+
+
+
 @interface YLTViewController ()
 
 @property (nonatomic, strong) YLT_TangramView *tangramView;
@@ -89,7 +104,7 @@
     };
     
     [YLT_TangramManager shareInstance].tangramViewFromPageModel = ^UIView *(NSDictionary *data) {
-        UIView *view = [[UIView alloc] init];
+        TestView *view = [[TestView alloc] init];
         view.backgroundColor = UIColor.blueColor;
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.backgroundColor = UIColor.greenColor;
