@@ -30,4 +30,5 @@ Pod::Spec.new do |s|
   s.dependency 'YLT_Crypto'
   s.dependency 'RegexKitLite'
   s.dependency 'SDCycleScrollView'
+  s.dependency 'ZipArchive'
 end

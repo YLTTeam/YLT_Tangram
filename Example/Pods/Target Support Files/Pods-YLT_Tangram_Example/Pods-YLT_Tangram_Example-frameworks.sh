@@ -158,6 +158,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Crypto/YLT_Crypto.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Kit/YLT_Kit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Tangram/YLT_Tangram.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ZipArchive/ZipArchive.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
@@ -175,6 +176,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Crypto/YLT_Crypto.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Kit/YLT_Kit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Tangram/YLT_Tangram.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ZipArchive/ZipArchive.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
