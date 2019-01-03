@@ -73,7 +73,11 @@
                 [str writeToURL:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
             }
             [result loadTemplatePath:filePath];
-            [result.cacheDictionary setObject:filePath.absoluteString forKey:urlPath];
+            NSString *path = filePath.absoluteString;
+            if ([path hasPrefix:@"file://"]) {
+                path = [path stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+            }
+            [result.cacheDictionary setObject:path forKey:urlPath];
             [[NSUserDefaults standardUserDefaults] setObject:result.cacheDictionary forKey:TANGRAM_CACHE_KEY];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];
