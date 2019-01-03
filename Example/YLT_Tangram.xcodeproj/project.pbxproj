@@ -18,6 +18,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		B6B444B67C1A91FE976EF0C8 /* Pods_YLT_Tangram_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9B055E4A063E2E996F10C8D /* Pods_YLT_Tangram_Example.framework */; };
+		C71372F521DDB5DC00D5F80A /* rsa_public_key.der in Resources */ = {isa = PBXBuildFile; fileRef = C71372F421DDB5DC00D5F80A /* rsa_public_key.der */; };
 		C7216CA521DC8BD900EEE67D /* YLT_TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C7216CA421DC8BD900EEE67D /* YLT_TestVC.m */; };
 		C730987521D08B49008A60A8 /* real.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C730987421D08B49008A60A8 /* real.geojson */; };
 		C7B2859E21D1BFD500522405 /* realPage.geojson in Resources */ = {isa = PBXBuildFile; fileRef = C7B2859D21D1BFD500522405 /* realPage.geojson */; };
@@ -54,6 +55,7 @@
 		7EB73A680A3A6986B44478E9 /* Pods_YLT_Tangram_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YLT_Tangram_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B9B055E4A063E2E996F10C8D /* Pods_YLT_Tangram_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YLT_Tangram_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C71372F421DDB5DC00D5F80A /* rsa_public_key.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = rsa_public_key.der; sourceTree = "<group>"; };
 		C7216CA321DC8BD900EEE67D /* YLT_TestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLT_TestVC.h; sourceTree = "<group>"; };
 		C7216CA421DC8BD900EEE67D /* YLT_TestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLT_TestVC.m; sourceTree = "<group>"; };
 		C730987421D08B49008A60A8 /* real.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = real.geojson; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* YLTViewController.h */,
 				6003F5A6195388D20070C39A /* YLTViewController.m */,
+				C71372F421DDB5DC00D5F80A /* rsa_public_key.der */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7DA5ED321D469D500C9303E /* TangramBanner.geojson in Resources */,
+				C71372F521DDB5DC00D5F80A /* rsa_public_key.der in Resources */,
 				C730987521D08B49008A60A8 /* real.geojson in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
@@ -307,6 +311,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YLT_BaseLib/YLT_BaseLib.framework",
+				"${BUILT_PRODUCTS_DIR}/YLT_Crypto/YLT_Crypto.framework",
 				"${BUILT_PRODUCTS_DIR}/YLT_Kit/YLT_Kit.framework",
 				"${BUILT_PRODUCTS_DIR}/YLT_Tangram/YLT_Tangram.framework",
 			);
@@ -324,6 +329,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDCycleScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLT_BaseLib.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLT_Crypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLT_Kit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YLT_Tangram.framework",
 			);

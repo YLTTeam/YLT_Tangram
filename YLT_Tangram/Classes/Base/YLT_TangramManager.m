@@ -6,6 +6,7 @@
 //
 
 #import "YLT_TangramManager.h"
+#import <YLT_Crypto/YLT_Crypto.h>
 
 @interface YLT_TangramManager() {
 }
@@ -17,6 +18,15 @@
 YLT_ShareInstance(YLT_TangramManager);
 
 - (void)ylt_init {
+}
+
+- (void)setTangramPublicKeyPath:(NSString *)tangramPublicKeyPath {
+    _tangramPublicKeyPath = tangramPublicKeyPath;
+    if (tangramPublicKeyPath.ylt_isValid) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:tangramPublicKeyPath isDirectory:nil]) {
+            [[YLT_RSACrypto sharedInstance] loadPublicKey:tangramPublicKeyPath];
+        }
+    }
 }
 
 @end

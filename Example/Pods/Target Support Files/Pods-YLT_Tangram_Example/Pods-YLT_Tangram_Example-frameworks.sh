@@ -155,6 +155,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_BaseLib/YLT_BaseLib.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YLT_Crypto/YLT_Crypto.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Kit/YLT_Kit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Tangram/YLT_Tangram.framework"
 fi
@@ -171,6 +172,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SDCycleScrollView/SDCycleScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_BaseLib/YLT_BaseLib.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YLT_Crypto/YLT_Crypto.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Kit/YLT_Kit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YLT_Tangram/YLT_Tangram.framework"
 fi

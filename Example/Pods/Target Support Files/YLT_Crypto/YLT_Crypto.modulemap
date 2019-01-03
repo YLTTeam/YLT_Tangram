@@ -1,0 +1,6 @@
+framework module YLT_Crypto {
+  umbrella header "YLT_Crypto-umbrella.h"
+
+  export *
+  module * { export * }
+}

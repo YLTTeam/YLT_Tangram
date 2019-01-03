@@ -18,7 +18,9 @@
 
 - (void)refreshPage {
     if ([self.content isKindOfClass:[TangramLabel class]]) {
-        self.label.text = self.content.text;
+        if (![self.content.text hasPrefix:@"$"]) {
+            self.label.text = self.content.text;
+        }
         self.label.ylt_textColor(self.content.textColor.ylt_androidColorFromHexString);
         switch (self.content.gravity) {
             case LayoutGravity_Top:

@@ -32,6 +32,8 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [YLT_TangramManager shareInstance].tangramPublicKeyPath = [[NSBundle mainBundle] pathForResource:@"rsa_public_key.der" ofType:nil];
+    
     [YLT_TangramManager shareInstance].tangramImageURLString = ^NSString *(NSString *path) {
         path = [NSString stringWithFormat:@"https://img2.ultimavip.cn/%@?imageView2/2/w/153/h/153&imageslim", path];
         return path;

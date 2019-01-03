@@ -9,6 +9,7 @@
 #import "YLT_TangramCell.h"
 #import "YLT_TangramManager.h"
 #import "YLT_TangramVC+Delegate.h"
+#import <YLT_Crypto/YLT_Crypto.h>
 #import <AFNetworking/AFNetworking.h>
 
 #define TANGRAM_CACHE_KEY @"TANGRAM_CACHE_KEY"

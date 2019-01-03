@@ -33,6 +33,7 @@ PODS:
     - FastCoding
     - FMDB
     - MJExtension
+  - YLT_Crypto (0.0.3)
   - YLT_Kit (0.3.9):
     - AFNetworking
     - Aspects
@@ -44,6 +45,7 @@ PODS:
   - YLT_Tangram (0.1.0):
     - RegexKitLite
     - SDCycleScrollView
+    - YLT_Crypto
     - YLT_Kit
 
 DEPENDENCIES:
@@ -64,6 +66,7 @@ SPEC REPOS:
     - SDCycleScrollView
     - SDWebImage
     - YLT_BaseLib
+    - YLT_Crypto
     - YLT_Kit
 
 EXTERNAL SOURCES:
@@ -83,8 +86,9 @@ SPEC CHECKSUMS:
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   YLT_BaseLib: e0145b64b879e74dbf70a41c87b0348a8b860813
+  YLT_Crypto: 3d7dceec11f4a3046f58b4852092d68e4c37ab4e
   YLT_Kit: 9151a261012efa0c881d36e63613b869162c5bbe
-  YLT_Tangram: f16a543090565e1b8e9c1d1af5edc93cf86c5cf6
+  YLT_Tangram: e0ef5069f8f7a028db53140e92590f9ceca38e5c
 
 PODFILE CHECKSUM: 68817214a39d615409a54bc5443ca0a094b3df29
 
