@@ -142,6 +142,11 @@
         //更新子视图的布局
         [self.content.subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             currentSub = [self.subTangrams objectForKey:obj.identify];
+            if ([currentSub isKindOfClass:[YLT_TangramFrameLayout class]]) {
+                [(YLT_TangramFrameLayout *)currentSub updateLayoutFrameLayout];
+                return ;
+            }
+            
             if (currentSub) {
                 [currentSub mas_remakeConstraints:^(MASConstraintMaker *make) {
                     BOOL hasVertical = [currentSub updateVerticalGravityMaker:make];
