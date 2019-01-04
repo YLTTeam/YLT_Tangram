@@ -32,8 +32,10 @@
         "text":"全部特权",
         "fontSize":16,
         "textColor":"#000000",
+        "background":"#ff0000",
         "identify":"privilege_header_1",
         "layoutMarginLeft":8,
+        "layoutMarginRight":8,
         "textStyle":2,
         "layoutWidth":-1,
         "layoutHeight":"40"

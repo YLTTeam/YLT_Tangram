@@ -21,6 +21,7 @@
 @implementation TestView
 
 - (void)setPageData:(NSDictionary *)pageData {
+    [super setPageData:pageData];
     NSLog(@"%@", pageData);
 }
 

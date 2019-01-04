@@ -27,6 +27,7 @@
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setTitle:@"下单" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.right.equalTo(self.view);
@@ -46,7 +47,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
-    self.view.backgroundColor = UIColor.redColor;
+    self.view.backgroundColor = UIColor.whiteColor;
     
     NSLog(@"%@", self.ylt_params);
 }
