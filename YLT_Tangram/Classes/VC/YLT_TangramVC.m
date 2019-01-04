@@ -108,8 +108,8 @@
             NSArray *pages  = [resp objectForKey:@"layout"];
             [self realodPages:pages];
         }
-        if ([resp.allKeys containsObject:@"datas"]) {
-            self.pageDatas = resp[@"datas"];
+        if ([resp.allKeys containsObject:@"data"]) {
+            self.pageDatas = resp[@"data"];
         }
         if ([resp.allKeys containsObject:@"url"]) {
             self.pageRequest = [resp objectForKey:@"url"];

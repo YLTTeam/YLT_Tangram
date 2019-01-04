@@ -50,11 +50,21 @@
     [self refreshPage];
     
     [self removeGestureRecognizer:self.tap];
-    if (self.pageModel.action.ylt_isValid) {
-        NSDictionary *clickAction = [YLT_TangramUtils valueFromSourceData:pageData keyPath:self.pageModel.action];
+    NSDictionary *clickAction = nil;
+    if ([self.pageModel.action isKindOfClass:[NSString class]]) {
+        if ([((NSString *) self.pageModel.action) hasPrefix:@"$"]) {
+            clickAction = [YLT_TangramUtils valueFromSourceData:pageData keyPath:self.pageModel.action];
+        }
         if ([clickAction isKindOfClass:[NSString class]]) {
             clickAction = clickAction.mj_JSONObject;
         }
+        if ([clickAction isKindOfClass:[NSString class]]) {
+            clickAction = @{@"iOS":clickAction};
+        }
+    } else if ([self.pageModel.action isKindOfClass:[NSDictionary class]]) {
+        clickAction = self.pageModel.action;
+    }
+    if (clickAction && clickAction.allKeys.count > 0) {
         if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
             NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
             if ([actionList isKindOfClass:[NSString class]]) {
@@ -82,19 +92,31 @@
 }
 
 - (void)tapAction:(UITapGestureRecognizer *)sender {
-    NSDictionary *clickAction = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.action];
-    if ([clickAction isKindOfClass:[NSString class]]) {
-        clickAction = clickAction.mj_JSONObject;
-    }
-    if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
-        NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
-        if ([actionList isKindOfClass:[NSString class]]) {
-            actionList = @[(NSString *)actionList];
+    NSDictionary *clickAction = nil;
+    if ([self.pageModel.action isKindOfClass:[NSString class]]) {
+        if ([((NSString *) self.pageModel.action) hasPrefix:@"$"]) {
+            clickAction = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.action];
         }
-        [actionList enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [self.ylt_currentVC ylt_routerToURL:obj arg:nil completion:^(NSError *error, id response) {
+        if ([clickAction isKindOfClass:[NSString class]]) {
+            clickAction = clickAction.mj_JSONObject;
+        }
+        if ([clickAction isKindOfClass:[NSString class]]) {
+            clickAction = @{@"iOS":clickAction};
+        }
+    } else if ([self.pageModel.action isKindOfClass:[NSDictionary class]]) {
+        clickAction = self.pageModel.action;
+    }
+    if (clickAction && clickAction.allKeys.count > 0) {
+        if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
+            NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
+            if ([actionList isKindOfClass:[NSString class]]) {
+                actionList = @[(NSString *)actionList];
+            }
+            [actionList enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self.ylt_currentVC ylt_routerToURL:obj arg:nil completion:^(NSError *error, id response) {
+                }];
             }];
-        }];
+        }
     }
 }
 

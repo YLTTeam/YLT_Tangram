@@ -25,42 +25,33 @@
     return self.identify.ylt_isValid?self.identify:NSStringFromClass(self.class);
 }
 
-- (void)setLayoutWeightWidth:(CGFloat)layoutWeightWidth {
-    objc_setAssociatedObject(self, @selector(layoutWeightWidth), @(layoutWeightWidth), OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (CGFloat)layoutWeightWidth {
-    id value = objc_getAssociatedObject(self, @selector(layoutWeightWidth));
-    return [value doubleValue];
-}
-
-- (void)setLayoutWeightHeight:(CGFloat)layoutWeightHeight {
-    objc_setAssociatedObject(self, @selector(layoutWeightHeight), @(layoutWeightHeight), OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (CGFloat)layoutWeightHeight {
-    id value = objc_getAssociatedObject(self, @selector(layoutWeightHeight));
-    return [value doubleValue];
-}
-
 @end
 
 @implementation TangramFrameLayout (Calculate)
+
+- (CGFloat)ylt_layoutWidthTotalWeight {
+    return [objc_getAssociatedObject(self, @selector(ylt_layoutWidthTotalWeight)) floatValue];
+}
+
+- (CGFloat)ylt_layoutHeightTotalHeight {
+    return [objc_getAssociatedObject(self, @selector(ylt_layoutHeightTotalHeight)) floatValue];
+}
+
 - (void)setSubTangrams:(NSMutableArray<TangramView *> *)subTangrams {
     @synchronized(subTangrams) {
-        __block CGFloat layoutTotalH = 0.0;
-        __block CGFloat layoutTotalV = 0.0;
+        __block CGFloat layoutTotalWidth = 0.0;
+        __block CGFloat layoutTotalHeight = 0.0;
         [subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (self.orientation == Orientation_H ) {
-                obj.layoutWeightHeight = obj.layoutHeight > 0 ? 0 : obj.layoutWeight;
-                layoutTotalH += obj.layoutWeightHeight;
+            if (self.orientation == Orientation_H) {
+                obj.layoutWeight = obj.layoutWidth > 0 ? 0 : obj.layoutWeight;
+                layoutTotalWidth += obj.layoutWeight;
             } else if (self.orientation == Orientation_V) {
-                obj.layoutWeightWidth = obj.layoutWidth > 0 ? 0 : obj.layoutWeight;
-                 layoutTotalV += obj.layoutWeightWidth;
+                obj.layoutWeight = obj.layoutHeight > 0 ? 0 : obj.layoutWeight;
+                layoutTotalHeight += obj.layoutWeight;
             }
         }];
-        self.layoutTotalV = layoutTotalV;
-        self.layoutTotalH = layoutTotalH;
+        objc_setAssociatedObject(self, @selector(ylt_layoutWidthTotalWeight), @(layoutTotalWidth), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, @selector(ylt_layoutHeightTotalHeight), @(layoutTotalHeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         objc_setAssociatedObject(self, @selector(subTangrams), subTangrams, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
@@ -69,22 +60,5 @@
     return objc_getAssociatedObject(self, @selector(subTangrams));
 }
 
-- (void)setLayoutTotalH:(CGFloat)layoutTotalH {
-    objc_setAssociatedObject(self, @selector(layoutTotalH), @(layoutTotalH), OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (CGFloat)layoutTotalH {
-    id value = objc_getAssociatedObject(self, @selector(layoutTotalH));
-    return [value doubleValue];
-}
-
-- (void)setLayoutTotalV:(CGFloat)layoutTotalV {
-    objc_setAssociatedObject(self, @selector(layoutTotalV), @(layoutTotalV), OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (CGFloat)layoutTotalV {
-    id value = objc_getAssociatedObject(self, @selector(layoutTotalV));
-    return [value doubleValue];
-}
 @end
 

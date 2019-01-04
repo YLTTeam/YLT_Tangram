@@ -2,7 +2,7 @@
 // TangramModel.h 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2019/01/03  By AlexXiang  All rights reserved.
+// Copyright (C) 2019/01/04  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -105,8 +105,8 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 @property (readwrite, nonatomic, assign) BOOL hidden;
 /** 数据 */
 @property (readwrite, nonatomic, strong) id dataTag;
-/** 当action部分有值的时候，给控件添加点击事件 */
-@property (readwrite, nonatomic, strong) NSString *action;
+/** 当action部分有值的时候，给控件添加点击事件 也可以直接是事件字典 */
+@property (readwrite, nonatomic, strong) id action;
 /** 类名 */
 @property (readwrite, nonatomic, strong) NSString *type;
 /** 重新标记，没有值，则使用classname */

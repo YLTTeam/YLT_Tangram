@@ -22,8 +22,122 @@
             }
         }
     },
+    "data":{
+        "result":[
+        {
+                    "pid": 29,
+                    "popInfo": "",
+                    "model_title": "特权",
+                    "link": "",
+                    "travel_type": 1,
+                    "updated": 1540443891435,
+                    "msgIsShow": false,
+                    "model_profile": "特权商品",
+                    "model_img": "h5/2018/10/25/F228DE6134F24F37995DD35F386DD451",
+                    "clickType": 24,
+                    "isShow": true,
+                    "is_start_show": true,
+                    "img2": "h5/2018/10/25/3C07A0E74B8B46DD94354C786FF06361",
+                    "link_weixin": "",
+                    "privilegeClassify": 3,
+                    "id": 126,
+                    "msgInfo": "",
+                    "userDefaultMsg": "",
+                    "sort": 2,
+                    "type": 2
+                    }, {
+                    "pid": 32,
+                    "popInfo": "",
+                    "model_title": "永久特权-特权商品",
+                    "link": "",
+                    "travel_type": 1,
+                    "updated": 1540451206103,
+                    "msgIsShow": false,
+                    "model_profile": "永久特权-特权商品",
+                    "model_img": "h5/2018/10/25/E48630E4D3404EADA7C0C4E395CA8A80",
+                    "clickType": 24,
+                    "isShow": true,
+                    "is_start_show": true,
+                    "link_weixin": "",
+                    "privilegeClassify": 3,
+                    "id": 128,
+                    "msgInfo": "",
+                    "userDefaultMsg": "",
+                    "sort": 4,
+                    "type": 2
+                    }, {
+                    "popInfo": "",
+                    "model_title": "电影票",
+                    "link": "",
+                    "travel_type": 1,
+                    "updated": 1536301182519,
+                    "msgIsShow": false,
+                    "model_profile": "电影票",
+                    "model_img": "h5/2017/9/4/933D0A1975554D03A5FC4DFA556B5E31",
+                    "clickType": 11,
+                    "isShow": true,
+                    "is_start_show": false,
+                    "img2": "h5/2018/9/7/F017C87981E04C97828F42F3D24287FF",
+                    "link_weixin": "",
+                    "privilegeClassify": 3,
+                    "id": 79,
+                    "msgInfo": "9.9观影",
+                    "userDefaultMsg": "",
+                    "sort": 6,
+                    "type": 2
+                    }, {
+                    "pid": 32,
+                    "popInfo": "",
+                    "model_title": "永久特权-特权商品",
+                    "link": "",
+                    "travel_type": 1,
+                    "updated": 1540451206103,
+                    "msgIsShow": false,
+                    "model_profile": "永久特权-特权商品",
+                    "model_img": "h5/2018/10/25/E48630E4D3404EADA7C0C4E395CA8A80",
+                    "clickType": 24,
+                    "isShow": true,
+                    "is_start_show": true,
+                    "link_weixin": "",
+                    "privilegeClassify": 3,
+                    "id": 128,
+                    "msgInfo": "",
+                    "userDefaultMsg": "",
+                    "sort": 4,
+                    "type": 2
+                    }, {
+                    "popImg": "h5/2017/7/31/037E182610DE4A98B6A7138ED634214E",
+                    "popInfo": "星巴克咖啡代取，自助下单",
+                    "model_title": "副标题",
+                    "popInfoe": "Starbucks Coffee Delivery",
+                    "link": "",
+                    "travel_type": 1,
+                    "updated": 1544068556828,
+                    "msgIsShow": false,
+                    "model_profile": "星巴克",
+                    "model_img": "h5/2017/7/31/61DD3D6285C242609386FF7509556175",
+                    "clickType": 6,
+                    "isShow": true,
+                    "is_start_show": true,
+                    "img2": "h5/2018/9/17/0F2C25D025E247F2B1EC6F0CEB995CA9",
+                    "link_weixin": "",
+                    "privilegeClassify": 4,
+                    "id": 39,
+                    "msgInfo": "",
+                    "userDefaultMsg": "",
+                    "sort": 2,
+                    "type": 2
+                    }
+        ]
+    },
     "title":"页面标题",
-    "layout":[
+    "layout":[ {
+              "type":"Custom",
+              "layoutWidth":-1,
+              "layoutHeight":128,
+              "identify":"custom",
+              "dataTag":"$banner"
+              },
               {
               "type":"TangramBannerLayout",
               "duration":2,
@@ -78,106 +192,8 @@
               
               
               {
-              "type":"TangramLabel",
-              "text":"$data[1].classifyName",
-              "layoutMarginLeft":8,
-              "identify":"privilege_sub_header_1",
-              "fontSize":14,
-              "textColor":"#000000",
-              "layoutWidth":-1,
-              "layoutHeight":"40"
-              },
-              {
               "type":"TangramGridLayout",
-              "dataTag":"$data[1].classifyResult",
-              "column":4,
-              "layoutMarginLeft":8,
-              "layoutMarginRight":8,
-              "identify":"privilege_TangramGridLayout_1",
-              "itemHorizontalMargin":8,
-              "itemName": "TangramMenu"
-              },
-              
-              
-              {
-              "type":"TangramLabel",
-              "text":"$data[2].classifyName",
-              "layoutMarginLeft":8,
-              "identify":"privilege_sub_header_1",
-              "fontSize":14,
-              "textColor":"#000000",
-              "layoutWidth":-1,
-              "layoutHeight":"40"
-              },
-              {
-              "type":"TangramGridLayout",
-              "dataTag":"$data[2].classifyResult",
-              "column":4,
-              "layoutMarginLeft":8,
-              "layoutMarginRight":8,
-              "identify":"privilege_TangramGridLayout_1",
-              "itemHorizontalMargin":8,
-              "itemName": "TangramMenu"
-              },
-              
-              
-              {
-              "type":"TangramLabel",
-              "text":"$data[3].classifyName",
-              "layoutMarginLeft":8,
-              "identify":"privilege_sub_header_1",
-              "fontSize":14,
-              "textColor":"#000000",
-              "layoutWidth":-1,
-              "layoutHeight":"40"
-              },
-              {
-              "type":"TangramGridLayout",
-              "dataTag":"$data[3].classifyResult",
-              "column":4,
-              "layoutMarginLeft":8,
-              "layoutMarginRight":8,
-              "identify":"privilege_TangramGridLayout_1",
-              "itemHorizontalMargin":8,
-              "itemName": "TangramMenu"
-              },
-              
-              
-              {
-              "type":"TangramLabel",
-              "text":"$data[4].classifyName",
-              "layoutMarginLeft":8,
-              "identify":"privilege_sub_header_1",
-              "fontSize":14,
-              "textColor":"#000000",
-              "layoutWidth":-1,
-              "layoutHeight":"40"
-              },
-              {
-              "type":"TangramGridLayout",
-              "dataTag":"$data[4].classifyResult",
-              "column":4,
-              "layoutMarginLeft":8,
-              "layoutMarginRight":8,
-              "identify":"privilege_TangramGridLayout_1",
-              "itemHorizontalMargin":8,
-              "itemName": "TangramMenu"
-              },
-              
-              
-              {
-              "type":"TangramLabel",
-              "text":"$data[5].classifyName",
-              "layoutMarginLeft":8,
-              "identify":"privilege_sub_header_1",
-              "fontSize":14,
-              "textColor":"#000000",
-              "layoutWidth":-1,
-              "layoutHeight":"40"
-              },
-              {
-              "type":"TangramGridLayout",
-              "dataTag":"$data[5].classifyResult",
+              "dataTag":"$result",
               "column":4,
               "layoutMarginLeft":8,
               "layoutMarginRight":8,
@@ -185,6 +201,7 @@
               "itemHorizontalMargin":8,
               "itemName": "TangramMenu"
               }
+              
               ],
     
     
@@ -194,7 +211,10 @@
             "dataTag":"",
             "keypath":"",
             "padding":8,
-            "action":"$clickAction",
+            "action":{
+                "iOS":["ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=特权商品&subtitle=购物特权&secondAction=YES"],
+                "android":"dit://ultimavip.cn/gold/list"
+            },
             "type":"TangramFrameLayout",
             "identify":"TangramMenu",
             "orientation":2,

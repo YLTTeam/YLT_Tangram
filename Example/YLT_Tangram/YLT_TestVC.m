@@ -39,7 +39,7 @@
         NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *urls = [map objectForKey:@"url"];
         NSArray<NSDictionary *> *pages = map[@"layout"];
-        NSDictionary *datas = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"real" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+        NSDictionary *datas = map[@"data"];
         
         YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:datas.mutableCopy];
         vc.itemLayouts = map[@"itemLayout"];
