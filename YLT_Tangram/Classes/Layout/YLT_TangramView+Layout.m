@@ -23,7 +23,7 @@
                     //没有垂直方向上的布局 添加默认布局
                     [self updateVerticalDefaultMaker:make];
                 }
-                make.size.mas_equalTo([self size]);
+                make.size.mas_equalTo([self size:nil]);
             }];
         }
     });
@@ -87,12 +87,25 @@
 }
 
 #pragma mark 服务端下发的控件宽高
-- (CGSize)size {
+- (CGSize)size:(YLT_TangramFrameLayout *)framelayout {
     if (!self.superview) {
         return CGSizeZero;
     }
     CGFloat width = self.pageModel.layoutWidth > 0 ? self.pageModel.layoutWidth : 0.0;
     CGFloat height = self.pageModel.layoutHeight > 0 ? self.pageModel.layoutHeight : 0.0;
+    
+    if (framelayout && [framelayout isKindOfClass:[YLT_TangramFrameLayout class]] && self.pageModel.layoutWeight != 0) {
+        TangramFrameLayout *content = (TangramFrameLayout *)framelayout.pageModel;
+        //当framelayout 有值的时候  说明计算需要依赖于父视图 权重就需要考虑了
+        if (content.orientation == Orientation_H && width == 0) {
+            /** 水平布局 宽度没有绝对值 并且权重不为零 */
+            width = ([self maxWidth] - content.ylt_layoutMarginTotal) * self.pageModel.layoutWeight / content.ylt_layoutWidthTotalWeight;
+        } else if (content.orientation == Orientation_V && height == 0) {
+            /** 垂直布局 高度没有绝对值 并且权重不为零 */
+            height = ([self maxHeight] - content.ylt_layoutMarginTotal) * self.pageModel.layoutWeight / content.ylt_layoutHeightTotalWeight;
+        }
+    }
+    
     //根据比例来算
     if (height == 0 && width > 0){
         if (self.pageModel.layoutRation > 0) {
@@ -178,7 +191,7 @@
                             [currentSub updateHorizontalDefaultMaker:make];
                         }
                     }
-                    make.size.mas_equalTo([currentSub size]);
+                    make.size.mas_equalTo([currentSub size:self]);
                 }];
                 lastSub = currentSub;
             }

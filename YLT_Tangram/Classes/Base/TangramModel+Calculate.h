@@ -27,7 +27,9 @@
 
 @property (nonatomic, assign, readonly) CGFloat ylt_layoutWidthTotalWeight;
 
-@property (nonatomic, assign, readonly) CGFloat ylt_layoutHeightTotalHeight;
+@property (nonatomic, assign, readonly) CGFloat ylt_layoutHeightTotalWeight;
+
+@property (nonatomic, assign, readonly) CGFloat ylt_layoutMarginTotal;
 
 @end
 

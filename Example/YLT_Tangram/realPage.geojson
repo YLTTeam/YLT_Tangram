@@ -263,7 +263,7 @@
                            "action":"",
                            "type":"TangramImage",
                            "identify":"1_2",
-                           "layoutWidth":51,
+                           "layoutWeight":1,
                            "layoutHeight":51,
                            "layoutGravity":16,
                            "src":"$model_img"
@@ -277,6 +277,7 @@
                            "fontSize":13,
                            "type":"TangramLabel",
                            "identify":"1_1",
+                           "layoutWeight":1,
                            "layoutHeight":17,
                            "layoutGravity":16,
                            "text":"$model_profile"

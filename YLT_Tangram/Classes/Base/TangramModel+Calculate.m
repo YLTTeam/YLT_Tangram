@@ -33,25 +33,39 @@
     return [objc_getAssociatedObject(self, @selector(ylt_layoutWidthTotalWeight)) floatValue];
 }
 
-- (CGFloat)ylt_layoutHeightTotalHeight {
-    return [objc_getAssociatedObject(self, @selector(ylt_layoutHeightTotalHeight)) floatValue];
+- (CGFloat)ylt_layoutHeightTotalWeight {
+    return [objc_getAssociatedObject(self, @selector(ylt_layoutHeightTotalWeight)) floatValue];
+}
+
+- (CGFloat)ylt_layoutMarginTotal {
+    return [objc_getAssociatedObject(self, @selector(ylt_layoutMarginTotal)) floatValue];
 }
 
 - (void)setSubTangrams:(NSMutableArray<TangramView *> *)subTangrams {
     @synchronized(subTangrams) {
         __block CGFloat layoutTotalWidth = 0.0;
         __block CGFloat layoutTotalHeight = 0.0;
+        __block CGFloat layoutMarginTotal = 0.0;
+        if (self.orientation == Orientation_H) {
+            layoutMarginTotal += self.ylt_padding.left+self.ylt_padding.right;
+        } else {
+            layoutMarginTotal += self.ylt_padding.top+self.ylt_padding.bottom;
+        }
         [subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (self.orientation == Orientation_H) {
                 obj.layoutWeight = obj.layoutWidth > 0 ? 0 : obj.layoutWeight;
                 layoutTotalWidth += obj.layoutWeight;
-            } else if (self.orientation == Orientation_V) {
+                layoutMarginTotal += obj.ylt_layoutMagin.left+obj.ylt_layoutMagin.right;
+            } else {
                 obj.layoutWeight = obj.layoutHeight > 0 ? 0 : obj.layoutWeight;
                 layoutTotalHeight += obj.layoutWeight;
+                layoutMarginTotal += obj.ylt_layoutMagin.top+obj.ylt_layoutMagin.bottom;
             }
+            
         }];
         objc_setAssociatedObject(self, @selector(ylt_layoutWidthTotalWeight), @(layoutTotalWidth), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        objc_setAssociatedObject(self, @selector(ylt_layoutHeightTotalHeight), @(layoutTotalHeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, @selector(ylt_layoutHeightTotalWeight), @(layoutTotalHeight), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, @selector(ylt_layoutMarginTotal), @(layoutMarginTotal), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         objc_setAssociatedObject(self, @selector(subTangrams), subTangrams, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
