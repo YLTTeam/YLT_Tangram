@@ -49,13 +49,13 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [YLT_TangramManager shareInstance].tangramKey = @"";
+    [YLT_TangramManager shareInstance].tangramKey = @"woBLXnIJakCTnqyU";
     uint8_t iv[16] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08, 0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08}; //直接影响加密结果!
     NSData *ivData = [NSData dataWithBytes:iv length:sizeof(iv)];
     [YLT_TangramManager shareInstance].tangramIv = ivData;
     
     [YLT_TangramManager shareInstance].tangramImageURLString = ^NSString *(NSString *path) {
-        path = [NSString stringWithFormat:@"https://127.0.0.0/%@", path];
+        path = [NSString stringWithFormat:@"https://img2.ultimavip.cn/%@?imageView2/2/w/153/h/153&imageslim", path];
         return path;
     };
     [YLT_TangramManager shareInstance].tangramRequest = ^(NSArray<TangramRequest *> *requests, void (^success)(NSDictionary *result)) {
@@ -63,7 +63,7 @@
         static AFHTTPSessionManager *sessionManager = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://127.0.0.0/"]];
+            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://gw.ultimablack.cn/"]];
             sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
             sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", nil];
         });
@@ -93,33 +93,24 @@
     };
     
     [YLT_TangramManager shareInstance].tangramViewFromPageModel = ^UIView *(NSDictionary *data) {
-        TestView *view = [[TestView alloc] init];
-        view.backgroundColor = UIColor.blueColor;
-        UIImageView *imageView = [[UIImageView alloc] init];
-        imageView.backgroundColor = UIColor.greenColor;
-        [view addSubview:imageView];
-        imageView.frame = CGRectMake(0, 0, 120, 120);
+        UIView *view = [[UIView alloc] init];
         return view;
     };
     
     
     
     
-    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=http://127.0.0.0" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
-    }];
-    [self.navigationController pushViewController:target animated:YES];
-
-    return;
+    //    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=http://127.0.0.0" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
+    //    }];
+    //    [self.navigationController pushViewController:target animated:YES];
     
+    NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
+    NSDictionary *urls = [map objectForKey:@"url"];
+    NSArray<NSDictionary *> *pages = map[@"layout"];
     
-    
-//    NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-//    NSDictionary *urls = [map objectForKey:@"url"];
-//    NSArray<NSDictionary *> *pages = map[@"layout"];
-//
-//    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:nil];
-//    vc.itemLayouts = map[@"itemLayout"];
-//    [self.navigationController pushViewController:vc animated:YES];
+    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:nil];
+    vc.itemLayouts = map[@"itemLayout"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -21,163 +21,9 @@
             }
         }
     },
-    "data":{
-        "result":[
-                  {
-                  "pid": 29,
-                  "popInfo": "",
-                  "model_title": "特权",
-                  "link": "",
-                  "travel_type": 1,
-                  "updated": 1540443891435,
-                  "msgIsShow": false,
-                  "model_profile": "特权商品",
-                  "model_img": "h5/2018/10/25/F228DE6134F24F37995DD35F386DD451",
-                  "clickType": 24,
-                  "isShow": true,
-                  "is_start_show": true,
-                  "img2": "h5/2018/10/25/3C07A0E74B8B46DD94354C786FF06361",
-                  "link_weixin": "",
-                  "privilegeClassify": 3,
-                  "id": 126,
-                  "msgInfo": "",
-                  "userDefaultMsg": "",
-                  "sort": 2,
-                  "type": 2
-                  }, {
-                  "pid": 32,
-                  "popInfo": "",
-                  "model_title": "永久特权-特权商品",
-                  "link": "",
-                  "travel_type": 1,
-                  "updated": 1540451206103,
-                  "msgIsShow": false,
-                  "model_profile": "永久特权-特权商品",
-                  "model_img": "h5/2018/10/25/E48630E4D3404EADA7C0C4E395CA8A80",
-                  "clickType": 24,
-                  "isShow": true,
-                  "is_start_show": true,
-                  "link_weixin": "",
-                  "privilegeClassify": 3,
-                  "id": 128,
-                  "msgInfo": "",
-                  "userDefaultMsg": "",
-                  "sort": 4,
-                  "type": 2
-                  }, {
-                  "popInfo": "",
-                  "model_title": "电影票",
-                  "link": "",
-                  "travel_type": 1,
-                  "updated": 1536301182519,
-                  "msgIsShow": false,
-                  "model_profile": "电影票",
-                  "model_img": "h5/2017/9/4/933D0A1975554D03A5FC4DFA556B5E31",
-                  "clickType": 11,
-                  "isShow": true,
-                  "is_start_show": false,
-                  "img2": "h5/2018/9/7/F017C87981E04C97828F42F3D24287FF",
-                  "link_weixin": "",
-                  "privilegeClassify": 3,
-                  "id": 79,
-                  "msgInfo": "9.9观影",
-                  "userDefaultMsg": "",
-                  "sort": 6,
-                  "type": 2
-                  }, {
-                  "pid": 32,
-                  "popInfo": "",
-                  "model_title": "永久特权-特权商品",
-                  "link": "",
-                  "travel_type": 1,
-                  "updated": 1540451206103,
-                  "msgIsShow": false,
-                  "model_profile": "永久特权-特权商品",
-                  "model_img": "h5/2018/10/25/E48630E4D3404EADA7C0C4E395CA8A80",
-                  "clickType": 24,
-                  "isShow": true,
-                  "is_start_show": true,
-                  "link_weixin": "",
-                  "privilegeClassify": 3,
-                  "id": 128,
-                  "msgInfo": "",
-                  "userDefaultMsg": "",
-                  "sort": 4,
-                  "type": 2
-                  }, {
-                  "popImg": "h5/2017/7/31/037E182610DE4A98B6A7138ED634214E",
-                  "popInfo": "星巴克咖啡代取，自助下单",
-                  "model_title": "副标题",
-                  "popInfoe": "Starbucks Coffee Delivery",
-                  "link": "",
-                  "travel_type": 1,
-                  "updated": 1544068556828,
-                  "msgIsShow": false,
-                  "model_profile": "星巴克",
-                  "model_img": "h5/2017/7/31/61DD3D6285C242609386FF7509556175",
-                  "clickType": 6,
-                  "isShow": true,
-                  "is_start_show": true,
-                  "img2": "h5/2018/9/17/0F2C25D025E247F2B1EC6F0CEB995CA9",
-                  "link_weixin": "",
-                  "privilegeClassify": 4,
-                  "id": 39,
-                  "msgInfo": "",
-                  "userDefaultMsg": "",
-                  "sort": 2,
-                  "type": 2
-                  }
-                  ]
-    },
-    "title":"页面标题",
-    "layout":[ {
-              "type":"Custom",
-              "layoutWidth":-1,
-              "layoutHeight":128,
-              "identify":"custom",
-              "dataTag":"$banner"
-              },
-              {
-              "type":"TangramBannerLayout",
-              "duration":2,
-              "normalColor":"#ffff00",
-              "selectedColor":"#00ffff",
-              "itemName":"TangramBanner",
-              "dataTag":"$banner",
-              "layoutWidth":-1,
-              "layoutHeight":128
-              },
-              {
-              "type":"TangramLabel",
-              "text":"",
-              "background":"F6F6F6",
-              "identify":"privilege_footer_1",
-              "layoutWidth":-1,
-              "layoutHeight":"10"
-              },
-              {
-              "type":"TangramLabel",
-              "text":"全部特权",
-              "fontSize":16,
-              "textColor":"#000000",
-              "identify":"privilege_header_1",
-              "layoutMarginLeft":8,
-              "textStyle":2,
-              "layoutWidth":-1,
-              "layoutHeight":"40"
-              },
+    "title":"预言家日报",
+    "layout":[
               
-              
-              {
-              "type":"TangramLabel",
-              "text":"$data[0].classifyName",
-              "layoutMarginLeft":8,
-              "identify":"privilege_sub_header_1",
-              "fontSize":14,
-              "textColor":"#000000",
-              "layoutWidth":-1,
-              "layoutHeight":"40"
-              },
               {
               "type":"TangramGridLayout",
               "dataTag":"$data[0].classifyResult",
@@ -187,19 +33,6 @@
               "identify":"privilege_TangramGridLayout_1",
               "itemHorizontalMargin":8,
               "itemName": "TangramMenu",
-              "itemHeight":72
-              },
-              
-              
-              {
-              "type":"TangramGridLayout",
-              "dataTag":"$result",
-              "column":1,
-              "layoutMarginLeft":8,
-              "layoutMarginRight":8,
-              "identify":"privilege_TangramGridLayout_2",
-              "itemHorizontalMargin":8,
-              "itemName": "ShoppingCart",
               "itemHeight":72
               }
               
@@ -215,72 +48,29 @@
             "action":"$clickAction",
             "type":"TangramFrameLayout",
             "identify":"TangramMenu",
-            "orientation":2,
-            "subTangrams":[
-                           {
-                           "id":"0",
-                           "dataTag":"",
-                           "action":"$secondAction",
-                           "type":"TangramImage",
-                           "identify":"1_2",
-                           "layoutWidth":51,
-                           "layoutHeight":51,
-                           "layoutGravity":32,
-                           "src":"$model_img"
-                           },
-                           {
-                           "id":"0",
-                           "dataTag":"",
-                           "textColor":"#ffff00",
-                           "layoutMarginTop":8,
-                           "action":"",
-                           "fontSize":13,
-                           "type":"TangramLabel",
-                           "identify":"1_1",
-                           "layoutHeight":17,
-                           "layoutGravity":32,
-                           "gravity":32,
-                           "text":"$model_profile"
-                           }
-                           ]
-        },
-        "ShoppingCart":{
-            "id":"1",
-            "dataTag":"",
-            "keypath":"",
-            "padding":8,
-            "action":{
-                "iOS":["ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=特权商品&subtitle=购物特权&secondAction=YES"],
-                "android":"dit://ultimavip.cn/gold/list"
-            },
-            "type":"TangramFrameLayout",
-            "identify":"TangramMenu",
             "orientation":1,
             "subTangrams":[
                            {
                            "id":"0",
-                           "dataTag":"",
-                           "action":"",
-                           "type":"TangramImage",
-                           "identify":"1_2",
-                           "layoutWeight":1,
-                           "layoutHeight":51,
+                           "textColor":"#000000",
+                           "layoutMarginLeft":8,
+                           "layoutMarginTop":8,
+                           "layoutMarginBottom":8,
+                           "fontSize":14,
+                           "type":"TangramLabel",
+                           "identify":"1_1",
                            "layoutGravity":16,
-                           "src":"$model_img"
+                           "gravity":1,
+                           "text":"$model_profile"
                            },
                            {
                            "id":"0",
-                           "dataTag":"",
-                           "textColor":"#ff0000",
-                           "layoutMarginLeft":8,
-                           "action":"",
-                           "fontSize":13,
-                           "type":"TangramLabel",
-                           "identify":"1_1",
-                           "layoutWeight":1,
-                           "layoutHeight":17,
-                           "layoutGravity":16,
-                           "text":"$model_profile"
+                           "type":"TangramImage",
+                           "identify":"1_2",
+                           "layoutWidth":51,
+                           "layoutHeight":51,
+                           "layoutGravity":2,
+                           "src":"$model_img"
                            }
                            ]
         },
@@ -320,5 +110,5 @@
                            ]
         }
     }
-
+    
 }

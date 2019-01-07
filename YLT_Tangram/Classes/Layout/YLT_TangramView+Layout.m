@@ -99,10 +99,10 @@
         //当framelayout 有值的时候  说明计算需要依赖于父视图 权重就需要考虑了
         if (content.orientation == Orientation_H && width == 0) {
             /** 水平布局 宽度没有绝对值 并且权重不为零 */
-            width = ([self maxWidth] - content.ylt_layoutMarginTotal) * self.pageModel.layoutWeight / content.ylt_layoutWidthTotalWeight;
+            width = ([self maxWidth] - content.ylt_layoutRegularTotal) * self.pageModel.layoutWeight / content.ylt_layoutWidthTotalWeight;
         } else if (content.orientation == Orientation_V && height == 0) {
             /** 垂直布局 高度没有绝对值 并且权重不为零 */
-            height = ([self maxHeight] - content.ylt_layoutMarginTotal) * self.pageModel.layoutWeight / content.ylt_layoutHeightTotalWeight;
+            height = ([self maxHeight] - content.ylt_layoutRegularTotal) * self.pageModel.layoutWeight / content.ylt_layoutHeightTotalWeight;
         }
     }
     

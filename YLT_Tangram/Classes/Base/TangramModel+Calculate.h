@@ -29,7 +29,10 @@
 
 @property (nonatomic, assign, readonly) CGFloat ylt_layoutHeightTotalWeight;
 
-@property (nonatomic, assign, readonly) CGFloat ylt_layoutMarginTotal;
+/**
+ 总体的固定值
+ */
+@property (nonatomic, assign, readonly) CGFloat ylt_layoutRegularTotal;
 
 @end
 
