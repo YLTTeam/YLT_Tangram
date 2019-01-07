@@ -8,6 +8,9 @@
 #import "YLT_TangramBannerLayout.h"
 #import "TangramModel.h"
 #import "YLT_TangramCell.h"
+#import "YLT_TangramUtils.h"
+#import "YLT_TangramManager.h"
+#import <YLT_Kit/YLT_Kit.h>
 #import <SDCycleScrollView/SDCycleScrollView.h>
 
 @interface YLT_TangramBannerLayout () <SDCycleScrollViewDelegate>

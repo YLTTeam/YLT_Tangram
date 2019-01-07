@@ -5,7 +5,7 @@
 //  Created by 项普华 on 2018/12/29.
 //
 
-#import <YLT_Tangram/YLT_Tangram.h>
+#import "YLT_TangramVC.h"
 
 @interface YLT_TangramVC (Router)
 
