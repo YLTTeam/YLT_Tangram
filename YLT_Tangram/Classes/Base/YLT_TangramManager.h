@@ -7,7 +7,7 @@
 
 #import "TangramModel.h"
 #import <Foundation/Foundation.h>
-#import <YLT_BaseLib/YLT_BaseLib.h>
+#import <YLT_BaseLib/YLT_BaseMacro.h>
 
 @interface YLT_TangramManager : NSObject
 

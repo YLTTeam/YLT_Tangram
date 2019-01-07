@@ -34,7 +34,7 @@ PODS:
     - FMDB
     - MJExtension
   - YLT_Crypto (0.0.3)
-  - YLT_Kit (0.3.10):
+  - YLT_Kit (0.3.11):
     - AFNetworking
     - Aspects
     - Masonry
@@ -91,8 +91,8 @@ SPEC CHECKSUMS:
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
   YLT_BaseLib: e0145b64b879e74dbf70a41c87b0348a8b860813
   YLT_Crypto: 3d7dceec11f4a3046f58b4852092d68e4c37ab4e
-  YLT_Kit: bb2dcd186e475718729a3f18ee26e187725dd95e
-  YLT_Tangram: bfc757d27c66dc3391cc7088e2dd868ecf4442c5
+  YLT_Kit: 7d7e50940b36ca8d12d48dfcf20af593262ef7cc
+  YLT_Tangram: 5f44bb982dda6dfc3e6be87363648c5eb51fb07a
   ZipArchive: e25a4373192673e3229ac8d6e9f64a3e5713c966
 
 PODFILE CHECKSUM: 68817214a39d615409a54bc5443ca0a094b3df29
