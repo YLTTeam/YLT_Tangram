@@ -21,6 +21,9 @@
   "public_header_files": "YLT_Tangram/Classes/**/*.h",
   "source_files": "YLT_Tangram/Classes/**/*.{h,m}",
   "dependencies": {
+    "YLT_BaseLib": [
+
+    ],
     "YLT_Kit": [
 
     ],

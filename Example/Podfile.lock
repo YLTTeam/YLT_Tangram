@@ -45,6 +45,7 @@ PODS:
   - YLT_Tangram (0.0.1):
     - RegexKitLite
     - SDCycleScrollView
+    - YLT_BaseLib
     - YLT_Crypto
     - YLT_Kit
     - ZipArchive
@@ -91,7 +92,7 @@ SPEC CHECKSUMS:
   YLT_BaseLib: e0145b64b879e74dbf70a41c87b0348a8b860813
   YLT_Crypto: 3d7dceec11f4a3046f58b4852092d68e4c37ab4e
   YLT_Kit: bb2dcd186e475718729a3f18ee26e187725dd95e
-  YLT_Tangram: 7dda0405aec174c502ee4a3b1ef4c0f071a0acfd
+  YLT_Tangram: bfc757d27c66dc3391cc7088e2dd868ecf4442c5
   ZipArchive: e25a4373192673e3229ac8d6e9f64a3e5713c966
 
 PODFILE CHECKSUM: 68817214a39d615409a54bc5443ca0a094b3df29
