@@ -8,11 +8,11 @@ Pod::Spec.new do |s|
 组件通过配置文件生成页面
                        DESC
 
-  s.homepage         = 'https://github.com/xphaijj/YLT_Tangram'
+  s.homepage         = 'https://github.com/YLTTeam/YLT_Tangram'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'xphaijj0305@126.com' => 'xianggong@anve.com' }
-  s.source           = { :git => 'https://github.com/xphaijj/YLT_Tangram.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/YLTTeam/YLT_Tangram.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
