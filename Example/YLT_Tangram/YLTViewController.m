@@ -42,18 +42,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [YLT_TangramManager shareInstance].tangramKey = @"woBLXnIJakCTnqyU";
-//    uint8_t iv[16] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08, 0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08}; //直接影响加密结果!
-//    NSData *ivData = [NSData dataWithBytes:iv length:sizeof(iv)];
-//    [YLT_TangramManager shareInstance].tangramIv = ivData;
-//
-//    NSData *data = [@"123" dataUsingEncoding:NSUTF8StringEncoding];
-//    data = [YLT_AESCrypto encryptData:data keyString:[YLT_TangramManager shareInstance].tangramKey iv:[YLT_TangramManager shareInstance].tangramIv];
-//
-////    uint8_t origin[] = {0x01, 0x02, };
-////    NSData *data = [NSData dataWithBytes:origin length:sizeof(origin)];
-//    data = [YLT_AESCrypto dencryptData:data keyString:[YLT_TangramManager shareInstance].tangramKey iv:[YLT_TangramManager shareInstance].tangramIv];
-//    NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -61,13 +49,13 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [YLT_TangramManager shareInstance].tangramKey = @"woBLXnIJakCTnqyU";
+    [YLT_TangramManager shareInstance].tangramKey = @"";
     uint8_t iv[16] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08, 0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08}; //直接影响加密结果!
     NSData *ivData = [NSData dataWithBytes:iv length:sizeof(iv)];
     [YLT_TangramManager shareInstance].tangramIv = ivData;
     
     [YLT_TangramManager shareInstance].tangramImageURLString = ^NSString *(NSString *path) {
-        path = [NSString stringWithFormat:@"https://img2.ultimavip.cn/%@?imageView2/2/w/153/h/153&imageslim", path];
+        path = [NSString stringWithFormat:@"https://127.0.0.0/%@", path];
         return path;
     };
     [YLT_TangramManager shareInstance].tangramRequest = ^(NSArray<TangramRequest *> *requests, void (^success)(NSDictionary *result)) {
@@ -75,7 +63,7 @@
         static AFHTTPSessionManager *sessionManager = nil;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://gw.ultimablack.cn/"]];
+            sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"http://127.0.0.0/"]];
             sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
             sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/plain", @"text/javascript", @"text/json", nil];
         });
@@ -117,7 +105,7 @@
     
     
     
-    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=http://img2.ultimavip.cn/vv/5b3e459c839b88a1" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
+    UIViewController *target = [self ylt_routerToURL:@"ylt://YLT_TangramVC/tangramWithRequestParams:?path=http://127.0.0.0" isClassMethod:YES arg:nil completion:^(NSError *error, id response) {
     }];
     [self.navigationController pushViewController:target animated:YES];
 
