@@ -8,7 +8,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <YLT_BaseLib/YLT_BaseLib.h>
+#import <YLT_BaseLib/YLT_BaseModel.h>
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, LayoutGravity) {
