@@ -20,9 +20,9 @@ Pod::Spec.new do |s|
   s.public_header_files = 'YLT_Tangram/Classes/**/*.h'
   s.source_files = 'YLT_Tangram/Classes/**/*.{h,m}'
   
-  s.resource_bundles = {
-     'YLT_Tangram' => ['YLT_Tangram/Classes/Config/*.geojson']
-  }
+  #s.resource_bundles = {
+  #    'YLT_Tangram' => ['YLT_Tangram/Classes/Config/*.geojson']
+  # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
