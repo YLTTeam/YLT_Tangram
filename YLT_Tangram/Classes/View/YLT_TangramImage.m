@@ -18,7 +18,10 @@
 
 - (void)refreshPage {
     if ([self.content isKindOfClass:[TangramImage class]]) {
-        self.imageView.ylt_image(self.content.src);
+        if (self.content.src.ylt_isValid && ![self.content.src hasPrefix:@"$"]) {
+            self.imageView.ylt_image(self.content.src);
+        }
+        
         if (self.pageData && [self.content.src hasPrefix:@"$"]) {
             NSString *urlstring = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.src];
             if ([YLT_TangramManager shareInstance].tangramImageURLString) {
@@ -27,7 +30,6 @@
             self.imageView.ylt_image(urlstring);
         }
     }
-    self.imageView.backgroundColor = UIColor.clearColor;
 }
 
 #pragma mark - setter getter

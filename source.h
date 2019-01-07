@@ -48,8 +48,8 @@ enum Orientation {
 
 message TangramView {
     optional int tangramId(id) = 0;//组件id
-    optional int layoutWidth = -1;//组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent(-1) 表示尽可能撑满父容器提供的宽高
-    optional int layoutHeight = -1;//组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent(-1) 表示尽可能撑满父容器提供的宽高
+    optional float layoutWidth = -1;//组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent(-1) 表示尽可能撑满父容器提供的宽高
+    optional float layoutHeight = -1;//组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent(-1) 表示尽可能撑满父容器提供的宽高
     optional float layoutRation = 0;//宽高比  layoutHeight = layoutWidth/layoutRatio
     optional float layoutWeight = 1;//布局的权重
     optional LayoutGravity layoutGravity = 0;//描述组件在容器中的对齐方式，left(1)：靠左，right(2)：靠右，top(4)：靠上，bottom(8)：靠底，v_center(16)：垂直方向居中，h_center(32)：水平方向居中，可用或组合描述  比如：靠左+靠上  1+4 = 5

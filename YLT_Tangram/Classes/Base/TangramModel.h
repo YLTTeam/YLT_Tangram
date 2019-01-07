@@ -2,15 +2,14 @@
 // TangramModel.h 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2019/01/04  By AlexXiang  All rights reserved.
+// Copyright (C) 2019/01/07  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
 
 #import <UIKit/UIKit.h>
-#import <YLT_BaseLib/YLT_BaseModel.h>
 #import <Foundation/Foundation.h>
-
+#import <YLT_BaseLib/YLT_BaseModel.h>
 typedef NS_ENUM(NSUInteger, LayoutGravity) {
     LayoutGravity_Left = 1,
     LayoutGravity_Right = 2,
@@ -63,9 +62,9 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 /** 组件id */
 @property (readwrite, nonatomic, assign) NSInteger tangramId;
 /** 组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent(-1) 表示尽可能撑满父容器提供的宽高 */
-@property (readwrite, nonatomic, assign) NSInteger layoutWidth;
+@property (readwrite, nonatomic, assign) CGFloat layoutWidth;
 /** 组件的布局宽度，与Android里的概念类似，写绝对值的时候表示绝对宽高，match_parent(-1) 表示尽可能撑满父容器提供的宽高 */
-@property (readwrite, nonatomic, assign) NSInteger layoutHeight;
+@property (readwrite, nonatomic, assign) CGFloat layoutHeight;
 /** 宽高比  layoutHeight = layoutWidthlayoutRatio */
 @property (readwrite, nonatomic, assign) CGFloat layoutRation;
 /** 布局的权重 */

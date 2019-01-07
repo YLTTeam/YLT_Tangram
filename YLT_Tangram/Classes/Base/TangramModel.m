@@ -2,7 +2,7 @@
 // TangramModel.m 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2019/01/04  By AlexXiang  All rights reserved.
+// Copyright (C) 2019/01/07  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -10,6 +10,7 @@
 #import "TangramModel.h"
 #import <MJExtension/MJExtension.h>
 #import <YLT_BaseLib/YLT_BaseLib.h>
+
 
 @implementation TangramView
 

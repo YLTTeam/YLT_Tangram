@@ -48,29 +48,50 @@
             "action":"$clickAction",
             "type":"TangramFrameLayout",
             "identify":"TangramMenu",
-            "orientation":1,
+            "orientation":2,
             "subTangrams":[
                            {
-                           "id":"0",
-                           "textColor":"#000000",
-                           "layoutMarginLeft":8,
-                           "layoutMarginTop":8,
-                           "layoutMarginBottom":8,
-                           "fontSize":14,
-                           "type":"TangramLabel",
-                           "identify":"1_1",
-                           "layoutGravity":16,
-                           "gravity":1,
-                           "text":"$model_profile"
+                           "id":"1",
+                           "dataTag":"",
+                           "keypath":"",
+                           "padding":8,
+                           "action":"$clickAction",
+                           "type":"TangramFrameLayout",
+                           "identify":"TangramMenu",
+                           "orientation":1,
+                           "subTangrams":[
+                                          {
+                                          "id":"0",
+                                          "textColor":"#000000",
+                                          "layoutMarginLeft":8,
+                                          "layoutMarginTop":8,
+                                          "layoutMarginBottom":8,
+                                          "fontSize":14,
+                                          "type":"TangramLabel",
+                                          "identify":"1_1",
+                                          "layoutGravity":16,
+                                          "gravity":1,
+                                          "text":"$model_profile"
+                                          },
+                                          {
+                                          "id":"0",
+                                          "type":"TangramImage",
+                                          "identify":"1_2",
+                                          "layoutWidth":51,
+                                          "layoutHeight":51,
+                                          "layoutGravity":2,
+                                          "src":"$model_img"
+                                          }
+                                          ]
                            },
                            {
                            "id":"0",
                            "type":"TangramImage",
                            "identify":"1_2",
-                           "layoutWidth":51,
-                           "layoutHeight":51,
-                           "layoutGravity":2,
-                           "src":"$model_img"
+                           "layoutWidth":-1,
+                           "layoutHeight":0.5,
+                           "layoutGravity":8,
+                           "background":"#ff0000"
                            }
                            ]
         },
