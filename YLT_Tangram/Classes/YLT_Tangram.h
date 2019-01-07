@@ -3,7 +3,6 @@
 #ifndef YLT_BaseLib_h
 #define YLT_BaseLib_h
 
-#import "BaseCollection.h"
 #import "TangramModel+Calculate.h"
 #import "TangramModel.h"
 #import "YLT_TangramManager.h"

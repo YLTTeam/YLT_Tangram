@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "BaseCollection.h"
 #import "TangramModel+Calculate.h"
 #import "TangramModel.h"
 #import "YLT_TangramManager.h"
