@@ -55,7 +55,7 @@
         if ([((NSString *) self.pageModel.action) hasPrefix:@"$"]) {
             clickAction = [YLT_TangramUtils valueFromSourceData:pageData keyPath:self.pageModel.action];
         }
-        if ([clickAction isKindOfClass:[NSString class]]) {
+        if ([clickAction isKindOfClass:[NSString class]] && clickAction.mj_JSONObject) {
             clickAction = clickAction.mj_JSONObject;
         }
         if ([clickAction isKindOfClass:[NSString class]]) {
@@ -97,7 +97,7 @@
         if ([((NSString *) self.pageModel.action) hasPrefix:@"$"]) {
             clickAction = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.pageModel.action];
         }
-        if ([clickAction isKindOfClass:[NSString class]]) {
+        if ([clickAction isKindOfClass:[NSString class]] && clickAction.mj_JSONObject) {
             clickAction = clickAction.mj_JSONObject;
         }
         if ([clickAction isKindOfClass:[NSString class]]) {

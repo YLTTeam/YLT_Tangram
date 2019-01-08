@@ -9,17 +9,86 @@
                 "nonce":1,
                 "token":1
             }
-        },
-        "data":
-        {
-            "path":"route_hs/v1/virtual/getData",
-            "params":{
-                "userId":1,
-                "sign":1,
-                "nonce":1,
-                "token":1
-            }
         }
+    },
+    "data": {
+        "data":[
+                {
+                "classifyName": "购物",
+                "classifyResult": [
+                                   {
+                                   "pid": 29,
+                                   "popInfo": "",
+                                   "model_title": "特权",
+                                   "link": "",
+                                   "travel_type": 1,
+                                   "updated": 1540443891435,
+                                   "msgIsShow": false,
+                                   "model_profile": "特权商品",
+                                   "model_img": "h5/2018/10/25/F228DE6134F24F37995DD35F386DD451",
+                                   "clickType": 24,
+                                   "isShow": true,
+                                   "is_start_show": true,
+                                   "img2": "h5/2018/10/25/3C07A0E74B8B46DD94354C786FF06361",
+                                   "link_weixin": "",
+                                   "privilegeClassify": 3,
+                                   "id": 126,
+                                   "msgInfo": "",
+                                   "userDefaultMsg": "",
+                                   "sort": 2,
+                                   "type": 2,
+                                   "clickAction":"http://testweb.ultimavip.cn/movie/520movie/august-movie.html"
+                                   },
+                                   {
+                                   "pid": 32,
+                                   "popInfo": "",
+                                   "model_title": "永久特权-特权商品",
+                                   "link": "",
+                                   "travel_type": 1,
+                                   "updated": 1540451206103,
+                                   "msgIsShow": false,
+                                   "model_profile": "永久特权-特权商品",
+                                   "model_img": "h5/2018/10/25/E48630E4D3404EADA7C0C4E395CA8A80",
+                                   "clickType": 24,
+                                   "isShow": true,
+                                   "is_start_show": true,
+                                   "link_weixin": "",
+                                   "privilegeClassify": 3,
+                                   "id": 128,
+                                   "msgInfo": "",
+                                   "userDefaultMsg": "",
+                                   "sort": 4,
+                                   "type": 2,
+                                   "clickAction":{
+                                   "iOS":"ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=永久特权-特权商品&subtitle=购物特权",
+                                   "android":"dit://ultimavip.cn/gold/home"
+                                   }
+                                   },
+                                   {
+                                   "popInfo": "",
+                                   "model_title": "电影票",
+                                   "link": "",
+                                   "travel_type": 1,
+                                   "updated": 1536301182519,
+                                   "msgIsShow": false,
+                                   "model_profile": "电影票",
+                                   "model_img": "h5/2017/9/4/933D0A1975554D03A5FC4DFA556B5E31",
+                                   "clickType": 11,
+                                   "isShow": true,
+                                   "is_start_show": false,
+                                   "img2": "h5/2018/9/7/F017C87981E04C97828F42F3D24287FF",
+                                   "link_weixin": "",
+                                   "privilegeClassify": 3,
+                                   "id": 79,
+                                   "msgInfo": "9.9观影",
+                                   "userDefaultMsg": "",
+                                   "sort": 6,
+                                   "type": 2
+                                   }
+                                   ]
+                }
+                ]
+        
     },
     "title":"预言家日报",
     "layout":[

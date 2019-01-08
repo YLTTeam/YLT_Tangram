@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YLT_Tangram'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = '组件化'
 
   s.description      = <<-DESC
