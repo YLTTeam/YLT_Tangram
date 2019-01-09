@@ -131,7 +131,8 @@
                         "sign":1,
                         "nonce":1,
                         "token":1
-                    }
+                    },
+                    "identify":"privilege_TangramGridLayout_1"
                 }
             }
         }
