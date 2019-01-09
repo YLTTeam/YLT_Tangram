@@ -33,7 +33,7 @@
 //        UIViewContentModeBottomRight,
         switch (self.content.scaleType) {
             case ScaleType_Center: {
-                self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+                self.imageView.contentMode = UIViewContentModeScaleAspectFill;
             }
                 break;
             case ScaleType_Fit_xy: {
@@ -56,7 +56,7 @@
             }
                 break;
             case ScaleType_Center_crop: {
-                self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+                self.imageView.contentMode = UIViewContentModeScaleAspectFill;
             }
                 break;
             case ScaleType_Center_inside: {
