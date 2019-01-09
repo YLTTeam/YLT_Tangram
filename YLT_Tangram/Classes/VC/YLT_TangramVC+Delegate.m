@@ -68,7 +68,7 @@
         if ([list isKindOfClass:[NSArray class]]) {
             pageData = list[indexPath.row];
         }
-    }
+    } 
     [cell cellFromConfig:item];
     if (pageData && pageData.allKeys.count > 0) {
         [cell reloadCellData:pageData];

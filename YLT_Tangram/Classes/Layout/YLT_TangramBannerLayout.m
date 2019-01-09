@@ -119,7 +119,35 @@
 }
 
 #pragma mark SDCycleScrollViewDelegate
+
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    TangramView *layout = self.subBannerTangrams[index];
+    NSDictionary *data = self.list[index];
+    NSDictionary *clickAction = layout.action;
+    if ([clickAction isKindOfClass:[NSString class]]) {
+        if ([((NSString *) clickAction) hasPrefix:@"$"]) {
+            clickAction = [YLT_TangramUtils valueFromSourceData:data keyPath:(NSString *)clickAction];
+        }
+        if ([clickAction isKindOfClass:[NSString class]] && clickAction.mj_JSONObject) {
+            clickAction = clickAction.mj_JSONObject;
+        }
+        if ([clickAction isKindOfClass:[NSString class]]) {
+            clickAction = @{@"iOS":clickAction};
+        }
+    } else if ([clickAction isKindOfClass:[NSDictionary class]]) {
+    }
+    if (clickAction && clickAction.allKeys.count > 0) {
+        if ([clickAction isKindOfClass:[NSDictionary class]] && [clickAction.allKeys containsObject:@"iOS"]) {
+            NSArray<NSString *> *actionList = [clickAction objectForKey:@"iOS"];
+            if ([actionList isKindOfClass:[NSString class]]) {
+                actionList = @[(NSString *)actionList];
+            }
+            [actionList enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self.ylt_currentVC ylt_routerToURL:obj arg:nil completion:^(NSError *error, id response) {
+                }];
+            }];
+        }
+    }
 }
 
 /** 图片滚动回调 */
@@ -135,7 +163,7 @@
 /** 如果你自定义了cell样式，请在实现此代理方法为你的cell填充数据以及其它一系列设置 */
 - (void)setupCustomCell:(UICollectionViewCell *)cell forIndex:(NSInteger)index cycleScrollView:(SDCycleScrollView *)view {
     if (self.subBannerTangrams.count > index) {
-         [(YLT_TangramCell *)cell cellFromConfig:self.subBannerTangrams[index]];
+        [(YLT_TangramCell *)cell cellFromConfig:self.subBannerTangrams[index]];
     }
 }
 @end

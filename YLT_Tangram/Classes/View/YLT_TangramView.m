@@ -50,8 +50,8 @@
     [self refreshPage];
     
     [self removeGestureRecognizer:self.tap];
-    NSDictionary *clickAction = nil;
-    if ([self.pageModel.action isKindOfClass:[NSString class]]) {
+    NSDictionary *clickAction = self.pageModel.action;
+    if ([clickAction isKindOfClass:[NSString class]] && ((NSString *) clickAction).ylt_isValid) {
         if ([((NSString *) self.pageModel.action) hasPrefix:@"$"]) {
             clickAction = [YLT_TangramUtils valueFromSourceData:pageData keyPath:self.pageModel.action];
         }
