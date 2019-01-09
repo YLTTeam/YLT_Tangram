@@ -18,6 +18,54 @@
 
 - (void)refreshPage {
     if ([self.content isKindOfClass:[TangramImage class]]) {
+//        UIViewContentModeScaleToFill,
+//        UIViewContentModeScaleAspectFit,      // contents scaled to fit with fixed aspect. remainder is transparent
+//        UIViewContentModeScaleAspectFill,     // contents scaled to fill with fixed aspect. some portion of content may be clipped.
+//        UIViewContentModeRedraw,              // redraw on bounds change (calls -setNeedsDisplay)
+//        UIViewContentModeCenter,              // contents remain same size. positioned adjusted.
+//        UIViewContentModeTop,
+//        UIViewContentModeBottom,
+//        UIViewContentModeLeft,
+//        UIViewContentModeRight,
+//        UIViewContentModeTopLeft,
+//        UIViewContentModeTopRight,
+//        UIViewContentModeBottomLeft,
+//        UIViewContentModeBottomRight,
+        switch (self.content.scaleType) {
+            case ScaleType_Center: {
+                self.contentMode = UIViewContentModeScaleAspectFit;
+            }
+                break;
+            case ScaleType_Fit_xy: {
+                self.contentMode = UIViewContentModeScaleToFill;
+            }
+                break;
+            case ScaleType_Matrix: {
+            }
+                break;
+            case ScaleType_Fit_start: {
+                self.contentMode = UIViewContentModeTopLeft;
+            }
+                break;
+            case ScaleType_Fit_end: {
+                self.contentMode = UIViewContentModeBottomRight;
+            }
+                break;
+            case ScaleType_Fit_center: {
+                self.contentMode = UIViewContentModeScaleAspectFill;
+            }
+                break;
+            case ScaleType_Center_crop: {
+                self.contentMode = UIViewContentModeScaleAspectFit;
+            }
+                break;
+            case ScaleType_Center_inside: {
+                self.contentMode = UIViewContentModeScaleAspectFit;
+            }
+                break;
+        }
+        
+        
         if (self.content.src.ylt_isValid && ![self.content.src hasPrefix:@"$"]) {
             self.imageView.ylt_image(self.content.src);
         }
