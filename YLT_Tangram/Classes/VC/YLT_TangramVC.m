@@ -233,6 +233,12 @@
             [request.params setObject:@(self.pageSize) forKey:pageSizeKey];
             [request.params setObject:@(self.page) forKey:pageKey];
             request.keyname = key;
+            [request.params enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                if ([obj isKindOfClass:[NSString class]] && [((NSString *) obj) hasPrefix:@"$"]) {
+                    [request.params setObject:[YLT_TangramUtils valueFromSourceData:self.pageDatas keyPath:obj] forKey:key];
+                }
+            }];
+            
             [requests addObject:request];
         }];
         
