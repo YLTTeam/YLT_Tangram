@@ -12,6 +12,7 @@
 #import <ZipArchive/ZipArchive.h>
 #import <YLT_Crypto/YLT_Crypto.h>
 #import <AFNetworking/AFNetworking.h>
+#import <MJRefresh/MJRefresh.h>
 
 #define TANGRAM_CACHE_KEY @"TANGRAM_CACHE_KEY"
 
@@ -19,6 +20,9 @@
 
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
 @property (nonatomic, strong) NSMutableDictionary *cacheDictionary;
+
+@property (nonatomic, assign) NSInteger page;
+@property (nonatomic, assign) NSInteger pageSize;
 
 @end
 
@@ -28,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.page = 1;
+    self.pageSize = 20;
     self.view.backgroundColor = UIColor.whiteColor;
 }
 
@@ -161,6 +167,96 @@
             [self.pageDatas addEntriesFromDictionary:result];
             [self.mainCollectionView reloadData];
         });
+    }
+}
+
+- (void)setRefresh:(NSDictionary *)refresh {
+    _refresh = refresh;
+    self.mainCollectionView.mj_header = nil;
+    self.mainCollectionView.mj_footer = nil;
+    if (refresh.allKeys.count > 0) {
+        if ([self.refresh.allKeys containsObject:@"pageSize"]) {
+            self.pageSize = [[self.refresh objectForKey:@"pageSize"] integerValue];
+        }
+        if ([self.refresh.allKeys containsObject:@"page"]) {
+            self.page = [[self.refresh objectForKey:@"page"] integerValue];
+        }
+        NSString *pageKey = @"page";
+        if ([self.refresh.allKeys containsObject:@"pageKey"]) {
+            pageKey = [self.refresh objectForKey:@"pageKey"];
+        }
+        NSString *pageSizeKey = @"pageSize";
+        if ([self.refresh.allKeys containsObject:@"pageSizeKey"]) {
+            pageSizeKey = [self.refresh objectForKey:@"pageSizeKey"];
+        }
+        
+        @weakify(self);
+        if ([refresh.allKeys containsObject:@"header"]) {
+            self.mainCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                @strongify(self);
+                self.page = 1;
+                if ([self.refresh.allKeys containsObject:@"page"]) {
+                    self.page = [[self.refresh objectForKey:@"page"] integerValue];
+                }
+                NSDictionary *header = [self.refresh objectForKey:@"header"];
+                [self analysisHeader:YES refreshData:header pageKey:pageKey pageSizeKey:pageSizeKey];
+            }];
+        }
+        if ([refresh.allKeys containsObject:@"footer"]) {
+            self.mainCollectionView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+                @strongify(self);
+                self.page++;
+                NSDictionary *footer = [self.refresh objectForKey:@"footer"];
+                [self analysisHeader:NO refreshData:footer pageKey:pageKey pageSizeKey:pageSizeKey];
+            }];
+        }
+    }
+}
+
+- (void)analysisHeader:(BOOL)isHeader refreshData:(NSDictionary *)data pageKey:(NSString *)pageKey pageSizeKey:(NSString *)pageSizeKey {
+    if ([data.allKeys containsObject:@"url"] && [[data objectForKey:@"url"] isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *urls = [data objectForKey:@"url"];
+        NSMutableArray *requests = [[NSMutableArray alloc] init];
+        [urls enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            TangramRequest *request = [TangramRequest mj_objectWithKeyValues:obj];
+            [request.params setObject:@(self.pageSize) forKey:pageSizeKey];
+            [request.params setObject:@(self.page) forKey:pageKey];
+            request.keyname = key;
+            [requests addObject:request];
+        }];
+        
+        if ([YLT_TangramManager shareInstance].tangramRequest) {
+            @weakify(self);
+            [YLT_TangramManager shareInstance].tangramRequest(requests, ^(NSDictionary *result) {
+                [self.mainCollectionView.mj_header endRefreshing];
+                [self.mainCollectionView.mj_footer endRefreshing];
+                @strongify(self);
+                [result enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                    if (![obj isKindOfClass:[NSError class]]) {
+                        if (isHeader) {
+                            /** 下拉刷新 直接覆盖原数据 */
+                            [self.pageDatas setObject:obj forKey:key];
+                        } else {
+                            /** 上拉加载更多 追加数据 */
+                            id oldObj = nil;
+                            if ([self.pageDatas.allKeys containsObject:key]) {
+                                oldObj = self.pageDatas[key];
+                            }
+                            if ([oldObj isKindOfClass:[NSArray class]]) {
+                                NSMutableArray *list = [[NSMutableArray alloc] init];
+                                [list addObjectsFromArray:oldObj];
+                                [list addObjectsFromArray:obj];
+                                [self.pageDatas setObject:list forKey:key];
+                            } else {
+                                /** 目前不考虑非数组类型的上拉加载更多 */
+                                [self.pageDatas setObject:obj forKey:key];
+                            }
+                        }
+                    }
+                }];
+                [self.mainCollectionView reloadData];
+            });
+        }
     }
 }
 

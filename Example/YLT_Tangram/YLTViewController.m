@@ -109,6 +109,7 @@
     NSArray<NSDictionary *> *pages = map[@"layout"];
     
     YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:map[@"data"]];
+    vc.refresh = map[@"refresh"];
     vc.itemLayouts = map[@"itemLayout"];
     [self.navigationController pushViewController:vc animated:YES];
 }

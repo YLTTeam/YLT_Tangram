@@ -21,6 +21,11 @@
 @property (nonatomic, strong) NSMutableDictionary *reqParams;
 
 /**
+ 刷新字段
+ */
+@property (nonatomic, strong) NSDictionary *refresh;
+
+/**
  页面数据
  */
 @property (nonatomic, strong) NSMutableArray<TangramView *> *pageModels;

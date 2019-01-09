@@ -9,6 +9,16 @@
                 "nonce":1,
                 "token":1
             }
+        },
+        "data":
+        {
+            "path":"route_hs/v1/virtual/getData",
+            "params":{
+                "userId":1,
+                "sign":1,
+                "nonce":1,
+                "token":1
+            }
         }
     },
     "data": {
@@ -91,8 +101,41 @@
         
     },
     "title":"预言家日报",
+    "refresh":{
+        "pageSize":10,
+        "page":1,
+        "pageSizeKey":"pageSize",
+        "pageKey":"page",
+        "header":{
+            "url":{
+                "data":
+                {
+                    "path":"route_hs/v1/virtual/getData",
+                    "params":{
+                        "userId":1,
+                        "sign":1,
+                        "nonce":1,
+                        "token":1
+                    }
+                }
+            }
+        },
+        "footer":{
+            "url":{
+                "data":
+                {
+                    "path":"route_hs/v1/virtual/getData",
+                    "params":{
+                        "userId":1,
+                        "sign":1,
+                        "nonce":1,
+                        "token":1
+                    }
+                }
+            }
+        }
+    },
     "layout":[
-              
               {
               "type":"TangramGridLayout",
               "dataTag":"$data[0].classifyResult",

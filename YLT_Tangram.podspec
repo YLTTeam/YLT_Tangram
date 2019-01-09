@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'YLT_Tangram'
-  s.version          = '0.0.5'
+  s.version          = '0.0.6'
   s.summary          = '组件化'
 
   s.description      = <<-DESC
@@ -32,4 +32,5 @@ Pod::Spec.new do |s|
   s.dependency 'RegexKitLite'
   s.dependency 'SDCycleScrollView'
   s.dependency 'ZipArchive'
+  s.dependency 'MJRefresh'
 end

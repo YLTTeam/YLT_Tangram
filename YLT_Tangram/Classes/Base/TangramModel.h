@@ -2,7 +2,7 @@
 // TangramModel.h 
 //
 // Created By 项普华 Version: 2.0
-// Copyright (C) 2019/01/07  By AlexXiang  All rights reserved.
+// Copyright (C) 2019/01/09  By AlexXiang  All rights reserved.
 // email:// xiangpuhua@126.com  tel:// +86 13316987488 
 //
 //
@@ -192,6 +192,6 @@ typedef NS_ENUM(NSUInteger, Orientation) {
 /** 请求路径 */
 @property (readwrite, nonatomic, strong) NSString *path;
 /** 请求参数 */
-@property (readwrite, nonatomic, strong) NSDictionary *params;
+@property (readwrite, nonatomic, strong) NSMutableDictionary *params;
 
 @end
