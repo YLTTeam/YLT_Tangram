@@ -69,6 +69,7 @@
             }
                 break;
         }
+        self.label.numberOfLines = (self.content.maxLines != 0 )?self.content.maxLines:self.content.lines;
         
         if (self.pageData && [self.content.text hasPrefix:@"$"]) {
             NSString *content = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.text];
