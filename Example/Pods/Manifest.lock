@@ -22,6 +22,7 @@ PODS:
   - Masonry (1.1.0)
   - MJExtension (3.0.15.1)
   - MJRefresh (3.1.15.7)
+  - MutableDeepCopy (1.0.0)
   - ReactiveObjC (3.1.0)
   - RegexKitLite (4.0)
   - SDCycleScrollView (1.75):
@@ -42,8 +43,9 @@ PODS:
     - ReactiveObjC
     - SDWebImage
     - YLT_BaseLib
-  - YLT_Tangram (0.0.5):
+  - YLT_Tangram (0.0.6):
     - MJRefresh
+    - MutableDeepCopy
     - RegexKitLite
     - SDCycleScrollView
     - YLT_BaseLib
@@ -65,6 +67,7 @@ SPEC REPOS:
     - Masonry
     - MJExtension
     - MJRefresh
+    - MutableDeepCopy
     - ReactiveObjC
     - RegexKitLite
     - SDCycleScrollView
@@ -86,6 +89,7 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  MutableDeepCopy: 8108df2405e2c0b396c102a8bcba92ce2d2d3c52
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
@@ -93,7 +97,7 @@ SPEC CHECKSUMS:
   YLT_BaseLib: 520471dee972ba8b9bc3ae5c3a9a769591578553
   YLT_Crypto: 3d7dceec11f4a3046f58b4852092d68e4c37ab4e
   YLT_Kit: 7d7e50940b36ca8d12d48dfcf20af593262ef7cc
-  YLT_Tangram: e215bf411dabdec16990410f9ae7684be3f8ce56
+  YLT_Tangram: 39fbbeef866b4f8766b9200be2ab4a1c113a8314
   ZipArchive: e25a4373192673e3229ac8d6e9f64a3e5713c966
 
 PODFILE CHECKSUM: 68817214a39d615409a54bc5443ca0a094b3df29

@@ -13,6 +13,9 @@
 #import <YLT_Crypto/YLT_Crypto.h>
 #import <AFNetworking/AFNetworking.h>
 #import <MJRefresh/MJRefresh.h>
+#import "YLT_TangramUtils.h"
+#import <MutableDeepCopy/NSArray+mutableDeepCopy.h>
+#import <MutableDeepCopy/NSDictionary+mutableDeepCopy.h>
 
 #define TANGRAM_CACHE_KEY @"TANGRAM_CACHE_KEY"
 
@@ -189,6 +192,7 @@
         if ([self.refresh.allKeys containsObject:@"pageSizeKey"]) {
             pageSizeKey = [self.refresh objectForKey:@"pageSizeKey"];
         }
+        __block NSString *dataTag = nil;
         
         @weakify(self);
         if ([refresh.allKeys containsObject:@"header"]) {
@@ -198,8 +202,11 @@
                 if ([self.refresh.allKeys containsObject:@"page"]) {
                     self.page = [[self.refresh objectForKey:@"page"] integerValue];
                 }
+                if ([self.refresh.allKeys containsObject:@"page"]) {
+                    self.page = [[self.refresh objectForKey:@"page"] integerValue];
+                }
                 NSDictionary *header = [self.refresh objectForKey:@"header"];
-                [self analysisHeader:YES refreshData:header pageKey:pageKey pageSizeKey:pageSizeKey];
+                [self analysisHeader:YES refreshData:header pageKey:pageKey pageSizeKey:pageSizeKey dataTag:dataTag];
             }];
         }
         if ([refresh.allKeys containsObject:@"footer"]) {
@@ -207,13 +214,17 @@
                 @strongify(self);
                 self.page++;
                 NSDictionary *footer = [self.refresh objectForKey:@"footer"];
-                [self analysisHeader:NO refreshData:footer pageKey:pageKey pageSizeKey:pageSizeKey];
+                if ([footer.allKeys containsObject:@"dataTag"]) {
+                    /** 用来标志数据的追加位置 */
+                    dataTag = footer[@"dataTag"];
+                }
+                [self analysisHeader:NO refreshData:footer pageKey:pageKey pageSizeKey:pageSizeKey dataTag:dataTag];
             }];
         }
     }
 }
 
-- (void)analysisHeader:(BOOL)isHeader refreshData:(NSDictionary *)data pageKey:(NSString *)pageKey pageSizeKey:(NSString *)pageSizeKey {
+- (void)analysisHeader:(BOOL)isHeader refreshData:(NSDictionary *)data pageKey:(NSString *)pageKey pageSizeKey:(NSString *)pageSizeKey dataTag:(NSString *)dataTag {
     if ([data.allKeys containsObject:@"url"] && [[data objectForKey:@"url"] isKindOfClass:[NSDictionary class]]) {
         NSDictionary *urls = [data objectForKey:@"url"];
         NSMutableArray *requests = [[NSMutableArray alloc] init];
@@ -238,15 +249,17 @@
                             [self.pageDatas setObject:obj forKey:key];
                         } else {
                             /** 上拉加载更多 追加数据 */
-                            id oldObj = nil;
-                            if ([self.pageDatas.allKeys containsObject:key]) {
-                                oldObj = self.pageDatas[key];
-                            }
-                            if ([oldObj isKindOfClass:[NSArray class]]) {
-                                NSMutableArray *list = [[NSMutableArray alloc] init];
-                                [list addObjectsFromArray:oldObj];
-                                [list addObjectsFromArray:obj];
-                                [self.pageDatas setObject:list forKey:key];
+                            id oldObj = [YLT_TangramUtils valueFromSourceData:self.pageDatas keyPath:dataTag];
+                            
+                            if ([oldObj isKindOfClass:[NSArray class]] && ([obj isKindOfClass:[NSDictionary class]] || [obj isKindOfClass:[NSArray class]])) {
+                                NSMutableDictionary *mutableObj = [obj mutableDeepCopy];
+                                NSMutableArray *list = [YLT_TangramUtils valueFromSourceData:mutableObj keyPath:dataTag];
+                                if ([list isKindOfClass:[NSMutableArray class]]) {
+                                    [[[((NSArray *) oldObj) reverseObjectEnumerator] allObjects] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                        [list insertObject:obj atIndex:0];
+                                    }];
+                                }
+                                [self.pageDatas setObject:mutableObj forKey:key];
                             } else {
                                 /** 目前不考虑非数组类型的上拉加载更多 */
                                 [self.pageDatas setObject:obj forKey:key];

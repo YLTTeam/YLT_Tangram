@@ -121,6 +121,7 @@
             }
         },
         "footer":{
+            "dataTag":"$data.data",
             "url":{
                 "data":
                 {

@@ -1,6 +1,6 @@
 {
   "name": "YLT_Tangram",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "summary": "组件化",
   "description": "组件通过配置文件生成页面",
   "homepage": "https://github.com/YLTTeam/YLT_Tangram",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/YLTTeam/YLT_Tangram.git",
-    "tag": "0.0.5"
+    "tag": "0.0.6"
   },
   "platforms": {
     "ios": "8.0"
@@ -40,6 +40,9 @@
 
     ],
     "MJRefresh": [
+
+    ],
+    "MutableDeepCopy": [
 
     ]
   }
