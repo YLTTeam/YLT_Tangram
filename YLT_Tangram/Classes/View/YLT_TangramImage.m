@@ -68,7 +68,7 @@
             }
                 break;
         }
-        
+        self.imageView.clipsToBounds = YES;
         
         if (self.content.src.ylt_isValid && ![self.content.src hasPrefix:@"$"]) {
             self.imageView.ylt_image(self.content.src);
