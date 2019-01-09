@@ -252,7 +252,7 @@
                             id oldObj = [YLT_TangramUtils valueFromSourceData:self.pageDatas keyPath:dataTag];
                             
                             if ([oldObj isKindOfClass:[NSArray class]] && ([obj isKindOfClass:[NSDictionary class]] || [obj isKindOfClass:[NSArray class]])) {
-                                NSMutableDictionary *mutableObj = [obj mutableDeepCopy];
+                                id mutableObj = (id)[obj mutableDeepCopy];
                                 NSMutableArray *list = [YLT_TangramUtils valueFromSourceData:mutableObj keyPath:dataTag];
                                 if ([list isKindOfClass:[NSMutableArray class]]) {
                                     [[[((NSArray *) oldObj) reverseObjectEnumerator] allObjects] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -303,6 +303,7 @@
     if (pageDatas) {
         [_pageDatas addEntriesFromDictionary:pageDatas];
     }
+    [self.mainCollectionView reloadData];
 }
 
 - (NSMutableDictionary *)pageDatas {
