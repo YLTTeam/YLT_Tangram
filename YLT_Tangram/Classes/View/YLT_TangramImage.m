@@ -33,34 +33,34 @@
 //        UIViewContentModeBottomRight,
         switch (self.content.scaleType) {
             case ScaleType_Center: {
-                self.contentMode = UIViewContentModeScaleAspectFit;
+                self.imageView.contentMode = UIViewContentModeScaleAspectFit;
             }
                 break;
             case ScaleType_Fit_xy: {
-                self.contentMode = UIViewContentModeScaleToFill;
+                self.imageView.contentMode = UIViewContentModeScaleToFill;
             }
                 break;
             case ScaleType_Matrix: {
             }
                 break;
             case ScaleType_Fit_start: {
-                self.contentMode = UIViewContentModeTopLeft;
+                self.imageView.contentMode = UIViewContentModeTopLeft;
             }
                 break;
             case ScaleType_Fit_end: {
-                self.contentMode = UIViewContentModeBottomRight;
+                self.imageView.contentMode = UIViewContentModeBottomRight;
             }
                 break;
             case ScaleType_Fit_center: {
-                self.contentMode = UIViewContentModeScaleAspectFill;
+                self.imageView.contentMode = UIViewContentModeScaleAspectFill;
             }
                 break;
             case ScaleType_Center_crop: {
-                self.contentMode = UIViewContentModeScaleAspectFit;
+                self.imageView.contentMode = UIViewContentModeScaleAspectFit;
             }
                 break;
             case ScaleType_Center_inside: {
-                self.contentMode = UIViewContentModeScaleAspectFit;
+                self.imageView.contentMode = UIViewContentModeScaleAspectFit;
             }
                 break;
         }
