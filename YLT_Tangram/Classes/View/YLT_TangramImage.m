@@ -52,7 +52,7 @@
             }
                 break;
             case ScaleType_Fit_center: {
-                self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+                self.imageView.contentMode = UIViewContentModeScaleAspectFit;
             }
                 break;
             case ScaleType_Center_crop: {
@@ -60,6 +60,10 @@
             }
                 break;
             case ScaleType_Center_inside: {
+                self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+            }
+                break;
+            default: {
                 self.imageView.contentMode = UIViewContentModeScaleAspectFit;
             }
                 break;
