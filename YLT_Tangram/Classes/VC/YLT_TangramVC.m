@@ -113,6 +113,9 @@
         if ([resp.allKeys containsObject:@"itemLayout"]) {
             self.itemLayouts = resp[@"itemLayout"];
         }
+        if ([resp.allKeys containsObject:@"refresh"]) {
+            self.refresh = resp[@"refresh"];
+        }
         if ([resp.allKeys containsObject:@"layout"]) {
             NSArray *pages  = [resp objectForKey:@"layout"];
             [self realodPages:pages];
