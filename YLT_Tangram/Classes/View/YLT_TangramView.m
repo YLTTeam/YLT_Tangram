@@ -113,7 +113,7 @@
                 actionList = @[(NSString *)actionList];
             }
             [actionList enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [self.ylt_currentVC ylt_routerToURL:obj arg:nil completion:^(NSError *error, id response) {
+                [self.ylt_currentVC ylt_routerToURL:obj arg:self.pageData completion:^(NSError *error, id response) {
                 }];
             }];
         }
