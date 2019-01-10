@@ -18,7 +18,7 @@
 
 - (void)refreshPage {
     if ([self.content isKindOfClass:[TangramLabel class]]) {
-        if (![self.content.text hasPrefix:@"$"]) {
+        if (self.content.text.ylt_isValid) {
             self.label.text = self.content.text;
         }
         self.label.ylt_textColor(self.content.textColor.ylt_androidColorFromHexString);
@@ -71,7 +71,7 @@
         }
         self.label.numberOfLines = (self.content.maxLines != 0 )?self.content.maxLines:self.content.lines;
         
-        if (self.pageData && [self.content.text hasPrefix:@"$"]) {
+        if (self.pageData && self.content.text.ylt_isValid) {
             NSString *content = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.text];
             self.label.text = ([content isKindOfClass:[NSString class]])?content:@"";
         }

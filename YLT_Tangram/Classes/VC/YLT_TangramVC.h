@@ -11,6 +11,11 @@
 @interface YLT_TangramVC : YLT_BaseVC
 
 /**
+ 整体页面
+ */
+@property (nonatomic, strong) NSDictionary *tangramData;
+
+/**
  页面的子布局
  */
 @property (nonatomic, strong) NSDictionary *itemLayouts;
@@ -19,11 +24,6 @@
  网络请求参数
  */
 @property (nonatomic, strong) NSMutableDictionary *reqParams;
-
-/**
- 刷新字段
- */
-@property (nonatomic, strong) NSDictionary *refresh;
 
 /**
  页面数据
@@ -35,14 +35,7 @@
  */
 @property (nonatomic, strong) NSMutableDictionary *pageDatas;
 
-/**
- 网络请求
- */
-@property (nonatomic, strong) NSDictionary<NSString *, NSDictionary *> *pageRequest;
-
-+ (YLT_TangramVC *)tangramWithPages:(NSArray<NSDictionary *> *)pages
-                           requests:(NSDictionary<NSString *, NSDictionary *> *)pageRequests
-                          withDatas:(NSMutableDictionary *)datas;
++ (YLT_TangramVC *)tangramWithPages:(NSDictionary *)tangramDatas;
 
 /**
  生成页面

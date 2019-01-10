@@ -74,10 +74,39 @@
     if (!keypath.ylt_isValid) {
         return sourceData;
     }
-    if (![keypath hasPrefix:@"$"]) {
-        return keypath;
+    id result = sourceData;
+    NSArray *list = [keypath arrayOfCaptureComponentsMatchedByRegex:@"\\$\\{([\\s\\S]*?)\\}"];
+    switch (list.count) {
+        case 0: {
+            result = keypath;
+        }
+            break;
+        case 1: {
+            if ([[list firstObject] isKindOfClass:[NSArray class]] && ((NSArray *)[list firstObject]).count == 2) {
+                result =  [self singalValueFromData:sourceData path:[((NSArray *)[list firstObject]) lastObject]];
+            }
+        }
+            break;
+        default: {
+            /** 匹配到了多个变量  目前只支持字符串的多变量匹配 */
+            NSMutableString *str = [[NSMutableString alloc] initWithString:keypath];
+            [list enumerateObjectsUsingBlock:^(NSArray*_Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj isKindOfClass:[NSArray class]] && obj.count == 2) {
+                    NSString *temp = [self singalValueFromData:sourceData path:obj[1]];
+                    if ([temp isKindOfClass:[NSString class]] || [temp isKindOfClass:[NSNumber class]]) {
+                        temp = [NSString stringWithFormat:@"%@", temp];
+                        [str replaceOccurrencesOfString:obj[0] withString:temp options:0 range:NSMakeRange(0, str.length)];
+                    }
+                }
+            }];
+            result = str;
+        }
+            break;
     }
-    keypath = [keypath substringFromIndex:1];
+    return result;
+}
+
++ (id)singalValueFromData:(id)sourceData path:(NSString *)keypath {
     __block id result = sourceData;
     [[keypath componentsSeparatedByString:@"."] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSArray *list = [obj arrayOfCaptureComponentsMatchedByRegex:@"(\\S+)(?:\\s*)\\[(\\d*)\\]"];

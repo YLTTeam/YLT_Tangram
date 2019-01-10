@@ -14,6 +14,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <MJRefresh/MJRefresh.h>
 #import "YLT_TangramUtils.h"
+#import <YLT_BaseLib/YLT_BaseLib.h>
 #import <MutableDeepCopy/NSArray+mutableDeepCopy.h>
 #import <MutableDeepCopy/NSDictionary+mutableDeepCopy.h>
 
@@ -26,6 +27,17 @@
 
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, assign) NSInteger pageSize;
+
+@property (nonatomic, strong) UIImageView *bgImageView;
+/**
+ 刷新字段
+ */
+@property (nonatomic, strong) NSDictionary *refresh;
+
+/**
+ 网络请求
+ */
+@property (nonatomic, strong) NSDictionary<NSString *, NSDictionary *> *pageRequest;
 
 @end
 
@@ -40,13 +52,9 @@
     self.view.backgroundColor = UIColor.whiteColor;
 }
 
-+ (YLT_TangramVC *)tangramWithPages:(NSArray<NSDictionary *> *)pages
-                           requests:(NSDictionary<NSString *, NSDictionary *> *)pageRequests
-                          withDatas:(NSMutableDictionary *)datas {
++ (YLT_TangramVC *)tangramWithPages:(NSDictionary *)tangramDatas {
     YLT_TangramVC *result = [[YLT_TangramVC alloc] init];
-    result.pageRequest = pageRequests;
-    result.pageDatas = datas;
-    [result realodPages:pages];
+    result.tangramData = tangramDatas;
     return result;
 }
 
@@ -109,25 +117,38 @@
 
 - (void)loadTemplatePath:(NSURL *)fileURL {
     NSDictionary *resp = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:fileURL] options:NSJSONReadingAllowFragments error:nil];
-    if ([resp isKindOfClass:[NSDictionary class]]) {
-        if ([resp.allKeys containsObject:@"itemLayout"]) {
-            self.itemLayouts = resp[@"itemLayout"];
+    self.tangramData = resp;
+}
+
+- (void)setTangramData:(NSDictionary *)tangramData {
+    _tangramData = tangramData;
+    if ([tangramData isKindOfClass:[NSDictionary class]]) {
+        if ([tangramData.allKeys containsObject:@"itemLayout"]) {
+            self.itemLayouts = tangramData[@"itemLayout"];
         }
-        if ([resp.allKeys containsObject:@"refresh"]) {
-            self.refresh = resp[@"refresh"];
+        if ([tangramData.allKeys containsObject:@"refresh"]) {
+            self.refresh = tangramData[@"refresh"];
         }
-        if ([resp.allKeys containsObject:@"layout"]) {
-            NSArray *pages  = [resp objectForKey:@"layout"];
+        if ([tangramData.allKeys containsObject:@"layout"]) {
+            NSArray *pages  = [tangramData objectForKey:@"layout"];
             [self realodPages:pages];
         }
-        if ([resp.allKeys containsObject:@"data"]) {
-            self.pageDatas = resp[@"data"];
+        if ([tangramData.allKeys containsObject:@"data"]) {
+            self.pageDatas = tangramData[@"data"];
         }
-        if ([resp.allKeys containsObject:@"url"]) {
-            self.pageRequest = [resp objectForKey:@"url"];
+        if ([tangramData.allKeys containsObject:@"url"]) {
+            self.pageRequest = [tangramData objectForKey:@"url"];
         }
-        if ([resp.allKeys containsObject:@"title"]) {
-            self.title = resp[@"title"];
+        if ([tangramData.allKeys containsObject:@"title"]) {
+            self.title = tangramData[@"title"];
+        }
+        if ([tangramData.allKeys containsObject:@"background"]) {
+            NSString *colorString = tangramData[@"background"];
+            if ([colorString hasPrefix:@"#"]) {
+                self.bgImageView.backgroundColor = [colorString ylt_androidColorFromHexString];
+            } else {
+                self.bgImageView.ylt_image(colorString);
+            }
         }
     }
 }
@@ -287,6 +308,17 @@
         _reqParams = [[NSMutableDictionary alloc] init];
     }
     return _reqParams;
+}
+
+- (UIImageView *)bgImageView {
+    if (!_bgImageView) {
+        _bgImageView = [[UIImageView alloc] init];
+        [self.view insertSubview:_bgImageView atIndex:0];
+        [_bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+    }
+    return _bgImageView;
 }
 
 - (UICollectionView *)mainCollectionView {

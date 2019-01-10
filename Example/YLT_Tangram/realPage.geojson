@@ -2,103 +2,31 @@
     "url":{
         "banner":
         {
-            "path":"route_hs/v1/virtual/getDataUrls",
+            "path":"/yyj/v1.0/banner/getBannerByType",
             "params":{
                 "userId":1,
                 "sign":1,
                 "nonce":1,
-                "token":1
+                "token":1,
+                "type":29,
+                "appInfo":"iOS/4.5.0"
             }
         },
         "data":
         {
-            "path":"route_hs/v1/virtual/getData",
+            "path":"/yyj/remote/information/pullInformation",
             "params":{
                 "userId":1,
                 "sign":1,
                 "nonce":1,
-                "token":1
+                "token":1,
+                "appkey":1,
+                "forecastPoint":0,
+                "left":0,
+                "right":0,
+                "stop":0
             }
         }
-    },
-    "data": {
-        "data":[
-                {
-                "classifyName": "购物",
-                "classifyResult": [
-                                   {
-                                   "pid": 29,
-                                   "popInfo": "",
-                                   "model_title": "特权",
-                                   "link": "",
-                                   "travel_type": 1,
-                                   "updated": 1540443891435,
-                                   "msgIsShow": false,
-                                   "model_profile": "特权商品",
-                                   "model_img": "h5/2018/10/25/F228DE6134F24F37995DD35F386DD451",
-                                   "clickType": 24,
-                                   "isShow": true,
-                                   "is_start_show": true,
-                                   "img2": "h5/2018/10/25/3C07A0E74B8B46DD94354C786FF06361",
-                                   "link_weixin": "",
-                                   "privilegeClassify": 3,
-                                   "id": 126,
-                                   "msgInfo": "",
-                                   "userDefaultMsg": "",
-                                   "sort": 2,
-                                   "type": 2,
-                                   "clickAction":"http://testweb.ultimavip.cn/movie/520movie/august-movie.html"
-                                   },
-                                   {
-                                   "pid": 32,
-                                   "popInfo": "",
-                                   "model_title": "永久特权-特权商品",
-                                   "link": "",
-                                   "travel_type": 1,
-                                   "updated": 1540451206103,
-                                   "msgIsShow": false,
-                                   "model_profile": "永久特权-特权商品",
-                                   "model_img": "h5/2018/10/25/E48630E4D3404EADA7C0C4E395CA8A80",
-                                   "clickType": 24,
-                                   "isShow": true,
-                                   "is_start_show": true,
-                                   "link_weixin": "",
-                                   "privilegeClassify": 3,
-                                   "id": 128,
-                                   "msgInfo": "",
-                                   "userDefaultMsg": "",
-                                   "sort": 4,
-                                   "type": 2,
-                                   "clickAction":{
-                                   "iOS":"ylt://YLT_TestVC/ylt_pushVCWithParam:?username=alex&title=永久特权-特权商品&subtitle=购物特权",
-                                   "android":"dit://ultimavip.cn/gold/home"
-                                   }
-                                   },
-                                   {
-                                   "popInfo": "",
-                                   "model_title": "电影票",
-                                   "link": "",
-                                   "travel_type": 1,
-                                   "updated": 1536301182519,
-                                   "msgIsShow": false,
-                                   "model_profile": "电影票",
-                                   "model_img": "h5/2017/9/4/933D0A1975554D03A5FC4DFA556B5E31",
-                                   "clickType": 11,
-                                   "isShow": true,
-                                   "is_start_show": false,
-                                   "img2": "h5/2018/9/7/F017C87981E04C97828F42F3D24287FF",
-                                   "link_weixin": "",
-                                   "privilegeClassify": 3,
-                                   "id": 79,
-                                   "msgInfo": "9.9观影",
-                                   "userDefaultMsg": "",
-                                   "sort": 6,
-                                   "type": 2
-                                   }
-                                   ]
-                }
-                ]
-        
     },
     "title":"预言家日报",
     "refresh":{
@@ -108,48 +36,65 @@
         "pageKey":"page",
         "header":{
             "url":{
-                "data":
-                {
-                    "path":"route_hs/v1/virtual/getData",
+                "data": {
+                    "path":"/yyj/remote/information/pullInformation",
                     "params":{
                         "userId":1,
                         "sign":1,
                         "nonce":1,
-                        "token":1
+                        "token":1,
+                        "appkey":1,
+                        "forecastPoint":0,
+                        "left":0,
+                        "right":0,
+                        "stop":0
                     }
                 }
             }
         },
         "footer":{
-            "dataTag":"$data.data",
+            "dataTag":"${data.data}",
             "url":{
-                "data":
-                {
-                    "path":"route_hs/v1/virtual/getData",
+                "data": {
+                    "path":"/yyj/remote/information/pullInformation",
                     "params":{
                         "userId":1,
                         "sign":1,
                         "nonce":1,
-                        "token":1
-                    },
-                    "identify":"privilege_TangramGridLayout_1"
+                        "token":1,
+                        "appkey":1,
+                        "forecastPoint":"${data.forecastPoint}",
+                        "left":"${data.left}",
+                        "right":"${data.right}",
+                        "stop":"${data.stop}"
+                    }
                 }
             }
         }
     },
+    "background":"http://app-resource.test.upcdn.net/iosResource/4.5.0/appres/2x/pd_without_head@2x.png",
     "layout":[
               {
+              "type":"TangramBannerLayout",
+              "duration":2,
+              "normalColor":"#666666",
+              "selectedColor":"#ffffff",
+              "itemName":"TangramBanner",
+              "dataTag":"${banner}",
+              "layoutWidth":-1,
+              "layoutHeight":200
+              },
+              {
               "type":"TangramGridLayout",
-              "dataTag":"$data[0].classifyResult",
+              "dataTag":"${data.data}",
               "column":1,
               "layoutMarginLeft":8,
               "layoutMarginRight":8,
               "identify":"privilege_TangramGridLayout_1",
               "itemHorizontalMargin":8,
               "itemName": "TangramMenu",
-              "itemHeight":72
+              "itemHeight":96
               }
-              
               ],
     
     
@@ -158,8 +103,7 @@
             "id":"1",
             "dataTag":"",
             "keypath":"",
-            "padding":8,
-            "action":"$clickAction",
+            "action":"${materialVo.sourceUrl}",
             "type":"TangramFrameLayout",
             "identify":"TangramMenu",
             "orientation":2,
@@ -168,33 +112,54 @@
                            "id":"1",
                            "dataTag":"",
                            "keypath":"",
-                           "padding":8,
-                           "action":"$clickAction",
                            "type":"TangramFrameLayout",
                            "identify":"TangramMenu",
                            "orientation":1,
                            "subTangrams":[
                                           {
-                                          "id":"0",
-                                          "textColor":"#000000",
+                                          "id":"1",
+                                          "type":"TangramFrameLayout",
+                                          "identify":"TangramLabelss",
+                                          "orientation":2,
                                           "layoutMarginLeft":8,
-                                          "layoutMarginTop":8,
+                                          "layoutMarginTop":4,
                                           "layoutMarginBottom":8,
-                                          "fontSize":14,
-                                          "type":"TangramLabel",
-                                          "identify":"1_1",
-                                          "layoutGravity":16,
-                                          "gravity":1,
-                                          "text":"$model_profile"
+                                          "layoutMarginRight":80,
+                                          "subTangrams":[
+                                                         {
+                                                         "id":"0",
+                                                         "textColor":"#000000",
+                                                         "fontSize":14,
+                                                         "type":"TangramLabel",
+                                                         "identify":"1_1",
+                                                         "layoutGravity":4,
+                                                         "gravity":1,
+                                                         "lines":3,
+                                                         "text":"${materialVo.title}"
+                                                         },
+                                                         {
+                                                         "id":"0",
+                                                         "textColor":"#666666",
+                                                         "fontSize":12,
+                                                         "type":"TangramLabel",
+                                                         "identify":"1_7",
+                                                         "layoutGravity":8,
+                                                         "gravity":1,
+                                                         "lines":1,
+                                                         "layoutHeight":30,
+                                                         "text":"来自:${materialVo.source} 浏览:${browseCount}"
+                                                         }
+                                                         ]
                                           },
                                           {
                                           "id":"0",
                                           "type":"TangramImage",
                                           "identify":"1_2",
-                                          "layoutWidth":51,
-                                          "layoutHeight":51,
-                                          "layoutGravity":2,
-                                          "src":"$model_img"
+                                          "layoutWidth":72,
+                                          "layoutHeight":72,
+                                          "layoutGravity":18,
+                                          "src":"${materialVo.cover}",
+                                          "scaleType":8
                                           }
                                           ]
                            },
@@ -205,7 +170,7 @@
                            "layoutWidth":-1,
                            "layoutHeight":0.5,
                            "layoutGravity":8,
-                           "background":"#ff0000"
+                           "background":"#666666"
                            }
                            ]
         },
@@ -213,34 +178,19 @@
         "TangramBanner": {
             "id":"1",
             "dataTag":"",
-            "keypath":"",
-            "action":"",
+            "action":"${link}",
             "type":"TangramFrameLayout",
-            "identify":"TangramMenu",
+            "identify":"TangramBanner",
             "subTangrams":[
                            {
                            "id":"0",
                            "dataTag":"",
-                           "action":"",
                            "type":"TangramImage",
                            "identify":"1_2",
-                           "layoutWidth":0,
-                           "layoutWeight":3,
-                           "src":"$url"
-                           },
-                           {
-                           "id":"0",
-                           "dataTag":"",
-                           "textColor":"#ff0000",
-                           "action":"",
-                           "fontSize":13,
-                           "type":"TangramLabel",
-                           "identify":"1_1",
                            "layoutWidth":-1,
-                           "layoutWeight":1,
-                           "layoutMarginTop":8,
-                           "gravity":32,
-                           "text":"$text"
+                           "layoutHeight":-1,
+                           "src":"${img}",
+                           "scaleType":8
                            }
                            ]
         }

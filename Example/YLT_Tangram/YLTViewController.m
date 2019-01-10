@@ -49,6 +49,16 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    NSString *str = [YLT_TangramUtils valueFromSourceData:@{@"data":@{@"title":@"123456"}, @"source":@"sourceData"} keyPath:@"来自:${data.title}点赞:${source}"];
+//    YLT_Log(@"%@", str);
+//
+//    id data = [YLT_TangramUtils valueFromSourceData:@{@"data":@{@"title":@"123456"}, @"source":@"sourceData"} keyPath:@"${data}"];
+//
+//    YLT_Log(@"%@", data);
+//
+//    return;
+    
+    
     [YLT_TangramManager shareInstance].tangramKey = @"woBLXnIJakCTnqyU";
     uint8_t iv[16] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08, 0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08}; //直接影响加密结果!
     NSData *ivData = [NSData dataWithBytes:iv length:sizeof(iv)];
@@ -105,12 +115,8 @@
     //    [self.navigationController pushViewController:target animated:YES];
     
     NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-    NSDictionary *urls = [map objectForKey:@"url"];
-    NSArray<NSDictionary *> *pages = map[@"layout"];
     
-    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:map[@"data"]];
-    vc.refresh = map[@"refresh"];
-    vc.itemLayouts = map[@"itemLayout"];
+    YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:map];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

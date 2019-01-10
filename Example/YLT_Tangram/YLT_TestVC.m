@@ -37,13 +37,8 @@
     [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self);
         NSDictionary *map = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"realPage" ofType:@"geojson"]] options:NSJSONReadingAllowFragments error:nil];
-        NSDictionary *urls = [map objectForKey:@"url"];
-        NSArray<NSDictionary *> *pages = map[@"layout"];
-        NSDictionary *datas = map[@"data"];
         
-        YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:pages requests:urls withDatas:datas.mutableCopy];
-        vc.itemLayouts = map[@"itemLayout"];
-        vc.title = map[@"title"];
+        YLT_TangramVC *vc = [YLT_TangramVC tangramWithPages:map];
         [self.navigationController pushViewController:vc animated:YES];
     }];
     
