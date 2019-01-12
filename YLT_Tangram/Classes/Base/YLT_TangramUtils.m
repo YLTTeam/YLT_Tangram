@@ -82,8 +82,16 @@
         }
             break;
         case 1: {
+            /** 匹配到了多个变量  目前只支持字符串的多变量匹配 */
+            NSMutableString *str = [[NSMutableString alloc] initWithString:keypath];
             if ([[list firstObject] isKindOfClass:[NSArray class]] && ((NSArray *)[list firstObject]).count == 2) {
-                result =  [self singalValueFromData:sourceData path:[((NSArray *)[list firstObject]) lastObject]];
+                result = [self singalValueFromData:sourceData path:[((NSArray *)[list firstObject]) lastObject]];
+            }
+            /** 匹配到的内容是字符串 那么就进行拼接一下 */
+            if ([result isKindOfClass:[NSString class]] || [result isKindOfClass:[NSNumber class]]) {
+                result = [NSString stringWithFormat:@"%@", result];
+                [str replaceOccurrencesOfString:list.firstObject[0] withString:result options:0 range:NSMakeRange(0, str.length)];
+                result = str;
             }
         }
             break;

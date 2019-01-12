@@ -38,6 +38,7 @@
             "url":{
                 "data": {
                     "path":"/yyj/remote/information/pullInformation",
+                    "identify":"privilege_TangramGridLayout_1",
                     "params":{
                         "userId":1,
                         "sign":1,
@@ -91,7 +92,7 @@
               "layoutMarginLeft":8,
               "layoutMarginRight":8,
               "identify":"privilege_TangramGridLayout_1",
-              "itemHorizontalMargin":8,
+              "itemVerticalMargin":8,
               "itemName": "TangramMenu",
               "itemHeight":96
               }
@@ -103,7 +104,7 @@
             "id":"1",
             "dataTag":"",
             "keypath":"",
-            "action":"${materialVo.sourceUrl}",
+            "action":"http://testweb.ultimavip.cn/daily-prophet/share/share-detail.html?informationId=${materialVo.id}",
             "type":"TangramFrameLayout",
             "identify":"TangramMenu",
             "orientation":2,

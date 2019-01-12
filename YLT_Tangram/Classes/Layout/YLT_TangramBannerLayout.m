@@ -125,9 +125,7 @@
     NSDictionary *data = self.list[index];
     NSDictionary *clickAction = layout.action;
     if ([clickAction isKindOfClass:[NSString class]]) {
-        if ([((NSString *) clickAction) hasPrefix:@"$"]) {
-            clickAction = [YLT_TangramUtils valueFromSourceData:data keyPath:(NSString *)clickAction];
-        }
+        clickAction = [YLT_TangramUtils valueFromSourceData:data keyPath:(NSString *)clickAction];
         if ([clickAction isKindOfClass:[NSString class]] && clickAction.mj_JSONObject) {
             clickAction = clickAction.mj_JSONObject;
         }

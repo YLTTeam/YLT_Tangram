@@ -26,7 +26,7 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     TangramView *item = [self.pageModels objectAtIndex:section];
     if ([item isKindOfClass:[TangramGridLayout class]]) {
-        return ((TangramGridLayout *)item).itemVerticalMargin;
+        return ((TangramGridLayout *)item).itemHorizontalMargin;
     }
     return 0;
 }
@@ -34,7 +34,7 @@
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     TangramView *item = [self.pageModels objectAtIndex:section];
     if ([item isKindOfClass:[TangramGridLayout class]]) {
-        return ((TangramGridLayout *)item).itemHorizontalMargin;
+        return ((TangramGridLayout *)item).itemVerticalMargin;
     }
     return 0;
 }
