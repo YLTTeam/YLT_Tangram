@@ -67,7 +67,7 @@ static NSDictionary *modelViews;
             [self.contentView addSubview:sub];
             sub.pageModel = config;
             [sub mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(config.ylt_layoutMagin);
+                make.edges.mas_equalTo(config.ylt_layoutMargin);
             }];
             [self.subTangrams setObject:sub forKey:config.identify];
         } else if ([YLT_TangramManager shareInstance].tangramViewFromPageModel) {
@@ -78,7 +78,7 @@ static NSDictionary *modelViews;
                     sub.pageModel = config;
                 }
                 [sub mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.edges.mas_equalTo(config.ylt_layoutMagin);
+                    make.edges.mas_equalTo(config.ylt_layoutMargin);
                 }];
                 [[self extracted] setObject:sub forKey:config.identify];
             }

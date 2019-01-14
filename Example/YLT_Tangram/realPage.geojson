@@ -125,12 +125,12 @@
                                           "layoutMarginLeft":8,
                                           "layoutMarginTop":4,
                                           "layoutMarginBottom":8,
-                                          "layoutMarginRight":80,
+                                          "layoutMarginRight":8,
                                           "subTangrams":[
                                                          {
                                                          "id":"0",
                                                          "textColor":"#000000",
-                                                         "fontSize":14,
+                                                         "fontSize":14,1
                                                          "type":"TangramLabel",
                                                          "identify":"1_1",
                                                          "layoutGravity":4,

@@ -39,7 +39,7 @@
                     sub.pageModel = [modelClass mj_objectWithKeyValues:obj.ylt_sourceData];
                     [self.mainView addSubview:sub];
                     [sub mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.edges.mas_equalTo(obj.ylt_layoutMagin);
+                        make.edges.mas_equalTo(obj.ylt_layoutMargin);
                     }];
                     if (sub) {
                         [self.subTangrams setObject:sub forKey:obj.identify];
@@ -50,7 +50,7 @@
                 sub.pageData = self.pageData;
             }
         }];
-        [self updateLayoutFrameLayout];
+        [self updateLayoutFrameLayoutIsSub:NO];
     }
 }
 

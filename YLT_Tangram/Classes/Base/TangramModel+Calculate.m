@@ -8,18 +8,20 @@
 #import "TangramModel+Calculate.h"
 #import "YLT_TangramView.h"
 #import <objc/runtime.h>
+#import <YLT_BaseLib/YLT_BaseLib.h>
 #import <Foundation/Foundation.h>
 
 @implementation TangramView (Calculate)
 
 @dynamic ylt_padding;
-@dynamic ylt_layoutMagin;
+@dynamic ylt_layoutMargin;
+@dynamic ylt_identify;
 
 - (UIEdgeInsets)ylt_padding {
     return UIEdgeInsetsMake((self.paddingTop==0)?self.padding:self.paddingTop, (self.paddingLeft==0)?self.padding:self.paddingLeft, (self.paddingBottom==0)?self.padding:self.paddingBottom, (self.paddingRight==0)?self.padding:self.paddingRight);
 }
 
-- (UIEdgeInsets)ylt_layoutMagin {
+- (UIEdgeInsets)ylt_layoutMargin {
     return UIEdgeInsetsMake((self.layoutMarginTop==0)?self.layoutMargin:self.layoutMarginTop, (self.layoutMarginLeft==0)?self.layoutMargin:self.layoutMarginLeft, (self.layoutMarginBottom==0)?self.layoutMargin:self.layoutMarginBottom, (self.layoutMarginRight==0)?self.layoutMargin:self.layoutMarginRight);
 }
 
@@ -57,11 +59,11 @@
             if (self.orientation == Orientation_H) {
                 obj.layoutWeight = obj.layoutWidth > 0 ? 0 : obj.layoutWeight;
                 layoutTotalWidth += obj.layoutWeight;
-                layoutRegularTotal += obj.ylt_layoutMagin.left+obj.ylt_layoutMagin.right+obj.layoutWidth;
+                layoutRegularTotal += obj.ylt_layoutMargin.left+obj.ylt_layoutMargin.right+obj.layoutWidth;
             } else {
                 obj.layoutWeight = obj.layoutHeight > 0 ? 0 : obj.layoutWeight;
                 layoutTotalHeight += obj.layoutWeight;
-                layoutRegularTotal += obj.ylt_layoutMagin.top+obj.ylt_layoutMagin.bottom+obj.layoutHeight;
+                layoutRegularTotal += obj.ylt_layoutMargin.top+obj.ylt_layoutMargin.bottom+obj.layoutHeight;
             }
         }];
         objc_setAssociatedObject(self, @selector(ylt_layoutWidthTotalWeight), @(layoutTotalWidth), OBJC_ASSOCIATION_RETAIN_NONATOMIC);

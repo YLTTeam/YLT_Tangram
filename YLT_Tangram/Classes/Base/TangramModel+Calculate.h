@@ -16,11 +16,12 @@
 /**
  视图外边距
  */
-@property (nonatomic, assign, readonly) UIEdgeInsets ylt_layoutMagin;
+@property (nonatomic, assign, readonly) UIEdgeInsets ylt_layoutMargin;
 /**
  模版key
  */
 @property (nonatomic, strong, readonly) NSString *ylt_identify;
+
 @end
 
 @interface TangramFrameLayout (Calculate)

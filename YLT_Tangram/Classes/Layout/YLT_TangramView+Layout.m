@@ -70,19 +70,19 @@
 
 - (void)updateHorizontalDefaultMaker:(MASConstraintMaker *)make {
     //水平方向上没有Gravity的约束
-    if (self.pageModel.ylt_layoutMagin.right != 0) {
-        make.right.mas_equalTo(-self.pageModel.ylt_layoutMagin.right);
+    if (self.pageModel.ylt_layoutMargin.right != 0) {
+        make.right.mas_equalTo(-self.pageModel.ylt_layoutMargin.right);
     } else {
-        make.left.mas_equalTo(self.pageModel.ylt_layoutMagin.left);
+        make.left.mas_equalTo(self.pageModel.ylt_layoutMargin.left);
     }
 }
 
 - (void)updateVerticalDefaultMaker:(MASConstraintMaker *)make {
     //垂直方向上没有Gravity约束
-    if (self.pageModel.ylt_layoutMagin.bottom != 0) {
-        make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMagin.bottom);
+    if (self.pageModel.ylt_layoutMargin.bottom != 0) {
+        make.bottom.mas_equalTo(-self.pageModel.ylt_layoutMargin.bottom);
     } else {
-        make.top.mas_equalTo(self.pageModel.ylt_layoutMagin.top);
+        make.top.mas_equalTo(self.pageModel.ylt_layoutMargin.top);
     }
 }
 
@@ -128,12 +128,12 @@
 }
 
 - (CGFloat)maxWidth {
-    CGFloat width = self.superview.ylt_size.width - self.pageModel.ylt_layoutMagin.left -self.pageModel.ylt_layoutMagin.right;
+    CGFloat width = self.superview.ylt_size.width - self.pageModel.ylt_layoutMargin.left -self.pageModel.ylt_layoutMargin.right;
     return width > 0 ? width : 0;
 }
 
 - (CGFloat)maxHeight {
-    CGFloat height = self.superview.ylt_size.height - self.pageModel.ylt_layoutMagin.top -self.pageModel.ylt_layoutMagin.bottom;
+    CGFloat height = self.superview.ylt_size.height - self.pageModel.ylt_layoutMargin.top -self.pageModel.ylt_layoutMargin.bottom;
     return height > 0 ? height : 0;
 }
 
@@ -143,10 +143,12 @@
 
 @implementation YLT_TangramFrameLayout (Layout)
 
-- (void)updateLayoutFrameLayout {
+- (void)updateLayoutFrameLayoutIsSub:(BOOL)isSub {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //首先更新自己的布局
-        [self updateLayout];
+        if (!isSub) {
+            //首先更新自己的布局
+            [self updateLayout];
+        }
         
         __block YLT_TangramView *currentSub = nil;
         __block YLT_TangramView *lastSub = self;
@@ -154,8 +156,7 @@
         [self.content.subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             currentSub = [self.subTangrams objectForKey:obj.identify];
             if ([currentSub isKindOfClass:[YLT_TangramFrameLayout class]]) {
-                [(YLT_TangramFrameLayout *)currentSub updateLayoutFrameLayout];
-                return ;
+                [(YLT_TangramFrameLayout *)currentSub updateLayoutFrameLayoutIsSub:YES];
             }
             
             if (currentSub) {
@@ -172,18 +173,18 @@
                         if (!hasHorizontal) {
                             //不包含水平布局 需要根据上一个视图做重新布局
                             if (lastSub == self) {
-                                make.left.equalTo(self.mas_left).offset(currentSub.pageModel.ylt_layoutMagin.left);
+                                make.left.equalTo(self.mas_left).offset(currentSub.pageModel.ylt_layoutMargin.left);
                             } else {
-                                make.left.equalTo(lastSub.mas_right).offset(currentSub.pageModel.ylt_layoutMagin.left+lastSub.pageModel.ylt_layoutMagin.right);
+                                make.left.equalTo(lastSub.mas_right).offset(currentSub.pageModel.ylt_layoutMargin.left+lastSub.pageModel.ylt_layoutMargin.right);
                             }
                         }
                     } else {//默认布局垂直方向
                         if (!hasVertical) {
                             //不包含垂直布局 需要根据上一个视图做重新布局
                             if (lastSub == self) {
-                                make.top.equalTo(self.mas_top).offset(currentSub.pageModel.ylt_layoutMagin.top);
+                                make.top.equalTo(self.mas_top).offset(currentSub.pageModel.ylt_layoutMargin.top);
                             } else {
-                                make.top.equalTo(lastSub.mas_bottom).offset(currentSub.pageModel.ylt_layoutMagin.top+lastSub.pageModel.ylt_layoutMagin.bottom);
+                                make.top.equalTo(lastSub.mas_bottom).offset(currentSub.pageModel.ylt_layoutMargin.top+lastSub.pageModel.ylt_layoutMargin.bottom);
                             }
                         }
                         if (!hasHorizontal) {
