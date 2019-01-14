@@ -15,7 +15,7 @@
 
 @interface YLT_TangramFrameLayout (Layout)
 
-- (void)updateLayoutFrameLayoutIsSub:(BOOL)isSub;
+- (void)updateLayoutFrameLayout;
 
 @end
 

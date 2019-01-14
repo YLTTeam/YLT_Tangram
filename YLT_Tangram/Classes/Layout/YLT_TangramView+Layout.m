@@ -1,4 +1,4 @@
-//
+ //
 //  YLT_TangramView+Layout.m
 //  YLT_Tangram
 //
@@ -128,12 +128,12 @@
 }
 
 - (CGFloat)maxWidth {
-    CGFloat width = self.superview.ylt_size.width - self.pageModel.ylt_layoutMargin.left -self.pageModel.ylt_layoutMargin.right;
+    CGFloat width = self.superview.ylt_size.width;
     return width > 0 ? width : 0;
 }
 
 - (CGFloat)maxHeight {
-    CGFloat height = self.superview.ylt_size.height - self.pageModel.ylt_layoutMargin.top -self.pageModel.ylt_layoutMargin.bottom;
+    CGFloat height = self.superview.ylt_size.height;
     return height > 0 ? height : 0;
 }
 
@@ -143,20 +143,15 @@
 
 @implementation YLT_TangramFrameLayout (Layout)
 
-- (void)updateLayoutFrameLayoutIsSub:(BOOL)isSub {
+- (void)updateLayoutFrameLayout {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (!isSub) {
-            //首先更新自己的布局
-            [self updateLayout];
-        }
-        
         __block YLT_TangramView *currentSub = nil;
         __block YLT_TangramView *lastSub = self;
         //更新子视图的布局
         [self.content.subTangrams enumerateObjectsUsingBlock:^(TangramView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             currentSub = [self.subTangrams objectForKey:obj.identify];
             if ([currentSub isKindOfClass:[YLT_TangramFrameLayout class]]) {
-                [(YLT_TangramFrameLayout *)currentSub updateLayoutFrameLayoutIsSub:YES];
+                [(YLT_TangramFrameLayout *)currentSub updateLayoutFrameLayout];
             }
             
             if (currentSub) {

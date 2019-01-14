@@ -50,7 +50,7 @@
                 sub.pageData = self.pageData;
             }
         }];
-        [self updateLayoutFrameLayoutIsSub:NO];
+        [self updateLayoutFrameLayout];
     }
 }
 

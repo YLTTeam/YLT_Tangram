@@ -34,15 +34,18 @@
 @implementation TangramFrameLayout (Calculate)
 
 - (CGFloat)ylt_layoutWidthTotalWeight {
-    return [objc_getAssociatedObject(self, @selector(ylt_layoutWidthTotalWeight)) floatValue];
+    CGFloat result = [objc_getAssociatedObject(self, @selector(ylt_layoutWidthTotalWeight)) floatValue];
+    return (result >= 0)?result:0;
 }
 
 - (CGFloat)ylt_layoutHeightTotalWeight {
-    return [objc_getAssociatedObject(self, @selector(ylt_layoutHeightTotalWeight)) floatValue];
+    CGFloat result = [objc_getAssociatedObject(self, @selector(ylt_layoutHeightTotalWeight)) floatValue];
+    return (result >= 0)?result:0;
 }
 
 - (CGFloat)ylt_layoutRegularTotal {
-    return [objc_getAssociatedObject(self, @selector(ylt_layoutRegularTotal)) floatValue];
+    CGFloat result = [objc_getAssociatedObject(self, @selector(ylt_layoutRegularTotal)) floatValue];
+    return (result >= 0)?result:0;
 }
 
 - (void)setSubTangrams:(NSMutableArray<TangramView *> *)subTangrams {
@@ -59,11 +62,11 @@
             if (self.orientation == Orientation_H) {
                 obj.layoutWeight = obj.layoutWidth > 0 ? 0 : obj.layoutWeight;
                 layoutTotalWidth += obj.layoutWeight;
-                layoutRegularTotal += obj.ylt_layoutMargin.left+obj.ylt_layoutMargin.right+obj.layoutWidth;
+                layoutRegularTotal += obj.ylt_layoutMargin.left+obj.ylt_layoutMargin.right+((obj.layoutWidth >= 0)?obj.layoutWidth:0);
             } else {
                 obj.layoutWeight = obj.layoutHeight > 0 ? 0 : obj.layoutWeight;
                 layoutTotalHeight += obj.layoutWeight;
-                layoutRegularTotal += obj.ylt_layoutMargin.top+obj.ylt_layoutMargin.bottom+obj.layoutHeight;
+                layoutRegularTotal += obj.ylt_layoutMargin.top+obj.ylt_layoutMargin.bottom+((obj.layoutHeight >= 0)?obj.layoutHeight:0);
             }
         }];
         objc_setAssociatedObject(self, @selector(ylt_layoutWidthTotalWeight), @(layoutTotalWidth), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
