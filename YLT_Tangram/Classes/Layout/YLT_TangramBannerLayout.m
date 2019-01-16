@@ -25,9 +25,9 @@
 - (void)refreshPage {
     if ([self.content isKindOfClass:[TangramBannerLayout class]]) {
         self.list = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.dataTag];
-        self.bannerView.imageURLStringsGroup = self.imgArr;
-
-        if (self.imgArr.count > 1) {
+        
+        if (self.imgArr.count >= 1) {
+            self.bannerView.imageURLStringsGroup = self.imgArr;
             self.bannerView.autoScrollTimeInterval = self.content.duration > 0 ? self.content.duration : 5;
             self.bannerView.currentPageDotColor = [self.content.selectedColor ylt_colorFromHexString];
             self.bannerView.pageDotColor = [self.content.normalColor ylt_colorFromHexString];
