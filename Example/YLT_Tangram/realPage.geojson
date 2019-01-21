@@ -83,7 +83,8 @@
               "itemName":"TangramBanner",
               "dataTag":"${banner}",
               "layoutWidth":-1,
-              "layoutHeight":200
+              "layoutHeight":200,
+              "identify":"privilege_TangramBannerLayout_1"
               },
               {
               "type":"TangramGridLayout",

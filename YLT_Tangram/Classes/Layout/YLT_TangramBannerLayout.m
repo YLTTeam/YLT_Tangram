@@ -22,10 +22,11 @@
 
 - (void)refreshPage {
     if ([self.content isKindOfClass:[TangramBannerLayout class]]) {
-        self.list = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.dataTag];
-        if ([self.list isKindOfClass:[NSError class]] || ![self.list isKindOfClass:[NSArray class]]) {
+        NSArray *datas = [YLT_TangramUtils valueFromSourceData:self.pageData keyPath:self.content.dataTag];
+        if ([datas isKindOfClass:[NSError class]] || ![datas isKindOfClass:[NSArray class]]) {
             return;
         }
+        self.list = datas;
         __block NSMutableArray *imageUrlString = [NSMutableArray new];
         [self.list enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [imageUrlString addObject:@""];
