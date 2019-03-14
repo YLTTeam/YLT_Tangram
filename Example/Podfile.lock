@@ -43,7 +43,7 @@ PODS:
     - ReactiveObjC
     - SDWebImage
     - YLT_BaseLib
-  - YLT_Tangram (0.0.6):
+  - YLT_Tangram (0.0.22):
     - MJRefresh
     - MutableDeepCopy
     - RegexKitLite
@@ -97,7 +97,7 @@ SPEC CHECKSUMS:
   YLT_BaseLib: 520471dee972ba8b9bc3ae5c3a9a769591578553
   YLT_Crypto: 3d7dceec11f4a3046f58b4852092d68e4c37ab4e
   YLT_Kit: 7d7e50940b36ca8d12d48dfcf20af593262ef7cc
-  YLT_Tangram: 39fbbeef866b4f8766b9200be2ab4a1c113a8314
+  YLT_Tangram: 30ec6372ad250fbfd235c1614940c29018185005
   ZipArchive: e25a4373192673e3229ac8d6e9f64a3e5713c966
 
 PODFILE CHECKSUM: 68817214a39d615409a54bc5443ca0a094b3df29

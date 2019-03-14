@@ -68,6 +68,7 @@
     YLT_TangramVC *result = [[YLT_TangramVC alloc] init];
     if ([requestParams.allKeys containsObject:@"path"]) {
         NSString *urlPath = requestParams[@"path"];
+        urlPath = [urlPath stringByReplacingOccurrencesOfString:@" " withString:@""];
         if ([result.cacheDictionary.allKeys containsObject:urlPath]) {
             NSString *file = result.cacheDictionary[urlPath];
             BOOL isDirectory = NO;
