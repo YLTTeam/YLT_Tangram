@@ -119,8 +119,15 @@
 }
 
 - (void)loadTemplatePath:(NSURL *)fileURL {
-    NSDictionary *resp = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:fileURL] options:NSJSONReadingAllowFragments error:nil];
-    self.tangramData = resp;
+    NSDictionary *resp = nil;
+    @try {
+        resp = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:fileURL] options:NSJSONReadingAllowFragments error:nil];
+    } @catch (NSException *exception) {
+    } @finally {
+    }
+    if ([resp isKindOfClass:[NSDictionary class]]) {
+        self.tangramData = resp;
+    }
 }
 
 - (void)setTangramData:(NSDictionary *)tangramData {
